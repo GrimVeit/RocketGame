@@ -4,9 +4,6 @@ using UnityEngine;
 public class MainMenuEntryPoint : MonoBehaviour
 {
     [SerializeField] private Sounds sounds;
-    [SerializeField] private StrategyGroup strategyGroup;
-    [SerializeField] private ChipGroup chipGroup;
-    [SerializeField] private TutorialDescriptionGroup tutorialDescriptionGroup;
     [SerializeField] private UIMainMenuRoot menuRootPrefab;
 
     private UIMainMenuRoot sceneRoot;
@@ -48,22 +45,26 @@ public class MainMenuEntryPoint : MonoBehaviour
 
     private void ActivateEvents()
     {
-        ActivateTransitionsSceneEvents();
+        ActivateTransitions();
     }
 
     private void DeactivateEvents()
     {
-        DeactivateTransitionsSceneEvents();
+        DeactivateTransitions();
     }
 
-    private void ActivateTransitionsSceneEvents()
+    private void ActivateTransitions()
     {
+        sceneRoot.OnClickToLeaderboard += sceneRoot.OpenLeaderboardPanel;
 
+        sceneRoot.OnClickToPlay += HandleGoToGame;
     }
 
-    private void DeactivateTransitionsSceneEvents()
+    private void DeactivateTransitions()
     {
+        sceneRoot.OnClickToLeaderboard -= sceneRoot.OpenLeaderboardPanel;
 
+        sceneRoot.OnClickToPlay -= HandleGoToGame;
     }
 
     private void Deactivate()
@@ -87,7 +88,7 @@ public class MainMenuEntryPoint : MonoBehaviour
         Dispose();
     }
 
-    #region Input actions
+    #region InputActions
 
     public event Action OnGoToGame;
 

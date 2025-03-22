@@ -1,8 +1,10 @@
 using System;
 using UnityEngine;
 
-public class UIMiniGameSceneRoot : MonoBehaviour
+public class UIMiniGameSceneRoot : UIRoot
 {
+    [SerializeField] private MainPanel_Game mainPanel;
+    [SerializeField] private FooterPanel_Game footerPanel;
 
     private ISoundProvider soundProvider;
 
@@ -11,56 +13,39 @@ public class UIMiniGameSceneRoot : MonoBehaviour
         this.soundProvider = soundProvider;
     }
 
-    private Panel currentPanel;
-
     public void Initialize()
     {
-
+        mainPanel.Initialize();
+        footerPanel.Initialize();
     }
 
     public void Dispose()
     {
-
+        mainPanel.Dispose();
+        footerPanel.Dispose();
     }
-
-    #region Base
 
     public void Activate()
     {
-
+        mainPanel.OnClickToExit += HandleClickToExit;
     }
 
     public void Deactivate()
     {
+        mainPanel.OnClickToExit -= HandleClickToExit;
+
         if (currentPanel != null)
             CloseOtherPanel(currentPanel);
     }
 
-
-    private void OpenPanel(Panel panel)
-    {
-        if (currentPanel != null)
-            currentPanel.DeactivatePanel();
-
-        currentPanel = panel;
-        currentPanel.ActivatePanel();
-
-    }
-
-    private void OpenOtherPanel(Panel panel)
-    {
-        panel.ActivatePanel();
-    }
-
-    private void CloseOtherPanel(Panel panel)
-    {
-        panel.DeactivatePanel();
-    }
-
-    #endregion
-
     #region Input
 
+    public event Action OnClickToExit;
+
+    private void HandleClickToExit()
+    {
+        OnClickToExit?.Invoke();
+    }
 
     #endregion
 }

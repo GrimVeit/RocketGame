@@ -1,13 +1,12 @@
 using System;
 using UnityEngine;
 
-public class UIMainMenuRoot : MonoBehaviour
+public class UIMainMenuRoot : UIRoot
 {
     [SerializeField] private MainPanel_Menu mainPanel;
+    [SerializeField] private LeaderboardPanel_Menu leaderboardPanel;
 
     private ISoundProvider soundProvider;
-
-    private Panel currentPanel;
 
     public void SetSoundProvider(ISoundProvider soundProvider)
     {
@@ -16,18 +15,27 @@ public class UIMainMenuRoot : MonoBehaviour
 
     public void Initialize()
     {
-        mainPanel.SetSoundProvider(soundProvider);
+        mainPanel.Initialize();
+        leaderboardPanel.Initialize();
     }
 
     public void Activate()
     {
+        mainPanel.OnClickToPlay += HandleClickToPlay;
+        mainPanel.OnClickToLeaderboard += HandleClickToLeaderboard;
+
+        leaderboardPanel.OnClickToCancelFromLeaderboard += HandleClickToCancel;
+
         OpenMainPanel();
     }
 
 
     public void Deactivate()
     {
+        mainPanel.OnClickToPlay -= HandleClickToPlay;
+        mainPanel.OnClickToLeaderboard -= HandleClickToLeaderboard;
 
+        leaderboardPanel.OnClickToCancelFromLeaderboard -= HandleClickToCancel;
     }
 
     public void Dispose()
@@ -41,37 +49,47 @@ public class UIMainMenuRoot : MonoBehaviour
 
     public void OpenMainPanel()
     {
+        if(mainPanel.IsActive) return;
+
         OpenPanel(mainPanel);
     }
 
-
-    #region Base
-
-    private void OpenPanel(Panel panel)
+    public void OpenLeaderboardPanel()
     {
-        if (currentPanel == panel) return;
+        if (leaderboardPanel.IsActive) return;
 
-        if (currentPanel != null)
-            currentPanel.DeactivatePanel();
-
-        currentPanel = panel;
-        currentPanel.ActivatePanel();
-
+        OpenPanel(leaderboardPanel);
     }
 
-    private void OpenOtherPanel(Panel panel)
+    #region Input
+
+    #region MainPanel
+
+    public event Action OnClickToPlay;
+    public event Action OnClickToLeaderboard;
+
+    private void HandleClickToPlay()
     {
-        panel.ActivatePanel();
+        OnClickToPlay?.Invoke();
     }
 
-    private void CloseOtherPanel(Panel panel)
+    private void HandleClickToLeaderboard()
     {
-        panel.DeactivatePanel();
+        OnClickToLeaderboard?.Invoke();
     }
 
     #endregion
 
-    #region Input
+    #region LeaderboardPanel
+
+    public event Action OnClickToCancel;
+
+    private void HandleClickToCancel()
+    {
+        OnClickToCancel?.Invoke();
+    }
+
+    #endregion
 
     #endregion
 

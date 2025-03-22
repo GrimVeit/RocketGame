@@ -1,65 +1,41 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MainPanel_Menu : MovePanel
 {
-    [SerializeField] private Button buttonBattle;
-    [SerializeField] private Button buttonStrategy;
-    [SerializeField] private Button buttonCollection;
-
-    private ISoundProvider soundProvider;
-
-    public void SetSoundProvider(ISoundProvider soundProvider)
-    {
-        this.soundProvider = soundProvider;
-    }
+    [SerializeField] private Button buttonPlay;
+    [SerializeField] private Button buttonLeaderboard;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        buttonBattle.onClick.AddListener(HandleClickToBattle);
-        buttonStrategy.onClick.AddListener(HandleClickToStrategy);
-        buttonCollection.onClick.AddListener(HandleClickToCollection);
+        buttonPlay.onClick.AddListener(HandleClickToPlay);
+        buttonLeaderboard.onClick.AddListener(HandleClickToLeaderboard);
     }
 
     public override void Dispose()
     {
         base.Dispose();
 
-        buttonBattle.onClick.RemoveListener(HandleClickToBattle);
-        buttonStrategy.onClick.RemoveListener(HandleClickToStrategy);
-        buttonCollection.onClick.RemoveListener(HandleClickToCollection);
+        buttonPlay.onClick.RemoveListener(HandleClickToPlay);
+        buttonLeaderboard.onClick.RemoveListener(HandleClickToLeaderboard);
     }
 
     #region Input
 
-    public event Action OnClickToBattle;
-    public event Action OnClickToStrategy;
-    public event Action OnClickToCollection;
+    public event Action OnClickToPlay;
+    public event Action OnClickToLeaderboard;
 
-    private void HandleClickToBattle()
+    private void HandleClickToPlay()
     {
-        soundProvider.PlayOneShot("Click");
-
-        OnClickToBattle?.Invoke();
+        OnClickToPlay?.Invoke();
     }
 
-    private void HandleClickToStrategy()
+    private void HandleClickToLeaderboard()
     {
-        soundProvider.PlayOneShot("Click");
-
-        OnClickToStrategy?.Invoke();
-    }
-
-    private void HandleClickToCollection()
-    {
-        soundProvider.PlayOneShot("Click");
-
-        OnClickToCollection?.Invoke();
+        OnClickToLeaderboard?.Invoke();
     }
 
     #endregion
