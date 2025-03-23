@@ -1,4 +1,8 @@
 using System;
+using Firebase;
+using Firebase.Auth;
+using Firebase.Database;
+using Firebase.Extensions;
 using UnityEngine;
 
 public class MainMenuEntryPoint : MonoBehaviour
@@ -13,6 +17,9 @@ public class MainMenuEntryPoint : MonoBehaviour
     private ParticleEffectPresenter particleEffectPresenter;
     private SoundPresenter soundPresenter;
 
+    private FirebaseAuthenticationPresenter firebaseAuthenticationPresenter;
+    private FirebaseDatabaseRealtimePresenter firebaseDatabaseRealtimePresenter;
+
     public void Run(UIRootView uIRootView)
     {
         sceneRoot = menuRootPrefab;
@@ -22,25 +29,63 @@ public class MainMenuEntryPoint : MonoBehaviour
         viewContainer = sceneRoot.GetComponent<ViewContainer>();
         viewContainer.Initialize();
 
-        soundPresenter = new SoundPresenter
-            (new SoundModel(sounds.sounds, PlayerPrefsKeys.IS_MUTE_SOUNDS),
-            viewContainer.GetView<SoundView>());
+        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
+        {
+            var dependencyStatus = task.Result;
 
-        particleEffectPresenter = new ParticleEffectPresenter
-            (new ParticleEffectModel(),
-            viewContainer.GetView<ParticleEffectView>());
+            if (dependencyStatus == DependencyStatus.Available)
+            {
+                FirebaseDatabase.DefaultInstance.SetPersistenceEnabled(false);
+                FirebaseAuth firebaseAuth = FirebaseAuth.DefaultInstance;
+                DatabaseReference databaseReference = FirebaseDatabase.DefaultInstance.RootReference;
 
-        bankPresenter = new BankPresenter(new BankModel(), viewContainer.GetView<BankView>());
+                soundPresenter = new SoundPresenter
+                    (new SoundModel(sounds.sounds, PlayerPrefsKeys.IS_MUTE_SOUNDS),
+                    viewContainer.GetView<SoundView>());
 
-        sceneRoot.SetSoundProvider(soundPresenter);
-        sceneRoot.Activate();
+                particleEffectPresenter = new ParticleEffectPresenter
+                    (new ParticleEffectModel(),
+                    viewContainer.GetView<ParticleEffectView>());
 
-        ActivateEvents();
+                bankPresenter = new BankPresenter(new BankModel(), viewContainer.GetView<BankView>());
 
-        soundPresenter.Initialize();
-        particleEffectPresenter.Initialize();
-        sceneRoot.Initialize();
-        bankPresenter.Initialize();
+                firebaseAuthenticationPresenter = new FirebaseAuthenticationPresenter
+                    (new FirebaseAuthenticationModel(firebaseAuth, soundPresenter, particleEffectPresenter),
+                viewContainer.GetView<FirebaseAuthenticationView>());
+
+                firebaseDatabaseRealtimePresenter = new FirebaseDatabaseRealtimePresenter
+                (new FirebaseDatabaseRealtimeModel(firebaseAuth, databaseReference, soundPresenter),
+                    viewContainer.GetView<FirebaseDatabaseRealtimeView>());
+
+                sceneRoot.SetSoundProvider(soundPresenter);
+                sceneRoot.Activate();
+
+                ActivateEvents();
+
+                soundPresenter.Initialize();
+                particleEffectPresenter.Initialize();
+                sceneRoot.Initialize();
+                bankPresenter.Initialize();
+
+                firebaseAuthenticationPresenter.Initialize();
+                firebaseDatabaseRealtimePresenter.Initialize();
+
+                if (firebaseAuthenticationPresenter.CheckAuthenticated())
+                {
+                    Debug.Log("AUTH");
+                }
+                else
+                {
+                    Debug.Log("NONE");
+                }
+            }
+            else
+            {
+                Debug.LogError(string.Format(
+                  "Could not resolve all Firebase dependencies: {0}", dependencyStatus));
+                // Firebase Unity SDK is not safe to use here.
+            }
+        });
     }
 
     private void ActivateEvents()
@@ -83,6 +128,9 @@ public class MainMenuEntryPoint : MonoBehaviour
         sceneRoot?.Dispose();
         particleEffectPresenter?.Dispose();
         bankPresenter?.Dispose();
+
+        firebaseAuthenticationPresenter.Dispose();
+        firebaseDatabaseRealtimePresenter.Dispose();
     }
 
     private void OnDestroy()

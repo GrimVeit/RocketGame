@@ -1,0 +1,32 @@
+{
+  "project_info": {
+    "project_number": "268751120602",
+    "firebase_url": "https://chickens-58812-default-rtdb.firebaseio.com",
+    "project_id": "chickens-58812",
+    "storage_bucket": "chickens-58812.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:268751120602:ios:becdaff01ca0e865a35de3",
+        "android_client_info": {
+          "package_name": "com.RocketCompany.RocketSky"
+        }
+      },
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNlHHXLIzKL0hJ4M91BPCv6v4ns8vtLOU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 0
+        },
+        "appinvite_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
