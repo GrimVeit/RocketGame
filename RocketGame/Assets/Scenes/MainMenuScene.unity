@@ -3291,6 +3291,7 @@ GameObject:
   - component: {fileID: 932018334}
   - component: {fileID: 932018336}
   - component: {fileID: 932018335}
+  - component: {fileID: 932018338}
   - component: {fileID: 932018337}
   m_Layer: 5
   m_Name: MainPanel_Menu
@@ -3298,7 +3299,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &932018334
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3371,13 +3372,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29fa26129e6276a49a77574253ec26c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 0}
+  panel: {fileID: 932018333}
   from: {x: 0, y: 0, z: 0}
   to: {x: 0, y: 0, z: 0}
-  time: 0
-  canvasGroup: {fileID: 0}
+  time: 0.2
+  canvasGroup: {fileID: 932018338}
   buttonPlay: {fileID: 1066779236}
   buttonLeaderboard: {fileID: 1058248020}
+--- !u!225 &932018338
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932018333}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1001723844
 GameObject:
   m_ObjectHideFlags: 0
@@ -7251,39 +7264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccea749191bb83941be022f00420c8aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effects:
-  - ID: NewChip
-    particles:
-    - timeToInterval: 0
-      particleSystemPrefab: {fileID: 2389487169119749415, guid: 7e01ac1a1ef9a7548928fa8b7b807f2d, type: 3}
-      particleTransform: {fileID: 0}
-      minSize: 1
-      maxSize: 1
-      isPlayAwake: 0
-    - timeToInterval: 0
-      particleSystemPrefab: {fileID: 6097711977027087219, guid: d94cfd945a568dc46837aa22099cb697, type: 3}
-      particleTransform: {fileID: 0}
-      minSize: 1
-      maxSize: 1
-      isPlayAwake: 0
-    - timeToInterval: 0
-      particleSystemPrefab: {fileID: 7995317036892792410, guid: 9bb12f8349e65e641b4ab30266b6ece9, type: 3}
-      particleTransform: {fileID: 0}
-      minSize: 1
-      maxSize: 1
-      isPlayAwake: 0
-    - timeToInterval: 0
-      particleSystemPrefab: {fileID: 5450665744544487912, guid: fffab7578a2439f4294d47918a12ec58, type: 3}
-      particleTransform: {fileID: 0}
-      minSize: 1
-      maxSize: 1
-      isPlayAwake: 0
-    - timeToInterval: 0
-      particleSystemPrefab: {fileID: 3921795165019144207, guid: 787be44234b61c549ab89d6fc50bfa04, type: 3}
-      particleTransform: {fileID: 0}
-      minSize: 1
-      maxSize: 1
-      isPlayAwake: 0
+  effects: []
 --- !u!222 &5104971942917834576
 CanvasRenderer:
   m_ObjectHideFlags: 0

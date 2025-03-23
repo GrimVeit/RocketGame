@@ -17,6 +17,9 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
     private SoundPresenter soundPresenter;
     private ParticleEffectPresenter particleEffectPresenter;
 
+    private ScrollBackgroundPresenter scrollBackgroundPresenter;
+    private RocketControlPresenter rocketControlPresenter;
+
     public void Run(UIRootView uIRootView)
     {
         sceneRoot = sceneRootPrefab;
@@ -30,6 +33,9 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         bankPresenter = new BankPresenter(new BankModel(), viewContainer.GetView<BankView>());
         particleEffectPresenter = new ParticleEffectPresenter(new ParticleEffectModel(), viewContainer.GetView<ParticleEffectView>());
 
+        scrollBackgroundPresenter = new ScrollBackgroundPresenter(new ScrollBackgroundModel(), viewContainer.GetView<ScrollBackgroundView>());
+        rocketControlPresenter = new RocketControlPresenter(new RocketControlModel(), viewContainer.GetView<RocketControlView>());
+
         sceneRoot.SetSoundProvider(soundPresenter);
         sceneRoot.Activate();
 
@@ -40,6 +46,9 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         bankPresenter.Initialize();
         soundPresenter.Initialize();
         particleEffectPresenter.Initialize();
+
+        scrollBackgroundPresenter.Initialize();
+        rocketControlPresenter.Initialize();
 
     }
 
@@ -57,12 +66,12 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
     private void ActivateTransitionsSceneEvents()
     {
-
+        sceneRoot.OnClickToExit += HandleGoToMenu;
     }
 
     private void DeactivateTransitionsSceneEvents()
     {
-
+        sceneRoot.OnClickToExit -= HandleGoToMenu;
     }
 
     public void Dispose()
@@ -74,6 +83,22 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
         bankPresenter.Dispose();
         particleEffectPresenter.Dispose();
+
+        scrollBackgroundPresenter?.Dispose();
+        rocketControlPresenter?.Dispose();
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            scrollBackgroundPresenter.ActivateScroll();
+        }
+
+        if (Input.GetKeyUp(KeyCode.Z))
+        {
+            scrollBackgroundPresenter.DeactivateScroll();
+        }
     }
 
     private void OnDestroy()
@@ -83,13 +108,13 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
     #region Input
 
-    public event Action OnGoToGame;
+    public event Action OnGoToMenu;
 
-    private void HandleGoToGame()
+    private void HandleGoToMenu()
     {
         sceneRoot.Deactivate();
         soundPresenter.Dispose();
-        OnGoToGame?.Invoke();
+        OnGoToMenu?.Invoke();
     }
 
     #endregion

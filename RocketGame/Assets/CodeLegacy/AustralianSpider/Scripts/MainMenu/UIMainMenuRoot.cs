@@ -41,6 +41,7 @@ public class UIMainMenuRoot : UIRoot
     public void Dispose()
     {
         mainPanel.Dispose();
+        leaderboardPanel.Dispose();
     }
 
 

@@ -17,38 +17,48 @@ public class RocketControlPresenter
     public void Initialize()
     {
         ActivateEvents();
+
+        view.Initialize();
     }
 
     public void Dispose()
     {
         DeactivateEvents();
+
+        view.Dispose();
     }
 
     private void ActivateEvents()
     {
         view.OnClickToLeft += model.MoveLeft;
         view.OnClickToRight += model.MoveRight;
+
+        model.OnMoveToRight += view.MoveRight;
+        model.OnMoveToLeft += view.MoveLeft;
     }
 
     private void DeactivateEvents()
     {
         view.OnClickToLeft -= model.MoveLeft;
         view.OnClickToRight -= model.MoveRight;
+
+        model.OnMoveToRight -= view.MoveRight;
+        model.OnMoveToLeft -= view.MoveLeft;
     }
 
     #region Input
 
-    public event Action OnMoveLeft
-    {
-        add => model.OnMoveToLeft += value;
-        remove => model.OnMoveToLeft -= value;
-    }
+    //public event Action OnMoveLeft
+    //{
+    //    add => model.OnMoveToLeft += value;
+    //    remove => model.OnMoveToLeft -= value;
+    //}
 
-    public event Action OnMoveRight
-    {
-        add => model.OnMoveToRight += value;
-        remove => model.OnMoveToRight -= value;
-    }
+    //public event Action OnMoveRight
+    //{
+    //    add => model.OnMoveToRight += value;
+    //    remove => model.OnMoveToRight -= value;
+    //}
 
     #endregion
 }

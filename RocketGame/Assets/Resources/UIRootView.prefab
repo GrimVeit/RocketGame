@@ -998,8 +998,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 3857928084315394914}
   loadScreens:
-  - {fileID: 4589293846687306736}
-  - {fileID: 5041587392042026253}
+  - {fileID: 9149795948750017731}
+  - {fileID: 1283832967165241607}
   uiSceneContainer: {fileID: 6297646957813283434}
 --- !u!1 &2299824817343055518
 GameObject:
@@ -1461,7 +1461,7 @@ GameObject:
   - component: {fileID: 6313447845570543727}
   - component: {fileID: 1339183559892627801}
   - component: {fileID: 121357760789183775}
-  - component: {fileID: 5041587392042026253}
+  - component: {fileID: 1283832967165241607}
   m_Layer: 5
   m_Name: LoadScreen_MiniGame
   m_TagString: Untagged
@@ -1517,7 +1517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1546,7 +1546,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &5041587392042026253
+--- !u!114 &1283832967165241607
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1555,7 +1555,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3519897061509474401}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1511f2709096d4f4992a86fbad39a8a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fc47cee2a842024dbfad12da78dd0ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 3519897061509474401}
@@ -1563,7 +1563,6 @@ MonoBehaviour:
   to: {x: 0, y: 0, z: 0}
   time: 0.2
   canvasGroup: {fileID: 121357760789183775}
-  animationFrame: {fileID: 6110878521045243087}
 --- !u!1 &4310394441304894432
 GameObject:
   m_ObjectHideFlags: 0
@@ -1731,7 +1730,7 @@ GameObject:
   - component: {fileID: 7598058530089036495}
   - component: {fileID: 4606012094315438407}
   - component: {fileID: 8973956408726076290}
-  - component: {fileID: 4589293846687306736}
+  - component: {fileID: 9149795948750017731}
   m_Layer: 5
   m_Name: LoadScreen_Menu
   m_TagString: Untagged
@@ -1781,7 +1780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1810,7 +1809,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &4589293846687306736
+--- !u!114 &9149795948750017731
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1819,7 +1818,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4997989393129252700}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 499740a67e782a144a6cb774a9212c4d, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fc47cee2a842024dbfad12da78dd0ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 4997989393129252700}
@@ -1827,7 +1826,6 @@ MonoBehaviour:
   to: {x: 0, y: 0, z: 0}
   time: 0.2
   canvasGroup: {fileID: 8973956408726076290}
-  animationFrame: {fileID: 1179208623460187930}
 --- !u!1 &5277940961692212744
 GameObject:
   m_ObjectHideFlags: 0
@@ -2198,8 +2196,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Loading...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e6c1433fc2b4fff43add18061a885a60, type: 2}
-  m_sharedMaterial: {fileID: 9192326851364844406, guid: e6c1433fc2b4fff43add18061a885a60, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

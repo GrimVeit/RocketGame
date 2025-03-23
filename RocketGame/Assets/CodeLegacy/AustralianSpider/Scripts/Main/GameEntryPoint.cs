@@ -72,7 +72,7 @@ public class GameEntryPoint
         var sceneEntryPoint = Object.FindObjectOfType<MiniGameSceneEntryPoint>();
         sceneEntryPoint.Run(rootView);
 
-        sceneEntryPoint.OnGoToGame += () => coroutines.StartCoroutine(LoadAndStartMiniGameScene());
+        sceneEntryPoint.OnGoToMenu += () => coroutines.StartCoroutine(LoadAndStartMainMenu());
 
 
         yield return rootView.HideLoadingScreen();

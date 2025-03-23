@@ -56,6 +56,7 @@ public class MainMenuEntryPoint : MonoBehaviour
     private void ActivateTransitions()
     {
         sceneRoot.OnClickToLeaderboard += sceneRoot.OpenLeaderboardPanel;
+        sceneRoot.OnClickToCancel += sceneRoot.OpenMainPanel;
 
         sceneRoot.OnClickToPlay += HandleGoToGame;
     }
@@ -63,6 +64,7 @@ public class MainMenuEntryPoint : MonoBehaviour
     private void DeactivateTransitions()
     {
         sceneRoot.OnClickToLeaderboard -= sceneRoot.OpenLeaderboardPanel;
+        sceneRoot.OnClickToCancel -= sceneRoot.OpenMainPanel;
 
         sceneRoot.OnClickToPlay -= HandleGoToGame;
     }
