@@ -4,22 +4,23 @@ using UnityEngine;
 public class InternetModel
 {
     public event Action<string> OnGetStatusDescription;
-    public event Action OnInternetAvailable;
-    public event Action OnInternetUnvailable;
+    public event Action OnConnectionAvailable;
+    public event Action OnConnectionUnvailable;
 
-    public void StartCheckInternet()
+    public void CheckConnection()
     {
         //Coroutines.Start(CheckInternet_Coroutine());
 
         if (Application.internetReachability == NetworkReachability.NotReachable)
         {
             Debug.Log("Internet disable");
-            OnInternetUnvailable?.Invoke();
+            OnConnectionUnvailable?.Invoke();
+            OnGetStatusDescription?.Invoke("Unable to connect. Please check your internet connection");
         }
         else
         {
             Debug.Log("Internet enable");
-            OnInternetAvailable?.Invoke();
+            OnConnectionAvailable?.Invoke();
         }
     }
 

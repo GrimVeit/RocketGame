@@ -105,7 +105,6 @@ public class FirebaseDatabaseRealtimeModel
         {
             string name = user.Child("Nickname").Value.ToString();
             int record = int.Parse(user.Child("Record").Value.ToString());
-            int avatar = int.Parse(user.Child("Avatar").Value.ToString());
             userRecordsDictionary.Add(new UserData(name, record));
         }
 

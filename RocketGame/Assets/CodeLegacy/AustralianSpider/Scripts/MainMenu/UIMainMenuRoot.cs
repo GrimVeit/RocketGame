@@ -5,6 +5,7 @@ public class UIMainMenuRoot : UIRoot
 {
     [SerializeField] private MainPanel_Menu mainPanel;
     [SerializeField] private LeaderboardPanel_Menu leaderboardPanel;
+    [SerializeField] private MovePanel authorizationPanel;
 
     private ISoundProvider soundProvider;
 
@@ -17,6 +18,7 @@ public class UIMainMenuRoot : UIRoot
     {
         mainPanel.Initialize();
         leaderboardPanel.Initialize();
+        authorizationPanel.Initialize();
     }
 
     public void Activate()
@@ -42,6 +44,7 @@ public class UIMainMenuRoot : UIRoot
     {
         mainPanel.Dispose();
         leaderboardPanel.Dispose();
+        authorizationPanel.Dispose();
     }
 
 
@@ -60,6 +63,13 @@ public class UIMainMenuRoot : UIRoot
         if (leaderboardPanel.IsActive) return;
 
         OpenPanel(leaderboardPanel);
+    }
+
+    public void OpenAuthorizationPanel()
+    {
+        if (authorizationPanel.IsActive) return;
+
+        OpenPanel(authorizationPanel);
     }
 
     #region Input

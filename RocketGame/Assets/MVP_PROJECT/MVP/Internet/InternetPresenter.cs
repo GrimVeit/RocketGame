@@ -31,20 +31,28 @@ public class InternetPresenter
 
     }
 
-    public void StartCheckInternet()
+    #region Input
+
+    public void CheckConnection()
     {
-        internetModel.StartCheckInternet();
+        internetModel.CheckConnection();
     }
+
+    #endregion
+
+    #region Output
 
     public event Action OnInternetUnavailable
     {
-        add { internetModel.OnInternetUnvailable += value; }
-        remove { internetModel.OnInternetUnvailable -= value; }
+        add { internetModel.OnConnectionUnvailable += value; }
+        remove { internetModel.OnConnectionUnvailable -= value; }
     }
 
     public event Action OnInternetAvailable
     {
-        add { internetModel.OnInternetAvailable += value;}
-        remove { internetModel.OnInternetAvailable += value; }
+        add { internetModel.OnConnectionAvailable += value;}
+        remove { internetModel.OnConnectionAvailable += value; }
     }
+
+    #endregion
 }

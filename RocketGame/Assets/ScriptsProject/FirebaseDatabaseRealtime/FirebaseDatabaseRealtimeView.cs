@@ -6,17 +6,12 @@ using UnityEngine.UI;
 
 public class FirebaseDatabaseRealtimeView : View
 {
-    public event Action OnChangeAvatar;
-
     [SerializeField] private Transform contentUsers;
     [SerializeField] private UserGrid userGridPrefab;
-
-    [SerializeField] private Button buttonChangeAvatar;
 
     [Space]
     [Space]
     [Header("ACCOUNT DATA")]
-    public int Avatar;
     public string Nickname;
 
     private List<UserGrid> spawnUsers = new List<UserGrid>();
@@ -51,9 +46,9 @@ public class FirebaseDatabaseRealtimeView : View
 
         foreach (var item in users)
         {
-            //UserGrid grid = Instantiate(userGridPrefab, contentUsers);
-            //grid.SetData(item.Nickname, item.Record.ToString(), spritesAvatar[item.Avatar]);
-            //spawnUsers.Add(grid);
+            UserGrid grid = Instantiate(userGridPrefab, contentUsers);
+            grid.SetData(item.Nickname, item.Record.ToString());
+            spawnUsers.Add(grid);
         }
     }
 }

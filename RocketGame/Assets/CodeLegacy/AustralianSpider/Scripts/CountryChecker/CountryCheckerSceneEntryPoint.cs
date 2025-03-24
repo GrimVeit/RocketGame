@@ -39,7 +39,7 @@ public class CountryCheckerSceneEntryPoint : MonoBehaviour
 
         Debug.Log("Success");
 
-        internetPresenter.StartCheckInternet();
+        internetPresenter.CheckConnection();
 
     }
 

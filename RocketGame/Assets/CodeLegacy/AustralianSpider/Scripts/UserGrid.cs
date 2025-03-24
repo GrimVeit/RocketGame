@@ -8,20 +8,13 @@ public class UserGrid : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI nicknameText;
     [SerializeField] private TextMeshProUGUI recordText;
-    [SerializeField] private Image avatarImage;
 
     public string Nickname { get; private set; }
 
-    public void SetData(string nickname, string record, Sprite sprite)
+    public void SetData(string nickname, string record)
     {
         this.Nickname = nickname;
         nicknameText.text = Nickname;
         recordText.text = record;
-        avatarImage.sprite = sprite;
-    }
-
-    public void SetAvatar(Sprite sprite)
-    {
-        avatarImage.sprite = sprite;
     }
 }

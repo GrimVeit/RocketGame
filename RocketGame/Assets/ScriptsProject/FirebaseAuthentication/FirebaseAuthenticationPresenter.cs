@@ -32,19 +32,11 @@ public class FirebaseAuthenticationPresenter
 
     private void ActivateEvents()
     {
-        firebaseAuthenticationView.OnClickSignUpButton += firebaseAuthenticationModel.SignUp;
-
-        firebaseAuthenticationModel.OnActivate += firebaseAuthenticationView.ActivateRegistrationButton;
-        firebaseAuthenticationModel.OnDeactivate += firebaseAuthenticationView.DeactivateRegistrationButton;
         firebaseAuthenticationModel.OnSignUpMessage_Action += firebaseAuthenticationView.SetDescription;
     }
 
     private void DeactivateEvents()
     {
-        firebaseAuthenticationView.OnClickSignUpButton -= firebaseAuthenticationModel.SignUp;
-
-        firebaseAuthenticationModel.OnActivate -= firebaseAuthenticationView.ActivateRegistrationButton;
-        firebaseAuthenticationModel.OnDeactivate -= firebaseAuthenticationView.DeactivateRegistrationButton;
         firebaseAuthenticationModel.OnSignUpMessage_Action -= firebaseAuthenticationView.SetDescription;
     }
 
@@ -59,14 +51,19 @@ public class FirebaseAuthenticationPresenter
     {
         firebaseAuthenticationModel.Deactivate();
     }
-    public bool CheckAuthenticated()
+    public bool IsAuthorization()
     {
-        return firebaseAuthenticationModel.CheckUserAuthentication();
+        return firebaseAuthenticationModel.IsAuthorization();
     }
 
     public void DeleteAccount()
     {
         firebaseAuthenticationModel.DeleteAccount();
+    }
+
+    public void SignUp()
+    {
+        firebaseAuthenticationModel.SignUp();
     }
 
     public void SignOut()
@@ -85,11 +82,15 @@ public class FirebaseAuthenticationPresenter
         remove { firebaseAuthenticationModel.OnChangeUser -= value; }
     }
 
+
+
     public event Action OnSignIn
     {
         add { firebaseAuthenticationModel.OnSignIn_Action += value; }
         remove { firebaseAuthenticationModel.OnSignIn_Action -= value; }
     }
+
+
 
     public event Action OnSignUp
     {
@@ -97,13 +98,20 @@ public class FirebaseAuthenticationPresenter
         remove { firebaseAuthenticationModel.OnSignUp_Action -= value; }
     }
 
+    public event Action OnSignUpError
+    {
+        add { firebaseAuthenticationModel.OnSignUpError_Action += value; }
+        remove { firebaseAuthenticationModel.OnSignUpError_Action -= value; }
+    }
+
+
     public event Action OnSignOut
     {
         add { firebaseAuthenticationModel.OnSignOut_Action += value; }
         remove { firebaseAuthenticationModel.OnSignOut_Action -= value; }
     }
 
-    public event Action OnDeleteAccoun
+    public event Action OnDeleteAccount
     {
         add { firebaseAuthenticationModel.OnDeleteAccount_Action += value; }
         remove { firebaseAuthenticationModel.OnDeleteAccount_Action -= value; }

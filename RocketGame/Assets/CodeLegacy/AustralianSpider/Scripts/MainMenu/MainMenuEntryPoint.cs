@@ -17,8 +17,12 @@ public class MainMenuEntryPoint : MonoBehaviour
     private ParticleEffectPresenter particleEffectPresenter;
     private SoundPresenter soundPresenter;
 
+    private InternetPresenter internetPresenter;
     private FirebaseAuthenticationPresenter firebaseAuthenticationPresenter;
     private FirebaseDatabaseRealtimePresenter firebaseDatabaseRealtimePresenter;
+    private NicknameRandomPresenter nicknameRandomPresenter;
+
+    private MenuGlobalStateMachine stateMachine;
 
     public void Run(UIRootView uIRootView)
     {
@@ -49,6 +53,8 @@ public class MainMenuEntryPoint : MonoBehaviour
 
                 bankPresenter = new BankPresenter(new BankModel(), viewContainer.GetView<BankView>());
 
+                internetPresenter = new InternetPresenter(new InternetModel(), viewContainer.GetView<InternetView>());
+
                 firebaseAuthenticationPresenter = new FirebaseAuthenticationPresenter
                     (new FirebaseAuthenticationModel(firebaseAuth, soundPresenter, particleEffectPresenter),
                 viewContainer.GetView<FirebaseAuthenticationView>());
@@ -56,6 +62,10 @@ public class MainMenuEntryPoint : MonoBehaviour
                 firebaseDatabaseRealtimePresenter = new FirebaseDatabaseRealtimePresenter
                 (new FirebaseDatabaseRealtimeModel(firebaseAuth, databaseReference, soundPresenter),
                     viewContainer.GetView<FirebaseDatabaseRealtimeView>());
+
+                nicknameRandomPresenter = new NicknameRandomPresenter(new NicknameRandomModel());
+
+                stateMachine = new MenuGlobalStateMachine(internetPresenter, firebaseAuthenticationPresenter, firebaseDatabaseRealtimePresenter, nicknameRandomPresenter, sceneRoot);
 
                 sceneRoot.SetSoundProvider(soundPresenter);
                 sceneRoot.Activate();
@@ -67,17 +77,11 @@ public class MainMenuEntryPoint : MonoBehaviour
                 sceneRoot.Initialize();
                 bankPresenter.Initialize();
 
+                internetPresenter.Initialize();
                 firebaseAuthenticationPresenter.Initialize();
                 firebaseDatabaseRealtimePresenter.Initialize();
 
-                if (firebaseAuthenticationPresenter.CheckAuthenticated())
-                {
-                    Debug.Log("AUTH");
-                }
-                else
-                {
-                    Debug.Log("NONE");
-                }
+                stateMachine.Initialize();
             }
             else
             {
@@ -100,17 +104,11 @@ public class MainMenuEntryPoint : MonoBehaviour
 
     private void ActivateTransitions()
     {
-        sceneRoot.OnClickToLeaderboard += sceneRoot.OpenLeaderboardPanel;
-        sceneRoot.OnClickToCancel += sceneRoot.OpenMainPanel;
-
         sceneRoot.OnClickToPlay += HandleGoToGame;
     }
 
     private void DeactivateTransitions()
     {
-        sceneRoot.OnClickToLeaderboard -= sceneRoot.OpenLeaderboardPanel;
-        sceneRoot.OnClickToCancel -= sceneRoot.OpenMainPanel;
-
         sceneRoot.OnClickToPlay -= HandleGoToGame;
     }
 
@@ -129,8 +127,11 @@ public class MainMenuEntryPoint : MonoBehaviour
         particleEffectPresenter?.Dispose();
         bankPresenter?.Dispose();
 
+        internetPresenter?.Dispose();
         firebaseAuthenticationPresenter.Dispose();
         firebaseDatabaseRealtimePresenter.Dispose();
+
+        stateMachine.Dispose();
     }
 
     private void OnDestroy()

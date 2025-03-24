@@ -18,6 +18,7 @@ public class FirebaseAuthenticationModel
     public event Action<string> OnSignInError_Action;
 
     public event Action OnSignUp_Action;
+    public event Action OnSignUpError_Action;
     public event Action<string> OnSignUpMessage_Action;
 
     public event Action OnSignOut_Action;
@@ -69,7 +70,7 @@ public class FirebaseAuthenticationModel
         Nickname = nickname;
     }
 
-    public bool CheckUserAuthentication()
+    public bool IsAuthorization()
     {
         if (auth.CurrentUser != null)
         {
@@ -123,7 +124,7 @@ public class FirebaseAuthenticationModel
     private IEnumerator SignUpCoroutine(string emailTextValue, string passwordTextValue)
     {
         OnDeactivate?.Invoke();
-        OnSignUpMessage_Action?.Invoke("Loading...");
+        //OnSignUpMessage_Action?.Invoke("Loading...");
 
         var task = auth.CreateUserWithEmailAndPasswordAsync(emailTextValue, passwordTextValue);
 
@@ -137,25 +138,27 @@ public class FirebaseAuthenticationModel
 
             Debug.Log(authError);
 
-            switch (authError)
-            {
-                case AuthError.NetworkRequestFailed:
-                    OnSignUpMessage_Action?.Invoke("Network error. Please check your internet connection.");
-                    break;
-                case AuthError.EmailAlreadyInUse:
-                    OnSignUpMessage_Action?.Invoke("This nickname is already in use.");
-                    break;
-                case AuthError.InvalidEmail:
-                    OnSignUpMessage_Action?.Invoke("Invalid nickname format.");
-                    break;
-                default:
-                    OnSignUpMessage_Action?.Invoke("Unknown error or network error: " + authError.ToString());
-                    break;
-            }
+            //switch (authError)
+            //{
+            //    case AuthError.NetworkRequestFailed:
+            //        OnSignUpMessage_Action?.Invoke("Network error. Please check your internet connection.");
+            //        break;
+            //    case AuthError.EmailAlreadyInUse:
+            //        OnSignUpMessage_Action?.Invoke("This nickname is already in use.");
+            //        break;
+            //    case AuthError.InvalidEmail:
+            //        OnSignUpMessage_Action?.Invoke("Invalid nickname format.");
+            //        break;
+            //    default:
+            //        OnSignUpMessage_Action?.Invoke("Unknown error or network error: " + authError.ToString());
+            //        break;
+            //}
 
             OnActivate?.Invoke();
             soundProvider.PlayOneShot("Error");
             Debug.Log("Не удалось создать аккаунт - " + task.Exception);
+
+            OnSignUpError_Action?.Invoke();
             yield break;
         }
 
