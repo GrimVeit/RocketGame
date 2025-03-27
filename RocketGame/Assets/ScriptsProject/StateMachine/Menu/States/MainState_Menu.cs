@@ -18,6 +18,7 @@ public class MainState_Menu : IState
         _sceneRoot.OnClickToLeaderboard += _sceneRoot.OpenLeaderboardPanel;
         _sceneRoot.OnClickToCancel += _sceneRoot.OpenMainPanel;
 
+        _firebaseDatabaseRealtimePresenter.SaveChangeToServer();
         _firebaseDatabaseRealtimePresenter.DisplayUsersRecords();
         _sceneRoot.OpenMainPanel();
     }

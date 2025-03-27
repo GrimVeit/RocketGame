@@ -19,6 +19,10 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
     private ScrollBackgroundPresenter scrollBackgroundPresenter;
     private RocketControlPresenter rocketControlPresenter;
+    private PlatformPresenter platformPresenter;
+
+    private StoreBetPresenter storeBetPresenter;
+    private BetSelectPresenter betSelectPresenter;
 
     public void Run(UIRootView uIRootView)
     {
@@ -35,6 +39,10 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
         scrollBackgroundPresenter = new ScrollBackgroundPresenter(new ScrollBackgroundModel(), viewContainer.GetView<ScrollBackgroundView>());
         rocketControlPresenter = new RocketControlPresenter(new RocketControlModel(), viewContainer.GetView<RocketControlView>());
+        platformPresenter = new PlatformPresenter(new  PlatformModel(), viewContainer.GetView<PlatformView>());
+
+        storeBetPresenter = new StoreBetPresenter(new StoreBetModel(PlayerPrefsKeys.BET, 2.4f));
+        betSelectPresenter = new BetSelectPresenter(new BetSelectModel(), viewContainer.GetView<BetSelectView>());
 
         sceneRoot.SetSoundProvider(soundPresenter);
         sceneRoot.Activate();
@@ -49,6 +57,10 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
         scrollBackgroundPresenter.Initialize();
         rocketControlPresenter.Initialize();
+        platformPresenter.Initialize();
+
+        betSelectPresenter.Initialize();
+        storeBetPresenter.Initialize();
 
     }
 
@@ -56,22 +68,37 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
     {
         ActivateTransitionsSceneEvents();
 
+        storeBetPresenter.OnChooseBet += betSelectPresenter.SetBet;
+
+        betSelectPresenter.OnIncreaseBet += storeBetPresenter.IncreaseBet;
+        betSelectPresenter.OnDecreaseBet += storeBetPresenter.DecreaseBet;
+
     }
 
     private void DeactivateEvents()
     {
         DeactivateTransitionsSceneEvents();
 
+        storeBetPresenter.OnChooseBet -= betSelectPresenter.SetBet;
+
+        betSelectPresenter.OnIncreaseBet -= storeBetPresenter.IncreaseBet;
+        betSelectPresenter.OnDecreaseBet -= storeBetPresenter.DecreaseBet;
     }
 
     private void ActivateTransitionsSceneEvents()
     {
-        sceneRoot.OnClickToExit += HandleGoToMenu;
+        sceneRoot.OnClickToBet_FooterPanel += sceneRoot.OpenBetPanel;
+        sceneRoot.OnClickToExit_BetPanel += sceneRoot.CloseBetPanel;
+
+        sceneRoot.OnClickToExit_MainPanel += HandleGoToMenu;
     }
 
     private void DeactivateTransitionsSceneEvents()
     {
-        sceneRoot.OnClickToExit -= HandleGoToMenu;
+        sceneRoot.OnClickToBet_FooterPanel += sceneRoot.OpenBetPanel;
+        sceneRoot.OnClickToExit_BetPanel += sceneRoot.CloseBetPanel;
+
+        sceneRoot.OnClickToExit_MainPanel -= HandleGoToMenu;
     }
 
     public void Dispose()
@@ -86,6 +113,10 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
         scrollBackgroundPresenter?.Dispose();
         rocketControlPresenter?.Dispose();
+        platformPresenter.Dispose();
+
+        betSelectPresenter?.Dispose();
+        storeBetPresenter?.Dispose();
     }
 
     private void Update()
@@ -93,11 +124,13 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Z))
         {
             scrollBackgroundPresenter.ActivateScroll();
+            platformPresenter.DeactivatePlatform();
         }
 
         if (Input.GetKeyUp(KeyCode.Z))
         {
             scrollBackgroundPresenter.DeactivateScroll();
+            platformPresenter.ActivatePlatform();
         }
     }
 

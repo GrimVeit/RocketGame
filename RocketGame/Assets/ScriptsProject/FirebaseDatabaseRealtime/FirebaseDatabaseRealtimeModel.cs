@@ -32,19 +32,18 @@ public class FirebaseDatabaseRealtimeModel
 
     public void Initialize()
     {
-        Record = PlayerPrefs.GetInt(PlayerPrefsKeys.GAME_RECORD, 0);
+        Record = PlayerPrefs.GetInt(PlayerPrefsKeys.WIN_RECORD, 0);
+    }
 
-        if (auth.CurrentUser != null)
-        {
-            SaveChangesToServer();
-            DisplayUsersRecords();
-        }
+    public void Dispose()
+    {
+        PlayerPrefs.SetInt(PlayerPrefsKeys.WIN_RECORD, Record);
     }
 
     public void CreateNewAccountInServer()
     {
         Nickname = auth.CurrentUser.Email.Split('@')[0];
-        PlayerPrefs.SetInt(PlayerPrefsKeys.GAME_RECORD, 0);
+        PlayerPrefs.SetInt(PlayerPrefsKeys.WIN_RECORD, 0);
         PlayerPrefs.SetString(PlayerPrefsKeys.NICKNAME, Nickname);
         UserData user = new(Nickname, 0);
         string json = JsonUtility.ToJson(user);

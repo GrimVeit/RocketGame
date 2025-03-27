@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class FirebaseDatabaseRealtimePresenter
 {
@@ -26,6 +23,7 @@ public class FirebaseDatabaseRealtimePresenter
     {
         DeactivateEvents();
 
+        firebaseDatabaseRealtimeModel.Dispose();
         firebaseDatabaseRealtimeView.Dispose();
     }
 
@@ -52,6 +50,11 @@ public class FirebaseDatabaseRealtimePresenter
     public void CreateEmptyDataToServer()
     {
         firebaseDatabaseRealtimeModel.CreateNewAccountInServer();
+    }
+
+    public void SaveChangeToServer()
+    {
+        firebaseDatabaseRealtimeModel.SaveChangesToServer();
     }
 
     public void DisplayUsersRecords()
