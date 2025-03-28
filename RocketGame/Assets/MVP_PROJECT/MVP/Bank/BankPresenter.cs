@@ -42,7 +42,7 @@ public class BankPresenter : IMoneyProvider
         bankModel.SendMoney(money);
     }
 
-    public bool CanAfford(int bet)
+    public bool CanAfford(float bet)
     {
         return bankModel.CanAfford(bet);
     }
@@ -62,7 +62,7 @@ public interface IMoneyProvider
 
     event Action<float> OnChangeMoney;
     void SendMoney(float money);
-    bool CanAfford(int money);
+    bool CanAfford(float money);
 }
 
 
