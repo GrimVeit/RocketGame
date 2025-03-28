@@ -23,6 +23,6 @@ public class WinState_Game : IState
 
     private void ChangeStateToPreparePlay()
     {
-        _stateProvider.SetState(_stateProvider.GetState<PlayPrepareState_Game>());
+        _stateProvider.SetState(_stateProvider.GetState<ArrivalState_Game>());
     }
 }

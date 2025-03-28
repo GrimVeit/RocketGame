@@ -18,11 +18,15 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
     private ParticleEffectPresenter particleEffectPresenter;
 
     private ScrollBackgroundPresenter scrollBackgroundPresenter;
-    private RocketControlPresenter rocketControlPresenter;
     private PlatformPresenter platformPresenter;
+
+    private RocketMovePresenter rocketMovePresenter;
+    private RocketControlPresenter rocketControlPresenter;
 
     private StoreBetPresenter storeBetPresenter;
     private BetSelectPresenter betSelectPresenter;
+
+    private GameGlobalStateMachine stateMachine;
 
     public void Run(UIRootView uIRootView)
     {
@@ -38,11 +42,15 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         particleEffectPresenter = new ParticleEffectPresenter(new ParticleEffectModel(), viewContainer.GetView<ParticleEffectView>());
 
         scrollBackgroundPresenter = new ScrollBackgroundPresenter(new ScrollBackgroundModel(), viewContainer.GetView<ScrollBackgroundView>());
-        rocketControlPresenter = new RocketControlPresenter(new RocketControlModel(), viewContainer.GetView<RocketControlView>());
         platformPresenter = new PlatformPresenter(new  PlatformModel(), viewContainer.GetView<PlatformView>());
+
+        rocketMovePresenter = new RocketMovePresenter(new RocketMoveModel(), viewContainer.GetView<RocketMoveView>());
+        rocketControlPresenter = new RocketControlPresenter(new RocketControlModel(), viewContainer.GetView<RocketControlView>());
 
         storeBetPresenter = new StoreBetPresenter(new StoreBetModel(PlayerPrefsKeys.BET, 2.4f));
         betSelectPresenter = new BetSelectPresenter(new BetSelectModel(), viewContainer.GetView<BetSelectView>());
+
+        stateMachine = new GameGlobalStateMachine(rocketMovePresenter);
 
         sceneRoot.SetSoundProvider(soundPresenter);
         sceneRoot.Activate();
@@ -56,11 +64,15 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         particleEffectPresenter.Initialize();
 
         scrollBackgroundPresenter.Initialize();
-        rocketControlPresenter.Initialize();
         platformPresenter.Initialize();
+
+        rocketMovePresenter.Initialize();
+        rocketControlPresenter.Initialize();
 
         betSelectPresenter.Initialize();
         storeBetPresenter.Initialize();
+
+        stateMachine.Initialize();
 
     }
 
@@ -69,9 +81,11 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         ActivateTransitionsSceneEvents();
 
         storeBetPresenter.OnChooseBet += betSelectPresenter.SetBet;
-
         betSelectPresenter.OnIncreaseBet += storeBetPresenter.IncreaseBet;
         betSelectPresenter.OnDecreaseBet += storeBetPresenter.DecreaseBet;
+
+        rocketControlPresenter.OnMoveLeft += rocketMovePresenter.MoveLeft;
+        rocketControlPresenter.OnMoveRight += rocketMovePresenter.MoveRight;
 
     }
 
@@ -80,9 +94,11 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         DeactivateTransitionsSceneEvents();
 
         storeBetPresenter.OnChooseBet -= betSelectPresenter.SetBet;
-
         betSelectPresenter.OnIncreaseBet -= storeBetPresenter.IncreaseBet;
         betSelectPresenter.OnDecreaseBet -= storeBetPresenter.DecreaseBet;
+
+        rocketControlPresenter.OnMoveLeft -= rocketMovePresenter.MoveLeft;
+        rocketControlPresenter.OnMoveRight -= rocketMovePresenter.MoveRight;
     }
 
     private void ActivateTransitionsSceneEvents()
@@ -112,11 +128,15 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         particleEffectPresenter.Dispose();
 
         scrollBackgroundPresenter?.Dispose();
-        rocketControlPresenter?.Dispose();
         platformPresenter.Dispose();
+
+        rocketMovePresenter?.Dispose();
+        rocketControlPresenter?.Dispose();
 
         betSelectPresenter?.Dispose();
         storeBetPresenter?.Dispose();
+
+        stateMachine?.Dispose();
     }
 
     private void Update()

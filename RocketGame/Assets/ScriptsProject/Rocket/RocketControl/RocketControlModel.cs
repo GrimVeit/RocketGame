@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class RocketModel
+public class RocketControlModel
 {
     public event Action OnMoveToLeft;
     public event Action OnMoveToRight;
@@ -15,6 +13,7 @@ public class RocketModel
 
     public void MoveRight()
     {
+
         OnMoveToRight?.Invoke();
     }
 }

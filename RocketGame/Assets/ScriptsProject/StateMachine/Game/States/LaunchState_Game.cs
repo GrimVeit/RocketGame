@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayPrepareState_Game : IState
+public class LaunchState_Game : IState
 {
     private readonly IGlobalStateMachineProvider _stateProvider;
 
-    public PlayPrepareState_Game(IGlobalStateMachineProvider stateProvider)
+    public LaunchState_Game(IGlobalStateMachineProvider stateProvider)
     {
         _stateProvider = stateProvider;
     }
@@ -21,8 +21,8 @@ public class PlayPrepareState_Game : IState
 
     }
 
-    private void ChangeStateToPlay()
+    private void ChangeStateToMain()
     {
-        _stateProvider.SetState(_stateProvider.GetState<PlayState_Game>());
+        _stateProvider.SetState(_stateProvider.GetState<MainGameState_Game>());
     }
 }

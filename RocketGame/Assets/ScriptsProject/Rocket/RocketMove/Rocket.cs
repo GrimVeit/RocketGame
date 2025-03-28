@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -9,7 +10,9 @@ public class Rocket : MonoBehaviour
 
     private Tween moveTween;
     private Tween shakeTween;
+
     private Sequence rotateSequence;
+    private Sequence sequenceMoveBase;
 
     public void MoveTo(Vector3 target, float time)
     {
@@ -36,4 +39,23 @@ public class Rocket : MonoBehaviour
 
         shakeTween = transformSpriteRocket.DOShakeRotation(duration, strength, vibrato, randomness);
     }
+
+    public void MoveToBase(Vector3 start, Vector3 up, Vector3 play)
+    {
+        sequenceMoveBase?.Kill();
+
+        transform.position = start;
+        sequenceMoveBase = DOTween.Sequence();
+        sequenceMoveBase.Append(transform.DOMove(up, 0.7f));
+        sequenceMoveBase.Append(transform.DOMove(play, 0.1f))
+            .OnComplete(() => OnEndMoveToBase?.Invoke());
+
+        sequenceMoveBase.Play();
+    }
+
+    #region Output
+
+    public event Action OnEndMoveToBase;
+
+    #endregion
 }
