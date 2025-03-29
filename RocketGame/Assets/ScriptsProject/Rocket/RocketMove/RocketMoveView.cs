@@ -11,6 +11,9 @@ public class RocketMoveView : View
     [Header("Play")]
     [SerializeField] private List<Transform> transforms = new List<Transform>();
 
+    [Header("Start")]
+    [SerializeField] private Transform transformStartPlay;
+
     [Header("Win")]
     [SerializeField] private Transform transformWinLeft, transformWinRight;
 
@@ -29,12 +32,16 @@ public class RocketMoveView : View
 
     public void Initialize()
     {
-        rocket.OnEndMoveToBase += HandleMoveToBase;
+        rocket.OnPauseMoveToBase += HandlePauseMoveToBase;
+        rocket.OnEndMoveToBase += HandleEndMoveToBase;
+        rocket.OnEndMoveToStart += HandleEndMoveToStart;
     }
 
     public void Dispose()
     {
-        rocket.OnEndMoveToBase -= HandleMoveToBase;
+        rocket.OnPauseMoveToBase -= HandlePauseMoveToBase;
+        rocket.OnEndMoveToBase -= HandleEndMoveToBase;
+        rocket.OnEndMoveToStart -= HandleEndMoveToStart;
     }
 
     public void MoveLeft(int routeNumber)
@@ -71,13 +78,30 @@ public class RocketMoveView : View
         rocket.MoveToBase(transformHide.position, transformUp.position, transformStart.position);
     }
 
+    public void MoveToStart()
+    {
+        rocket.MoveToStart(transformStartPlay.position);
+    }
+
     #region Output
 
+    public event Action OnPauseMoveToBase;
     public event Action OnEndMoveToBase;
+    public event Action OnEndMoveToStart;
 
-    private void HandleMoveToBase()
+    private void HandlePauseMoveToBase()
+    {
+        OnPauseMoveToBase?.Invoke();
+    }
+
+    private void HandleEndMoveToBase()
     {
         OnEndMoveToBase?.Invoke();
+    }
+
+    private void HandleEndMoveToStart()
+    {
+        OnEndMoveToStart?.Invoke();
     }
 
     #endregion

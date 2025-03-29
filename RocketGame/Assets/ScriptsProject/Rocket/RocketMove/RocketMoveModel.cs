@@ -9,7 +9,7 @@ public class RocketMoveModel
     public event Action OnMoveToWinRight;
 
     public event Action OnMoveToBase;
-    public event Action OnMoveToPlay;
+    public event Action OnMoveToStart;
 
     private const int minRouteNumber = 0;
     private const int maxRouteNumber = 8;
@@ -42,8 +42,18 @@ public class RocketMoveModel
         OnMoveToRight?.Invoke(currentRouteNumber);
     }
 
+    public void Restart()
+    {
+        currentRouteNumber = 4;
+    }
+
     public void MoveToBase()
     {
+        OnMoveToBase?.Invoke();
+    }
 
+    public void MoveToStart()
+    {
+        OnMoveToStart?.Invoke();
     }
 }

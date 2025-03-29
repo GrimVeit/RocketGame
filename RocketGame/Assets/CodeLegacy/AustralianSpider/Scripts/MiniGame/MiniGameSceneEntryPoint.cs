@@ -50,7 +50,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         storeBetPresenter = new StoreBetPresenter(new StoreBetModel(PlayerPrefsKeys.BET, 2.4f));
         betSelectPresenter = new BetSelectPresenter(new BetSelectModel(), viewContainer.GetView<BetSelectView>());
 
-        stateMachine = new GameGlobalStateMachine(rocketMovePresenter);
+        stateMachine = new GameGlobalStateMachine(rocketMovePresenter, platformPresenter, scrollBackgroundPresenter, sceneRoot);
 
         sceneRoot.SetSoundProvider(soundPresenter);
         sceneRoot.Activate();

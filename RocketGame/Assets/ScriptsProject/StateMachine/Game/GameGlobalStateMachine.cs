@@ -7,12 +7,13 @@ public class GameGlobalStateMachine : IGlobalStateMachineProvider
 
     private IState currentState;
 
-    public GameGlobalStateMachine(RocketMovePresenter rocketMovePresenter)
+    public GameGlobalStateMachine(RocketMovePresenter rocketMovePresenter, PlatformPresenter platformPresenter, ScrollBackgroundPresenter scrollBackgroundPresenter, UIMiniGameSceneRoot sceneRoot)
     {
-        states[typeof(ArrivalState_Game)] = new ArrivalState_Game(this, rocketMovePresenter);
-        states[typeof(LaunchState_Game)] = new LaunchState_Game(this);
-        states[typeof(MainGameState_Game)] = new MainGameState_Game(this);
-        states[typeof(WinState_Game)] = new WinState_Game(this);
+        states[typeof(ArrivalState_Game)] = new ArrivalState_Game(this, rocketMovePresenter, platformPresenter, sceneRoot);
+        states[typeof(PrepareState_Game)] = new PrepareState_Game(this, sceneRoot);
+        states[typeof(LaunchState_Game)] = new LaunchState_Game(this, rocketMovePresenter, sceneRoot);
+        states[typeof(MainGameState_Game)] = new MainGameState_Game(this, platformPresenter, rocketMovePresenter, scrollBackgroundPresenter, sceneRoot);
+        states[typeof(WinState_Game)] = new WinState_Game(this, sceneRoot, rocketMovePresenter);
     }
 
     public void Initialize()

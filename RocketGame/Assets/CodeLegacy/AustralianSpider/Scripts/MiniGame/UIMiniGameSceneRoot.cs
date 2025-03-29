@@ -6,6 +6,7 @@ public class UIMiniGameSceneRoot : UIRoot
     [SerializeField] private MainPanel_Game mainPanel;
     [SerializeField] private FooterPanel_Game footerPanel;
     [SerializeField] private BetPanel_Game betPanel;
+    [SerializeField] private WinPanel_Game winPanel;
 
     private ISoundProvider soundProvider;
 
@@ -19,6 +20,7 @@ public class UIMiniGameSceneRoot : UIRoot
         mainPanel.Initialize();
         footerPanel.Initialize();
         betPanel.Initialize();
+        winPanel.Initialize();
     }
 
     public void Dispose()
@@ -26,6 +28,7 @@ public class UIMiniGameSceneRoot : UIRoot
         mainPanel.Dispose();
         footerPanel.Dispose();
         betPanel.Dispose();
+        winPanel.Dispose();
     }
 
     public void Activate()
@@ -45,6 +48,9 @@ public class UIMiniGameSceneRoot : UIRoot
             CloseOtherPanel(currentPanel);
     }
 
+
+
+
     public void OpenFooterPanel()
     {
         if(footerPanel.IsActive) return;
@@ -52,12 +58,16 @@ public class UIMiniGameSceneRoot : UIRoot
         OpenOtherPanel(footerPanel);
     }
 
-    public void CloseOtherPanel()
+    public void CloseFooterPanel()
     {
         if(!footerPanel.IsActive) return;
 
         CloseOtherPanel(footerPanel);
     }
+
+
+
+
 
     public void OpenBetPanel()
     {
@@ -71,6 +81,23 @@ public class UIMiniGameSceneRoot : UIRoot
         if(!betPanel.IsActive) return;
 
         CloseOtherPanel(betPanel);
+    }
+
+
+
+
+    public void OpenWinPanel()
+    {
+        if(winPanel.IsActive) return;
+
+        OpenOtherPanel(winPanel);
+    }
+
+    public void CloseWinPanel()
+    {
+        if(!winPanel.IsActive) return;
+
+        CloseOtherPanel(winPanel);
     }
 
     #region Input
