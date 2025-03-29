@@ -10,16 +10,18 @@ public class MainGameState_Game : IState
     private readonly RocketMovePresenter _rocketMovePresenter;
     private readonly ScrollBackgroundPresenter _scrollBackgroundPresenter;
     private readonly UIMiniGameSceneRoot _sceneRoot;
+    private readonly ObstacleSpawnerPresenter _obstacleSpawnerPresenter;
 
     private IEnumerator coroutineTimer;
 
-    public MainGameState_Game(IGlobalStateMachineProvider stateMachineProvider, PlatformPresenter platformPresenter, RocketMovePresenter rocketMovePresenter, ScrollBackgroundPresenter scrollBackgroundPresenter, UIMiniGameSceneRoot sceneRoot)
+    public MainGameState_Game(IGlobalStateMachineProvider stateMachineProvider, PlatformPresenter platformPresenter, RocketMovePresenter rocketMovePresenter, ScrollBackgroundPresenter scrollBackgroundPresenter, UIMiniGameSceneRoot sceneRoot, ObstacleSpawnerPresenter obstacleSpawnerPresenter)
     {
         _stateMachineProvider = stateMachineProvider;
         _platformPresenter = platformPresenter;
         _rocketMovePresenter = rocketMovePresenter;
         _scrollBackgroundPresenter = scrollBackgroundPresenter;
         _sceneRoot = sceneRoot;
+        _obstacleSpawnerPresenter = obstacleSpawnerPresenter;
     }
 
     public void EnterState()
@@ -32,6 +34,7 @@ public class MainGameState_Game : IState
         _scrollBackgroundPresenter.ActivateScroll();
         _platformPresenter.DeactivatePlatform();
         _sceneRoot.OpenFooterPanel();
+        _obstacleSpawnerPresenter.ActivateSpawner();
 
         if (coroutineTimer != null) Coroutines.Stop(coroutineTimer);
 
@@ -47,6 +50,7 @@ public class MainGameState_Game : IState
         _rocketMovePresenter.OnMoveToWinRight -= ChangeStateToWin;
 
         _scrollBackgroundPresenter.DeactivateScroll();
+        _obstacleSpawnerPresenter.DeactivateSpawner();
 
         if (coroutineTimer != null) Coroutines.Stop(coroutineTimer);
     }

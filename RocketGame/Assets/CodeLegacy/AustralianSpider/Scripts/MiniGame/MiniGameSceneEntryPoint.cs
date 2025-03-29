@@ -5,10 +5,7 @@ using UnityEngine;
 public class MiniGameSceneEntryPoint : MonoBehaviour
 {
     [SerializeField] private Sounds sounds;
-    [SerializeField] private StrategyGroup strategyGroup;
-    [SerializeField] private ChipGroup chipGroup;
-    [SerializeField] private WinPrices winPrices;
-    [SerializeField] private TutorialDescriptionGroup tutorialDescriptionGroup;
+    [SerializeField] private SpawnPointsData spawnPointsData;
     [SerializeField] private UIMiniGameSceneRoot sceneRootPrefab;
 
     private UIMiniGameSceneRoot sceneRoot;
@@ -25,6 +22,9 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
     private StoreBetPresenter storeBetPresenter;
     private BetSelectPresenter betSelectPresenter;
+
+    private ObstacleSpawnerPresenter obstacleSpawnerPresenter;
+    private ObstaclePresenter obstaclePresenter;
 
     private GameGlobalStateMachine stateMachine;
 
@@ -50,7 +50,10 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         storeBetPresenter = new StoreBetPresenter(new StoreBetModel(PlayerPrefsKeys.BET, 2.4f));
         betSelectPresenter = new BetSelectPresenter(new BetSelectModel(), viewContainer.GetView<BetSelectView>());
 
-        stateMachine = new GameGlobalStateMachine(rocketMovePresenter, platformPresenter, scrollBackgroundPresenter, sceneRoot);
+        obstacleSpawnerPresenter = new ObstacleSpawnerPresenter(new ObstacleSpawnerModel(spawnPointsData, 0.4f, 2), viewContainer.GetView<ObstacleSpawnerView>());
+        obstaclePresenter = new ObstaclePresenter(viewContainer.GetView<ObstacleView>());
+
+        stateMachine = new GameGlobalStateMachine(rocketMovePresenter, platformPresenter, scrollBackgroundPresenter, sceneRoot, obstacleSpawnerPresenter, obstaclePresenter);
 
         sceneRoot.SetSoundProvider(soundPresenter);
         sceneRoot.Activate();
@@ -72,6 +75,9 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         betSelectPresenter.Initialize();
         storeBetPresenter.Initialize();
 
+        obstaclePresenter.Initialize();
+        obstacleSpawnerPresenter.Initialize();
+
         stateMachine.Initialize();
 
     }
@@ -87,6 +93,8 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         rocketControlPresenter.OnMoveLeft += rocketMovePresenter.MoveLeft;
         rocketControlPresenter.OnMoveRight += rocketMovePresenter.MoveRight;
 
+        obstacleSpawnerPresenter.OnSpawnObstacle += obstaclePresenter.AddObstacle;
+
     }
 
     private void DeactivateEvents()
@@ -99,6 +107,8 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
         rocketControlPresenter.OnMoveLeft -= rocketMovePresenter.MoveLeft;
         rocketControlPresenter.OnMoveRight -= rocketMovePresenter.MoveRight;
+
+        obstacleSpawnerPresenter.OnSpawnObstacle -= obstaclePresenter.AddObstacle;
     }
 
     private void ActivateTransitionsSceneEvents()
@@ -135,6 +145,9 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
         betSelectPresenter?.Dispose();
         storeBetPresenter?.Dispose();
+
+        obstaclePresenter?.Dispose();
+        obstacleSpawnerPresenter?.Dispose();
 
         stateMachine?.Dispose();
     }
