@@ -80,6 +80,20 @@ public class RocketMovePresenter
 
     #region Output
 
+    public event Action<int> OnMoveToLeft
+    {
+        add => _model.OnMoveToLeft += value;
+        remove => _model.OnMoveToLeft -= value;
+    }
+
+    public event Action<int> OnMoveToRight
+    {
+        add => _model.OnMoveToRight += value;
+        remove => _model.OnMoveToRight -= value;
+    }
+
+
+
     public event Action OnMoveToWinLeft
     {
         add => _model.OnMoveToWinLeft += value;

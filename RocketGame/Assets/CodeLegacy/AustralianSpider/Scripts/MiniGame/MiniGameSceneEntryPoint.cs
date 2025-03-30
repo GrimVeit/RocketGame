@@ -28,6 +28,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
     private ObstaclePresenter obstaclePresenter;
 
     private AltitudePresenter altitudePresenter;
+    private CourseDisplacementPresenter courseDisplacementPresenter;
 
     private GameGlobalStateMachine stateMachine;
 
@@ -58,6 +59,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         obstaclePresenter = new ObstaclePresenter(viewContainer.GetView<ObstacleView>());
 
         altitudePresenter = new AltitudePresenter(new AltitudeModel(), viewContainer.GetView<AltitudeView>());
+        courseDisplacementPresenter = new CourseDisplacementPresenter(new CourseDisplacementModel(), viewContainer.GetView<CourseDisplacementView>());
 
         stateMachine = new GameGlobalStateMachine(
             rocketMovePresenter, 
@@ -68,7 +70,8 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
             obstaclePresenter, 
             storeBetPresenter,
             betPreparePresenter,
-            altitudePresenter);
+            altitudePresenter,
+            courseDisplacementPresenter);
 
         sceneRoot.SetSoundProvider(soundPresenter);
         sceneRoot.Activate();
@@ -96,6 +99,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         storeBetPresenter.Initialize();
 
         altitudePresenter.Initialize();
+        courseDisplacementPresenter.Initialize();
 
         stateMachine.Initialize();
 
@@ -172,6 +176,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         obstacleSpawnerPresenter?.Dispose();
 
         altitudePresenter?.Dispose();
+        courseDisplacementPresenter?.Dispose();
 
         stateMachine?.Dispose();
     }

@@ -22,6 +22,8 @@ public class BankModel
 
     public void SendMoney(float money)
     {
+        Debug.Log(money);
+
         if(money >= 0)
         {
             OnAddMoney?.Invoke();
@@ -31,6 +33,8 @@ public class BankModel
             OnRemoveMoney?.Invoke();
         }
         Money += money;
+        Money = Mathf.Round(Money * 10f) / 10f;
+        MathF.Round(Money, 1);
         OnChangeMoney?.Invoke(Money);
 
         Debug.Log(Money);

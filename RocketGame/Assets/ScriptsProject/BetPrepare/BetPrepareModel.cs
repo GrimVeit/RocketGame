@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class BetPrepareModel
 {
@@ -53,6 +54,8 @@ public class BetPrepareModel
 
     public void Play()
     {
+        Debug.Log(-_currentBet);
+
         _moneyProvider.SendMoney( - _currentBet);
 
         OnPlay?.Invoke();

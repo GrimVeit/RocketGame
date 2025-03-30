@@ -8,6 +8,7 @@ public class ScrollBackgroundView : View
     [SerializeField] private RawImage rawImage;
 
     private Rect rect;
+    private Rect rect_2;
 
     public void Initialize()
     {
