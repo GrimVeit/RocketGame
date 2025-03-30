@@ -6,39 +6,37 @@ public class PrepareState_Game : IState
 {
     private readonly IGlobalStateMachineProvider _stateProvider;
     private readonly UIMiniGameSceneRoot _sceneRoot;
+    private readonly StoreBetPresenter _storeBetPresenter;
+    private readonly BetPreparePresenter _betPreparePresenter;
 
-    private IEnumerator coroutineTimer;
-
-    public PrepareState_Game(IGlobalStateMachineProvider stateProvider, UIMiniGameSceneRoot sceneRoot)
+    public PrepareState_Game(IGlobalStateMachineProvider stateProvider, UIMiniGameSceneRoot sceneRoot, StoreBetPresenter storeBetPresenter, BetPreparePresenter betPreparePresenter)
     {
         _stateProvider = stateProvider;
         _sceneRoot = sceneRoot;
+        _storeBetPresenter = storeBetPresenter;
+        _betPreparePresenter = betPreparePresenter;
     }
 
     public void EnterState()
     {
         Debug.Log("ACTIVATE STATE - PREPARE(2)");
 
-        if(coroutineTimer != null) Coroutines.Stop(coroutineTimer);
-
-        coroutineTimer = Timer();
-        Coroutines.Start(coroutineTimer);
+        _betPreparePresenter.OnPlay += ChangeStateToLaunch;
 
         _sceneRoot.OpenFooterPanel();   
+
+        _storeBetPresenter.Activate();
+        _betPreparePresenter.Activate();
     }
 
     public void ExitState()
     {
         Debug.Log("DEACTIVATE STATE - PREPARE(2)");
 
-        if (coroutineTimer != null) Coroutines.Stop(coroutineTimer);
-    }
+        _betPreparePresenter.OnPlay -= ChangeStateToLaunch;
 
-    private IEnumerator Timer()
-    {
-        yield return new WaitForSeconds(3);
-
-        ChangeStateToLaunch();
+        _storeBetPresenter.Deactivate();
+        _betPreparePresenter.Deactivate();
     }
 
     private void ChangeStateToLaunch()

@@ -7,13 +7,22 @@ public class GameGlobalStateMachine : IGlobalStateMachineProvider
 
     private IState currentState;
 
-    public GameGlobalStateMachine(RocketMovePresenter rocketMovePresenter, PlatformPresenter platformPresenter, ScrollBackgroundPresenter scrollBackgroundPresenter, UIMiniGameSceneRoot sceneRoot, ObstacleSpawnerPresenter obstacleSpawnerPresenter, ObstaclePresenter obstaclePresenter)
+    public GameGlobalStateMachine(
+        RocketMovePresenter rocketMovePresenter, 
+        PlatformPresenter platformPresenter, 
+        ScrollBackgroundPresenter scrollBackgroundPresenter, 
+        UIMiniGameSceneRoot sceneRoot, 
+        ObstacleSpawnerPresenter obstacleSpawnerPresenter, 
+        ObstaclePresenter obstaclePresenter,
+        StoreBetPresenter storeBetPresenter,
+        BetPreparePresenter betPreparePresenter,
+        AltitudePresenter altitudePresenter)
     {
-        states[typeof(ArrivalState_Game)] = new ArrivalState_Game(this, rocketMovePresenter, platformPresenter, sceneRoot, obstaclePresenter);
-        states[typeof(PrepareState_Game)] = new PrepareState_Game(this, sceneRoot);
-        states[typeof(LaunchState_Game)] = new LaunchState_Game(this, rocketMovePresenter, sceneRoot);
+        states[typeof(ArrivalState_Game)] = new ArrivalState_Game(this, rocketMovePresenter, platformPresenter, sceneRoot, obstaclePresenter, altitudePresenter);
+        states[typeof(PrepareState_Game)] = new PrepareState_Game(this, sceneRoot, storeBetPresenter, betPreparePresenter);
+        states[typeof(LaunchState_Game)] = new LaunchState_Game(this, rocketMovePresenter, sceneRoot, altitudePresenter);
         states[typeof(MainGameState_Game)] = new MainGameState_Game(this, platformPresenter, rocketMovePresenter, scrollBackgroundPresenter, sceneRoot, obstacleSpawnerPresenter);
-        states[typeof(WinState_Game)] = new WinState_Game(this, sceneRoot, rocketMovePresenter, obstaclePresenter);
+        states[typeof(WinState_Game)] = new WinState_Game(this, sceneRoot, rocketMovePresenter, obstaclePresenter, altitudePresenter);
     }
 
     public void Initialize()

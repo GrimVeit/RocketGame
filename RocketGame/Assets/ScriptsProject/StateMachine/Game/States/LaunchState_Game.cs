@@ -8,12 +8,14 @@ public class LaunchState_Game : IState
 
     private readonly RocketMovePresenter _rocketMovePresenter;
     private readonly UIMiniGameSceneRoot _sceneRoot;
+    private readonly AltitudePresenter _altitudePresenter;
 
-    public LaunchState_Game(IGlobalStateMachineProvider stateProvider, RocketMovePresenter rocketMovePresenter, UIMiniGameSceneRoot sceneRoot)
+    public LaunchState_Game(IGlobalStateMachineProvider stateProvider, RocketMovePresenter rocketMovePresenter, UIMiniGameSceneRoot sceneRoot, AltitudePresenter altitudePresenter)
     {
         _stateProvider = stateProvider;
         _rocketMovePresenter = rocketMovePresenter;
         _sceneRoot = sceneRoot;
+        _altitudePresenter = altitudePresenter;
     }
 
     public void EnterState()
@@ -24,6 +26,7 @@ public class LaunchState_Game : IState
 
         _rocketMovePresenter.MoveToStart();
         _sceneRoot.CloseFooterPanel();
+        _altitudePresenter.ActivateAltitude();
     }
 
     public void ExitState()

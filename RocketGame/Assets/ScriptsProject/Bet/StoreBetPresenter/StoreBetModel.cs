@@ -8,7 +8,7 @@ public class StoreBetModel
     private readonly float minBet = 2.4f;
     private readonly string KEY;
 
-    private bool isActive = true;
+    private bool isActive = false;
 
     public StoreBetModel(string key, float minBet)
     {

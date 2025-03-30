@@ -9,15 +9,17 @@ public class WinState_Game : IState
     private readonly UIMiniGameSceneRoot _sceneRoot;
     private readonly RocketMovePresenter _rocketMovePresenter;
     private readonly ObstaclePresenter _obstaclePresenter;
+    private readonly AltitudePresenter _altitudePresenter;
 
     private IEnumerator coroutineTimer;
 
-    public WinState_Game(IGlobalStateMachineProvider stateProvider, UIMiniGameSceneRoot sceneRoot, RocketMovePresenter rocketMovePresenter, ObstaclePresenter obstaclePresenter)
+    public WinState_Game(IGlobalStateMachineProvider stateProvider, UIMiniGameSceneRoot sceneRoot, RocketMovePresenter rocketMovePresenter, ObstaclePresenter obstaclePresenter, AltitudePresenter altitudePresenter)
     {
         _stateProvider = stateProvider;
         _sceneRoot = sceneRoot;
         _rocketMovePresenter = rocketMovePresenter;
         _obstaclePresenter = obstaclePresenter;
+        _altitudePresenter = altitudePresenter;
     }
 
     public void EnterState()
@@ -30,6 +32,7 @@ public class WinState_Game : IState
 
         _rocketMovePresenter.Restart();
         _obstaclePresenter.StopObstacles();
+        _altitudePresenter.DeactivateAltitude();
 
         if(coroutineTimer != null ) Coroutines.Stop(coroutineTimer);
 

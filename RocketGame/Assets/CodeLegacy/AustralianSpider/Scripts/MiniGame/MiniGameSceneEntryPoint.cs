@@ -22,9 +22,12 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
     private StoreBetPresenter storeBetPresenter;
     private BetSelectPresenter betSelectPresenter;
+    private BetPreparePresenter betPreparePresenter;
 
     private ObstacleSpawnerPresenter obstacleSpawnerPresenter;
     private ObstaclePresenter obstaclePresenter;
+
+    private AltitudePresenter altitudePresenter;
 
     private GameGlobalStateMachine stateMachine;
 
@@ -49,11 +52,23 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
         storeBetPresenter = new StoreBetPresenter(new StoreBetModel(PlayerPrefsKeys.BET, 2.4f));
         betSelectPresenter = new BetSelectPresenter(new BetSelectModel(), viewContainer.GetView<BetSelectView>());
+        betPreparePresenter = new BetPreparePresenter(new BetPrepareModel(bankPresenter), viewContainer.GetView<BetPrepareView>());
 
         obstacleSpawnerPresenter = new ObstacleSpawnerPresenter(new ObstacleSpawnerModel(spawnPointsData, 0.4f, 2), viewContainer.GetView<ObstacleSpawnerView>());
         obstaclePresenter = new ObstaclePresenter(viewContainer.GetView<ObstacleView>());
 
-        stateMachine = new GameGlobalStateMachine(rocketMovePresenter, platformPresenter, scrollBackgroundPresenter, sceneRoot, obstacleSpawnerPresenter, obstaclePresenter);
+        altitudePresenter = new AltitudePresenter(new AltitudeModel(), viewContainer.GetView<AltitudeView>());
+
+        stateMachine = new GameGlobalStateMachine(
+            rocketMovePresenter, 
+            platformPresenter, 
+            scrollBackgroundPresenter, 
+            sceneRoot, 
+            obstacleSpawnerPresenter, 
+            obstaclePresenter, 
+            storeBetPresenter,
+            betPreparePresenter,
+            altitudePresenter);
 
         sceneRoot.SetSoundProvider(soundPresenter);
         sceneRoot.Activate();
@@ -73,10 +88,14 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         rocketControlPresenter.Initialize();
 
         betSelectPresenter.Initialize();
-        storeBetPresenter.Initialize();
+        betPreparePresenter.Initialize();
 
         obstaclePresenter.Initialize();
         obstacleSpawnerPresenter.Initialize();
+
+        storeBetPresenter.Initialize();
+
+        altitudePresenter.Initialize();
 
         stateMachine.Initialize();
 
@@ -87,6 +106,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         ActivateTransitionsSceneEvents();
 
         storeBetPresenter.OnChooseBet += betSelectPresenter.SetBet;
+        storeBetPresenter.OnChooseBet += betPreparePresenter.SetBet;
         betSelectPresenter.OnIncreaseBet += storeBetPresenter.IncreaseBet;
         betSelectPresenter.OnDecreaseBet += storeBetPresenter.DecreaseBet;
 
@@ -102,6 +122,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         DeactivateTransitionsSceneEvents();
 
         storeBetPresenter.OnChooseBet -= betSelectPresenter.SetBet;
+        storeBetPresenter.OnChooseBet -= betPreparePresenter.SetBet;
         betSelectPresenter.OnIncreaseBet -= storeBetPresenter.IncreaseBet;
         betSelectPresenter.OnDecreaseBet -= storeBetPresenter.DecreaseBet;
 
@@ -145,9 +166,12 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
         betSelectPresenter?.Dispose();
         storeBetPresenter?.Dispose();
+        betPreparePresenter?.Dispose();
 
         obstaclePresenter?.Dispose();
         obstacleSpawnerPresenter?.Dispose();
+
+        altitudePresenter?.Dispose();
 
         stateMachine?.Dispose();
     }

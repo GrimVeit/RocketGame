@@ -24,7 +24,7 @@ public class Obstacle : MonoBehaviour
     {
         tweenMove?.Kill();
 
-        tweenMove = transformObstacle.DOMove(target, 0.3f).OnComplete(() => OnComplete?.Invoke());
+        tweenMove = transformObstacle.DOMove(target, 1f).OnComplete(() => OnComplete?.Invoke());
     }
 
     public void Stop()

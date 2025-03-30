@@ -10,14 +10,16 @@ public class ArrivalState_Game : IState
     private readonly PlatformPresenter _platformPresenter;
     private readonly UIMiniGameSceneRoot _sceneRoot;
     private readonly ObstaclePresenter _obstaclePresenter;
+    private readonly AltitudePresenter _altitudePresenter;
 
-    public ArrivalState_Game(IGlobalStateMachineProvider stateProvider, RocketMovePresenter rocketMovePresenter, PlatformPresenter platformPresenter, UIMiniGameSceneRoot sceneRoot, ObstaclePresenter obstaclePresenter)
+    public ArrivalState_Game(IGlobalStateMachineProvider stateProvider, RocketMovePresenter rocketMovePresenter, PlatformPresenter platformPresenter, UIMiniGameSceneRoot sceneRoot, ObstaclePresenter obstaclePresenter, AltitudePresenter altitudePresenter)
     {
         _stateProvider = stateProvider;
         _rocketMovePresenter = rocketMovePresenter;
         _platformPresenter = platformPresenter;
         _sceneRoot = sceneRoot;
         _obstaclePresenter = obstaclePresenter;
+        _altitudePresenter = altitudePresenter;
     }
 
     public void EnterState()
@@ -30,6 +32,7 @@ public class ArrivalState_Game : IState
         _rocketMovePresenter.MoveToBase();
         _sceneRoot.CloseFooterPanel();
         _obstaclePresenter.ClearObstacles();
+        _altitudePresenter.Clear();
     }
 
     public void ExitState()
