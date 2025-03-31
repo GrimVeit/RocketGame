@@ -19,7 +19,7 @@ public class ObstacleSpawnerView : View
         var obstacle = Instantiate(obstaclePrefab, transformParent);
         obstacle.transform.SetPositionAndRotation(data.StartPoint.position, obstaclePrefab.transform.rotation);
         obstacle.SetData(data);
-        obstacle.ReleaseScoreMultiply();
+        obstacle.AddScoreMultiply();
 
         OnSpawnObstacle?.Invoke(obstacle);
     }

@@ -11,7 +11,8 @@ public abstract class Obstacle : MonoBehaviour, IScoreMultiplyProvider
     private protected Tween _tweenMove;
     private protected IScoreMultiply _scoreMultiply;
 
-    public abstract void ReleaseScoreMultiply();
+    public abstract void AddScoreMultiply();
+    public abstract void AddObstacleEffect();
 
     public void SetData(VisualSpawnPointData data)
     {
@@ -40,19 +41,9 @@ public abstract class Obstacle : MonoBehaviour, IScoreMultiplyProvider
         Destroy(gameObject);
     }
 
-    private protected void OnTriggerEnter2D(Collider2D collision)
+    private protected void ApplyScoreMultiply()
     {
-        if(collision.gameObject.TryGetComponent(out Rocket rocket))
-        {
-            Debug.Log("BONK!");
-            Debug.Log($"Obstacle - {_spawnPointData.CourseRoute} // Rocket - {rocket.CourseRoute}");
-
-            if (rocket.CourseRoute == _spawnPointData.CourseRoute)
-            {
-                OnApplyScoreMultiply?.Invoke(_scoreMultiply);
-                colliderObstacle.enabled = false;
-            }
-        }
+        OnApplyScoreMultiply?.Invoke( _scoreMultiply);
     }
 
     #region Input

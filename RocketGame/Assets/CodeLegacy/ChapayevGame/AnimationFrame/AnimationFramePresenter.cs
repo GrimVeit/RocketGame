@@ -26,25 +26,18 @@ public class AnimationFramePresenter : IAnimationFrameProvider
     private void ActivateEvents()
     {
         model.OnActivateAnimation += view.ActivateAnimation;
-        model.OnDeactivateAnimation += view.DeactivateAnimation;
     }
 
     private void DeactivateEvents()
     {
         model.OnActivateAnimation -= view.ActivateAnimation;
-        model.OnDeactivateAnimation -= view.DeactivateAnimation;
     }
 
     #region Input
 
-    public void ActivateAnimation(string id, int cycles = -1)
+    public void ActivateAnimation(string id, Vector3 target, int cycles = -1)
     {
-        model.ActivateAnimation(id, cycles);
-    }
-
-    public void DeactivateAnimation(string id)
-    {
-        model.DeactivateAnimation(id);
+        model.ActivateAnimation(id, target, cycles);
     }
 
     #endregion
@@ -52,7 +45,5 @@ public class AnimationFramePresenter : IAnimationFrameProvider
 
 public interface IAnimationFrameProvider
 {
-    public void ActivateAnimation(string id, int cycles = -1);
-
-    public void DeactivateAnimation(string id);
+    public void ActivateAnimation(string id, Vector3 target, int cycles = -1);
 }

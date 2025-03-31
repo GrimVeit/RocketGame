@@ -5,27 +5,17 @@ using UnityEngine;
 
 public class AnimationFrameView : View
 {
-    [SerializeField] private List<AnimationFrame> animationFrames = new List<AnimationFrame>();
+    [SerializeField] private List<AnimationFrame> animationFramesPrefabs = new List<AnimationFrame>();
+    [SerializeField] private Transform parentAnmations;
 
-    public void ActivateAnimation(string id, int cycles)
+    public void ActivateAnimation(string id, Vector3 target, int cycles)
     {
-        var animationFrame = animationFrames.FirstOrDefault(af => af.GetID() == id);
+        var animationFramePrefab = animationFramesPrefabs.FirstOrDefault(af => af.GetID() == id);
 
-        Debug.Log(id);
+        if(animationFramePrefab == null) return;
 
-        if(animationFrame == null) return;
-
-        Debug.Log(id);
-
+        var animationFrame = Instantiate(animationFramePrefab, parentAnmations);
+        animationFrame.transform.SetPositionAndRotation(target, animationFramePrefab.transform.rotation);
         animationFrame.Activate(cycles);
-    }
-
-    public void DeactivateAnimation(string id)
-    {
-        var animationFrame = animationFrames.FirstOrDefault(af => af.GetID() == id);
-
-        if (animationFrame == null) return;
-
-        animationFrame.Deactivate();
     }
 }

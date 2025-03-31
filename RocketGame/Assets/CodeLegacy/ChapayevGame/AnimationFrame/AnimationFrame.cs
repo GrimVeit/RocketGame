@@ -23,12 +23,6 @@ public class AnimationFrame : MonoBehaviour, IIdentify
         Coroutines.Start(coroutineAnimation);
     }
 
-    public void Deactivate()
-    {
-        if (coroutineAnimation != null) 
-            Coroutines.Stop(coroutineAnimation);
-    }
-
     private IEnumerator CoroutineAnimation(int cycles)
     {
         if(sprites.Count == 0) yield break;
@@ -46,5 +40,15 @@ public class AnimationFrame : MonoBehaviour, IIdentify
             currentCycle += 1;
             Debug.Log(currentCycle);
         }
+
+        Deactivate();
+    }
+
+    private void Deactivate()
+    {
+        if (coroutineAnimation != null)
+            Coroutines.Stop(coroutineAnimation);
+
+        Destroy(gameObject);
     }
 }

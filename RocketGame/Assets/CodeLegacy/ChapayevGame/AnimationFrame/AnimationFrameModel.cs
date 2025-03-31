@@ -5,16 +5,10 @@ using UnityEngine;
 
 public class AnimationFrameModel
 {
-    public event Action<string, int> OnActivateAnimation;
-    public event Action<string> OnDeactivateAnimation;
+    public event Action<string, Vector3, int> OnActivateAnimation;
 
-    public void ActivateAnimation(string id, int cycles)
+    public void ActivateAnimation(string id, Vector3 target, int cycles)
     {
-        OnActivateAnimation?.Invoke(id, cycles);
-    }
-
-    public void DeactivateAnimation(string id)
-    {
-        OnDeactivateAnimation?.Invoke(id);
+        OnActivateAnimation?.Invoke(id, target, cycles);
     }
 }
