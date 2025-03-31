@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,6 +37,16 @@ public class ObstaclePresenter
     public void ClearObstacles()
     {
         _view.ClearObstacles();
+    }
+
+    #endregion
+
+    #region Output
+
+    public event Action<Obstacle> OnDestroyObstacle
+    {
+        add => _view.OnDestroyObstacle += value;
+        remove => _view.OnDestroyObstacle -= value;
     }
 
     #endregion

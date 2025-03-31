@@ -29,6 +29,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
     private AltitudePresenter altitudePresenter;
     private CourseDisplacementPresenter courseDisplacementPresenter;
+    private ScoreMultiplierPresenter scoreMultiplierPresenter;
 
     private GameGlobalStateMachine stateMachine;
 
@@ -60,6 +61,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
         altitudePresenter = new AltitudePresenter(new AltitudeModel(), viewContainer.GetView<AltitudeView>());
         courseDisplacementPresenter = new CourseDisplacementPresenter(new CourseDisplacementModel(), viewContainer.GetView<CourseDisplacementView>());
+        scoreMultiplierPresenter = new ScoreMultiplierPresenter(new ScoreMultiplierModel(), viewContainer.GetView<ScoreMultiplierView>());
 
         stateMachine = new GameGlobalStateMachine(
             rocketMovePresenter, 
@@ -71,7 +73,8 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
             storeBetPresenter,
             betPreparePresenter,
             altitudePresenter,
-            courseDisplacementPresenter);
+            courseDisplacementPresenter,
+            scoreMultiplierPresenter);
 
         sceneRoot.SetSoundProvider(soundPresenter);
         sceneRoot.Activate();
@@ -100,6 +103,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
         altitudePresenter.Initialize();
         courseDisplacementPresenter.Initialize();
+        scoreMultiplierPresenter.Initialize();
 
         stateMachine.Initialize();
 
@@ -118,6 +122,8 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         rocketControlPresenter.OnMoveRight += rocketMovePresenter.MoveRight;
 
         obstacleSpawnerPresenter.OnSpawnObstacle += obstaclePresenter.AddObstacle;
+        obstacleSpawnerPresenter.OnSpawnObstacle += scoreMultiplierPresenter.AddObstacle;
+        obstaclePresenter.OnDestroyObstacle += scoreMultiplierPresenter.RemoveObstacle;
 
     }
 
@@ -134,6 +140,8 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         rocketControlPresenter.OnMoveRight -= rocketMovePresenter.MoveRight;
 
         obstacleSpawnerPresenter.OnSpawnObstacle -= obstaclePresenter.AddObstacle;
+        obstacleSpawnerPresenter.OnSpawnObstacle -= scoreMultiplierPresenter.AddObstacle;
+        obstaclePresenter.OnDestroyObstacle -= scoreMultiplierPresenter.RemoveObstacle;
     }
 
     private void ActivateTransitionsSceneEvents()
@@ -177,6 +185,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
         altitudePresenter?.Dispose();
         courseDisplacementPresenter?.Dispose();
+        scoreMultiplierPresenter?.Dispose();
 
         stateMachine?.Dispose();
     }

@@ -71,7 +71,7 @@ public class CourseDisplacementModel
             progress += Time.deltaTime * changeSpeed;
 
             currentCourse = (int)Mathf.Lerp(startCourseValue, newCourse, Mathf.Clamp01(progress));
-            Debug.Log(currentCourse);
+            //Debug.Log(currentCourse);
             OnChangeCourse.Invoke(currentCourse);
             yield return null;
         }

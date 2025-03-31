@@ -16,20 +16,43 @@ public class ScoreMultiplierPresenter
     public void Initialize()
     {
         ActivateEvents();
+
+        _model.Initialize();
     }
 
     public void Dispose()
     {
         DeactivateEvents();
+
+        _model.Dispose();
     }
 
     private void ActivateEvents()
     {
-
+        _model.OnChangeScoreMultipliyer += _view.SetScoreMultiplier;
     }
 
     private void DeactivateEvents()
     {
-
+        _model.OnChangeScoreMultipliyer -= _view.SetScoreMultiplier;
     }
+
+    #region Input
+
+    public void AddObstacle(IScoreMultiplyProvider scoreMultiplyProvider)
+    {
+        _model.AddScoreMultiply(scoreMultiplyProvider);
+    }
+
+    public void RemoveObstacle(IScoreMultiplyProvider scoreMultiplyProvider)
+    {
+        _model.RemoveScoreMultiply(scoreMultiplyProvider);
+    }
+
+    public void Clear()
+    {
+        _model.Clear();
+    }
+
+    #endregion
 }

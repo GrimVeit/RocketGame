@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class Rocket : MonoBehaviour
 {
+    public int CourseRoute;
+
     [SerializeField] private Transform transformSpriteRocket;
     [SerializeField] private Image imageRocketStatic;
     [SerializeField] private Image imageRocketFire;
@@ -19,6 +21,11 @@ public class Rocket : MonoBehaviour
     private Sequence rotateSequence;
     private Sequence sequenceMoveBase;
     private Sequence sequenceMoveStart;
+
+    public void SetRoute(int route)
+    {
+        CourseRoute = route;
+    }
 
     public void MoveTo(Vector3 target, float time)
     {
@@ -71,21 +78,23 @@ public class Rocket : MonoBehaviour
 
     public void MoveToStart(Vector3 target)
     {
+        sequenceMoveStart?.Kill();
+
         Shake(1f, 10f, 200, 500);
 
-        sequenceMoveBase = DOTween.Sequence();
-        sequenceMoveBase.AppendInterval(0.3f).OnComplete(() =>
+        sequenceMoveStart = DOTween.Sequence();
+        sequenceMoveStart.AppendInterval(0.3f).OnComplete(() =>
         {
             ActivateFireOne();
         });
 
-        sequenceMoveBase.Append(transform.DOMove(target, 2f).SetEase(Ease.InCubic).OnComplete(() =>
+        sequenceMoveStart.Append(transform.DOMove(target, 2f).SetEase(Ease.InCubic).OnComplete(() =>
         {
             ActivateFireTwo();
             OnEndMoveToStart?.Invoke();
         }));
 
-        sequenceMoveBase.Play();
+        sequenceMoveStart.Play();
     }
 
     public void ActivateZero()

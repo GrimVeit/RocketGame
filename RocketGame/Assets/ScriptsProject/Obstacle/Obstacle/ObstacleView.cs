@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ObstacleView : View
 {
@@ -14,7 +16,11 @@ public class ObstacleView : View
         {
             o.OnEndMove -= RemoveObstacle;
 
-            o.MoveToClear(transformClears[Random.Range(0, transformClears.Count)].position, o.Destroy);
+            o.MoveToClear(transformClears[Random.Range(0, transformClears.Count)].position, () => 
+            {
+                OnDestroyObstacle?.Invoke(o);
+                o.Destroy();
+            });
         });
 
         obstacles.Clear();
@@ -39,10 +45,18 @@ public class ObstacleView : View
 
     private void RemoveObstacle(Obstacle obstacle)
     {
+        OnDestroyObstacle?.Invoke(obstacle);
+
         obstacles.Remove(obstacle);
 
         obstacle.OnEndMove -= RemoveObstacle;
 
         obstacle.Destroy();
     }
+
+    #region Output
+
+    public event Action<Obstacle> OnDestroyObstacle;
+
+    #endregion
 }
