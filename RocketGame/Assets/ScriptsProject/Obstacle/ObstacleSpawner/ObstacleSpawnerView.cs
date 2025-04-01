@@ -8,7 +8,7 @@ public class ObstacleSpawnerView : View
 {
     [SerializeField] private List<Obstacle> obstaclePrefabs = new List<Obstacle>();
     [SerializeField] private Transform transformParent;
-    [SerializeField] private List<VisualSpawnPointData> spawnPoints = new List<VisualSpawnPointData>();
+    [SerializeField] private List<PathRouteData> spawnPoints = new List<PathRouteData>();
 
     public void SpawnObstacle(int id)
     {
@@ -32,15 +32,17 @@ public class ObstacleSpawnerView : View
 }
 
 [System.Serializable]
-public class VisualSpawnPointData
+public class PathRouteData
 {
     [SerializeField] private int id;
     [SerializeField] private int courseRoute;
     [SerializeField] private Transform transformStartPoint;
     [SerializeField] private Transform transformEndPoint;
+    [SerializeField] private PathZone pathZone;
 
     public int Id => id;
     public int CourseRoute => courseRoute;
     public Transform StartPoint => transformStartPoint;
     public Transform EndPoint => transformEndPoint;
+    public PathZone PathZone => pathZone;
 }

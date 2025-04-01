@@ -19,9 +19,10 @@ public class GameGlobalStateMachine : IGlobalStateMachineProvider
         AltitudePresenter altitudePresenter,
         CourseDisplacementPresenter courseDisplacementPresenter,
         ScoreMultiplierPresenter scoreMultiplierPresenter,
-        ObstacleEffectPresenter obstacleEffectPresenter)
+        ObstacleEffectPresenter obstacleEffectPresenter,
+        ObstacleRocketMovePresenter obstacleRocketMovePresenter)
     {
-        states[typeof(ArrivalState_Game)] = new ArrivalState_Game(this, rocketMovePresenter, platformPresenter, sceneRoot, obstaclePresenter, altitudePresenter, courseDisplacementPresenter, scoreMultiplierPresenter, obstacleEffectPresenter);
+        states[typeof(ArrivalState_Game)] = new ArrivalState_Game(this, rocketMovePresenter, platformPresenter, sceneRoot, obstaclePresenter, altitudePresenter, courseDisplacementPresenter, scoreMultiplierPresenter, obstacleEffectPresenter, obstacleRocketMovePresenter);
         states[typeof(PrepareState_Game)] = new PrepareState_Game(this, sceneRoot, storeBetPresenter, betPreparePresenter);
         states[typeof(LaunchState_Game)] = new LaunchState_Game(this, rocketMovePresenter, sceneRoot, altitudePresenter);
         states[typeof(MainGameState_Game)] = new MainGameState_Game(this, platformPresenter, rocketMovePresenter, scrollBackgroundPresenter, sceneRoot, obstacleSpawnerPresenter, courseDisplacementPresenter);

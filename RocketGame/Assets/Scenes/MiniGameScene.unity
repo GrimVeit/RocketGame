@@ -2579,6 +2579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds: {fileID: 1084492703}
   spawnPointsData: {fileID: 11400000, guid: a5052a049201e5e4d8467e4ce3500ee6, type: 2}
+  pathData: {fileID: 11400000, guid: 8819bf958a0057a45bb6ca7abd8ae425, type: 2}
   sceneRootPrefab: {fileID: 4880077067056087525}
 --- !u!1 &824765611
 GameObject:
@@ -5060,38 +5061,47 @@ MonoBehaviour:
     courseRoute: 0
     transformStartPoint: {fileID: 850947163}
     transformEndPoint: {fileID: 2046511507}
+    pathZone: 0
   - id: 1
     courseRoute: 1
     transformStartPoint: {fileID: 688521199}
     transformEndPoint: {fileID: 83317489}
+    pathZone: 0
   - id: 2
     courseRoute: 2
     transformStartPoint: {fileID: 99465960}
     transformEndPoint: {fileID: 220116639}
+    pathZone: 0
   - id: 3
     courseRoute: 3
     transformStartPoint: {fileID: 1747342659}
     transformEndPoint: {fileID: 1082386695}
+    pathZone: 2
   - id: 4
     courseRoute: 4
     transformStartPoint: {fileID: 1150022698}
     transformEndPoint: {fileID: 1939982855}
+    pathZone: 2
   - id: 5
     courseRoute: 5
     transformStartPoint: {fileID: 652297530}
     transformEndPoint: {fileID: 1598735689}
+    pathZone: 2
   - id: 6
     courseRoute: 6
     transformStartPoint: {fileID: 1187347574}
     transformEndPoint: {fileID: 170458896}
+    pathZone: 1
   - id: 7
     courseRoute: 7
     transformStartPoint: {fileID: 365373635}
     transformEndPoint: {fileID: 150432985}
+    pathZone: 1
   - id: 8
     courseRoute: 8
     transformStartPoint: {fileID: 1596438002}
     transformEndPoint: {fileID: 1331458933}
+    pathZone: 1
 --- !u!1 &1566147903
 GameObject:
   m_ObjectHideFlags: 0

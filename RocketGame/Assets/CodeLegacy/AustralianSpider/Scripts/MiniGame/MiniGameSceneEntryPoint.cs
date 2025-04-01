@@ -6,6 +6,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 {
     [SerializeField] private Sounds sounds;
     [SerializeField] private SpawnPointsData spawnPointsData;
+    [SerializeField] private PathData pathData;
     [SerializeField] private UIMiniGameSceneRoot sceneRootPrefab;
 
     private UIMiniGameSceneRoot sceneRoot;
@@ -26,6 +27,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
     private ObstacleSpawnerPresenter obstacleSpawnerPresenter;
     private ObstaclePresenter obstaclePresenter;
+    private ObstacleRocketMovePresenter obstacleRocketMovePresenter;
 
     private AltitudePresenter altitudePresenter;
     private CourseDisplacementPresenter courseDisplacementPresenter;
@@ -61,6 +63,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
         obstacleSpawnerPresenter = new ObstacleSpawnerPresenter(new ObstacleSpawnerModel(spawnPointsData, 0.3f, 0.7f), viewContainer.GetView<ObstacleSpawnerView>());
         obstaclePresenter = new ObstaclePresenter(viewContainer.GetView<ObstacleView>());
+        obstacleRocketMovePresenter = new ObstacleRocketMovePresenter(new ObstacleRocketMoveModel(rocketMovePresenter, pathData));
 
         altitudePresenter = new AltitudePresenter(new AltitudeModel(), viewContainer.GetView<AltitudeView>());
         courseDisplacementPresenter = new CourseDisplacementPresenter(new CourseDisplacementModel(), viewContainer.GetView<CourseDisplacementView>());
@@ -81,7 +84,8 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
             altitudePresenter,
             courseDisplacementPresenter,
             scoreMultiplierPresenter,
-            obstacleEffectPresenter);
+            obstacleEffectPresenter,
+            obstacleRocketMovePresenter);
 
         sceneRoot.SetSoundProvider(soundPresenter);
         sceneRoot.Activate();
@@ -105,6 +109,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
         obstaclePresenter.Initialize();
         obstacleSpawnerPresenter.Initialize();
+        obstacleRocketMovePresenter.Initialize();
 
         storeBetPresenter.Initialize();
 
@@ -128,14 +133,21 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         betSelectPresenter.OnIncreaseBet += storeBetPresenter.IncreaseBet;
         betSelectPresenter.OnDecreaseBet += storeBetPresenter.DecreaseBet;
 
+
         rocketControlPresenter.OnMoveLeft += rocketMovePresenter.MoveLeft;
         rocketControlPresenter.OnMoveRight += rocketMovePresenter.MoveRight;
 
+
         obstacleSpawnerPresenter.OnSpawnObstacle += obstaclePresenter.AddObstacle;
+
         obstacleSpawnerPresenter.OnSpawnObstacle += scoreMultiplierPresenter.AddObstacle;
         obstaclePresenter.OnDestroyObstacle += scoreMultiplierPresenter.RemoveObstacle;
+
         obstacleSpawnerPresenter.OnSpawnObstacle += obstacleEffectPresenter.AddObstacle;
         obstaclePresenter.OnDestroyObstacle += obstacleEffectPresenter.RemoveObstacle;
+
+        obstacleSpawnerPresenter.OnSpawnObstacle += obstacleRocketMovePresenter.AddObstacle;
+        obstaclePresenter.OnDestroyObstacle += obstacleRocketMovePresenter.RemoveObstacle;
 
     }
 
@@ -148,14 +160,21 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         betSelectPresenter.OnIncreaseBet -= storeBetPresenter.IncreaseBet;
         betSelectPresenter.OnDecreaseBet -= storeBetPresenter.DecreaseBet;
 
+
         rocketControlPresenter.OnMoveLeft -= rocketMovePresenter.MoveLeft;
         rocketControlPresenter.OnMoveRight -= rocketMovePresenter.MoveRight;
 
+
         obstacleSpawnerPresenter.OnSpawnObstacle -= obstaclePresenter.AddObstacle;
+
         obstacleSpawnerPresenter.OnSpawnObstacle -= scoreMultiplierPresenter.AddObstacle;
         obstaclePresenter.OnDestroyObstacle -= scoreMultiplierPresenter.RemoveObstacle;
+
         obstacleSpawnerPresenter.OnSpawnObstacle -= obstacleEffectPresenter.AddObstacle;
         obstaclePresenter.OnDestroyObstacle -= obstacleEffectPresenter.RemoveObstacle;
+
+        obstacleSpawnerPresenter.OnSpawnObstacle -= obstacleRocketMovePresenter.AddObstacle;
+        obstaclePresenter.OnDestroyObstacle -= obstacleRocketMovePresenter.RemoveObstacle;
     }
 
     private void ActivateTransitionsSceneEvents()
@@ -196,6 +215,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
         obstaclePresenter?.Dispose();
         obstacleSpawnerPresenter?.Dispose();
+        obstacleRocketMovePresenter?.Dispose();
 
         altitudePresenter?.Dispose();
         courseDisplacementPresenter?.Dispose();

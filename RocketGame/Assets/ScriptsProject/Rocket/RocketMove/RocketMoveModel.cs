@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class RocketMoveModel
 {
@@ -17,28 +18,51 @@ public class RocketMoveModel
 
     public void MoveLeft()
     {
-        if (currentRouteNumber <= minRouteNumber)
-        {
-            Debug.Log("FAIL: LEFT ROUTE OUT");
-            OnMoveToWinLeft?.Invoke();
-            return;
-        }
-
-        currentRouteNumber -= 1;
-        OnMoveToLeft?.Invoke(currentRouteNumber);
+        Left(1);
     }
 
     public void MoveRight()
     {
+        Right(1);
+    }
+
+    public void MoveLeftDouble()
+    {
+        Left(2);
+    }
+
+    public void MoveRightDouble()
+    {
+        Right(2);
+    }
+
+    private void Left(int steps)
+    {
+        currentRouteNumber -= 1;
+
+        if (currentRouteNumber <= minRouteNumber)
+        {
+            Debug.Log("FAIL: LEFT ROUTE OUT");
+            currentRouteNumber = minRouteNumber;
+            OnMoveToWinLeft?.Invoke();
+            return;
+        }
+
+        OnMoveToLeft?.Invoke(currentRouteNumber);
+    }
+
+    private void Right(int steps)
+    {
+        currentRouteNumber += steps;
 
         if (currentRouteNumber >= maxRouteNumber)
         {
             Debug.Log("FAIL: RIGHT ROUTE OUT");
+            currentRouteNumber = maxRouteNumber;
             OnMoveToWinRight?.Invoke();
             return;
         }
 
-        currentRouteNumber += 1;
         OnMoveToRight?.Invoke(currentRouteNumber);
     }
 

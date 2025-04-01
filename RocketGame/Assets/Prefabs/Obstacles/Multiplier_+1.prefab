@@ -91,6 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colliderObstacle: {fileID: 1597647212369555206}
   transformObstacle: {fileID: 3935474566571676818}
+  type: 1
   summValue: 1
   imageObstacle: {fileID: 7967571321758258403}
   idEffect: BlueStar

@@ -24,12 +24,13 @@ public class DivideObstacle : Obstacle
         if (collision.gameObject.TryGetComponent(out Rocket rocket))
         {
             Debug.Log("BONK!");
-            Debug.Log($"Obstacle - {_spawnPointData.CourseRoute} // Rocket - {rocket.CourseRoute}");
+            Debug.Log($"Obstacle - {_pathRouteData.CourseRoute} // Rocket - {rocket.CourseRoute}");
 
-            if (rocket.CourseRoute == _spawnPointData.CourseRoute)
+            if (rocket.CourseRoute == _pathRouteData.CourseRoute)
             {
                 ApplyScoreMultiply();
                 ApplyObstacleEffect(idEffect, transform);
+                ApplyRocketMove();
 
                 colliderObstacle.enabled = false;
 

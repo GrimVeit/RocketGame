@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RocketMovePresenter
+public class RocketMovePresenter : IRocketMoveProvider
 {
     private readonly RocketMoveModel _model;
     private readonly RocketMoveView _view;
@@ -60,6 +60,16 @@ public class RocketMovePresenter
     public void MoveRight()
     {
         _model.MoveRight();
+    }
+
+    public void MoveLeftDouble()
+    {
+        _model.MoveLeftDouble();
+    }
+
+    public void MoveRightDouble()
+    {
+        _model.MoveRightDouble();
     }
 
     public void MoveToBase()

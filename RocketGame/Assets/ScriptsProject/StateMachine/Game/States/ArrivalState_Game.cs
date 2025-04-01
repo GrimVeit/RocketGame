@@ -14,6 +14,7 @@ public class ArrivalState_Game : IState
     private readonly CourseDisplacementPresenter _courseDisplacementPresenter;
     private readonly ScoreMultiplierPresenter _scoreMultiplierPresenter;
     private readonly ObstacleEffectPresenter _obstacleEffectPresenter;
+    private readonly ObstacleRocketMovePresenter _obstacleRocketMovePresenter;
 
     public ArrivalState_Game(
         IGlobalStateMachineProvider stateProvider, 
@@ -24,7 +25,8 @@ public class ArrivalState_Game : IState
         AltitudePresenter altitudePresenter, 
         CourseDisplacementPresenter courseDisplacementPresenter, 
         ScoreMultiplierPresenter scoreMultiplierPresenter, 
-        ObstacleEffectPresenter obstacleEffectPresenter)
+        ObstacleEffectPresenter obstacleEffectPresenter,
+        ObstacleRocketMovePresenter obstacleRocketMovePresenter)
     {
         _stateProvider = stateProvider;
         _rocketMovePresenter = rocketMovePresenter;
@@ -35,6 +37,7 @@ public class ArrivalState_Game : IState
         _courseDisplacementPresenter = courseDisplacementPresenter;
         _scoreMultiplierPresenter = scoreMultiplierPresenter;
         _obstacleEffectPresenter = obstacleEffectPresenter;
+        _obstacleRocketMovePresenter = obstacleRocketMovePresenter;
     }
 
     public void EnterState()
@@ -51,6 +54,7 @@ public class ArrivalState_Game : IState
         _courseDisplacementPresenter.Clear();
         _scoreMultiplierPresenter.Clear();
         _obstacleEffectPresenter.Clear();
+        _obstacleRocketMovePresenter.Clear();
     }
 
     public void ExitState()
