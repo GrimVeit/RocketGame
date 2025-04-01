@@ -42,7 +42,7 @@ public class ObstacleRocketMoveModel
         }
     }
 
-    private void ApplyRocketMove(ObstacleType obstacleType, PathZone pathZone)
+    private void ApplyRocketMove(ObstacleType obstacleType, PathZone pathZone, IObstacleKnockProvider knockProvider)
     {
         var probabilityData =  _pathData.GetRandomProbabilityData(obstacleType, pathZone);
 
@@ -52,17 +52,28 @@ public class ObstacleRocketMoveModel
         {
             case Step.Left2:
                 _rocketMoveProvider.MoveLeftDouble();
+                if (obstacleType == ObstacleType.Minus)
+                    knockProvider.KnockRight();
+
                 return;
             case Step.Left1:
                 _rocketMoveProvider.MoveLeft();
+                if (obstacleType == ObstacleType.Minus)
+                    knockProvider.KnockRight();
                 return;
             case Step.Stay:
+                if (obstacleType == ObstacleType.Minus)
+                    knockProvider.KnockRight();
                 return;
             case Step.Right1:
                 _rocketMoveProvider.MoveRight();
+                if (obstacleType == ObstacleType.Minus)
+                    knockProvider.KnockLeft();
                 return;
             case Step.Right2:
                 _rocketMoveProvider.MoveRightDouble();
+                if (obstacleType == ObstacleType.Minus)
+                    knockProvider.KnockLeft();
                 return;
 
         }

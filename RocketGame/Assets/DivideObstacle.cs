@@ -6,13 +6,11 @@ public class DivideObstacle : Obstacle
 {
     [SerializeField] private int divideValue;
     [SerializeField] private Transform transformSprite;
+    [SerializeField] private Transform leftKnock;
+    [SerializeField] private Transform rightKnock;
     [SerializeField] private float knockbackDistance = 0.2f;
     [SerializeField] private float knockbackDuration = 0.2f;
     [SerializeField] private string idEffect;
-    public override void AddObstacleEffect()
-    {
-
-    }
 
     public override void AddScoreMultiply()
     {
@@ -30,13 +28,20 @@ public class DivideObstacle : Obstacle
             {
                 ApplyScoreMultiply();
                 ApplyObstacleEffect(idEffect, transform);
-                ApplyRocketMove();
+                ApplyRocketMove(this);
 
                 colliderObstacle.enabled = false;
-
-                Vector2 knockbackDirection = (transform.position - (Vector3)collision.ClosestPoint(transform.position)).normalized;
-                transformSprite.DOMove((Vector2)transform.position + knockbackDirection * knockbackDistance, knockbackDuration).SetEase(Ease.OutQuad);
             }
         }
+    }
+
+    public override void KnockLeft()
+    {
+        transformSprite.DOMove(leftKnock.position, knockbackDuration).SetEase(Ease.OutQuad);
+    }
+
+    public override void KnockRight()
+    {
+        transformSprite.DOMove(rightKnock.position, knockbackDuration).SetEase(Ease.OutQuad);
     }
 }

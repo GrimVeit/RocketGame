@@ -2,7 +2,7 @@ using System;
 using DG.Tweening;
 using UnityEngine;
 
-public abstract class Obstacle : MonoBehaviour, IScoreMultiplyProvider, IObstacleEffectProvider, IObstacleRocketControlProvider
+public abstract class Obstacle : MonoBehaviour, IScoreMultiplyProvider, IObstacleEffectProvider, IObstacleRocketControlProvider, IObstacleKnockProvider
 {
 
     [SerializeField] private protected Collider2D colliderObstacle;
@@ -14,7 +14,8 @@ public abstract class Obstacle : MonoBehaviour, IScoreMultiplyProvider, IObstacl
     private protected IScoreMultiply _scoreMultiply;
 
     public abstract void AddScoreMultiply();
-    public abstract void AddObstacleEffect();
+    public virtual void KnockLeft() { }
+    public virtual void KnockRight() { }
 
     public void SetData(PathRouteData data)
     {
@@ -48,9 +49,9 @@ public abstract class Obstacle : MonoBehaviour, IScoreMultiplyProvider, IObstacl
         OnApplyScoreMultiply?.Invoke( _scoreMultiply);
     }
 
-    private protected void ApplyRocketMove()
+    private protected void ApplyRocketMove(IObstacleKnockProvider provider)
     {
-        OnApplyObstacleRocketControl?.Invoke(type, _pathRouteData.PathZone);
+        OnApplyObstacleRocketControl?.Invoke(type, _pathRouteData.PathZone, provider);
     }
 
     private protected void ApplyObstacleEffect(string id, Transform vector)
@@ -63,7 +64,7 @@ public abstract class Obstacle : MonoBehaviour, IScoreMultiplyProvider, IObstacl
     public event Action<Obstacle> OnEndMove;
     public event Action<IScoreMultiply> OnApplyScoreMultiply;
     public event Action<string, Transform> OnApplyObstacleEffect;
-    public event Action<ObstacleType, PathZone> OnApplyObstacleRocketControl;
+    public event Action<ObstacleType, PathZone, IObstacleKnockProvider> OnApplyObstacleRocketControl;
 
     #endregion
 }

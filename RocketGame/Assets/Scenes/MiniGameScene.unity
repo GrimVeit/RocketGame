@@ -2801,6 +2801,7 @@ MonoBehaviour:
   animationFramesPrefabs:
   - {fileID: 1949188556624953885, guid: c81dd410c38f66d4da5bf82fb2647897, type: 3}
   - {fileID: 1949188556624953885, guid: c1faa503beadbdd4d9baa47e3723f64c, type: 3}
+  - {fileID: 1949188556624953885, guid: 6ced5e64ff95e34418889bd559e925da, type: 3}
   parentAnmations: {fileID: 555119494}
 --- !u!1 &850947162
 GameObject:

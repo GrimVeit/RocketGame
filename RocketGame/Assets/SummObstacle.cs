@@ -7,11 +7,6 @@ public class SummObstacle : Obstacle
     [SerializeField] private Image imageObstacle;
     [SerializeField] private string idEffect;
 
-    public override void AddObstacleEffect()
-    {
-
-    }
-
     public override void AddScoreMultiply()
     {
         _scoreMultiply = new SummScoreMultiply(summValue);
@@ -28,7 +23,7 @@ public class SummObstacle : Obstacle
             {
                 ApplyScoreMultiply();
                 ApplyObstacleEffect(idEffect, transform);
-                ApplyRocketMove();
+                ApplyRocketMove(this);
 
                 imageObstacle.enabled = false;
                 colliderObstacle.enabled = false;

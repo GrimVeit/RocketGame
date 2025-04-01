@@ -8,12 +8,6 @@ public class MultiplierObstacle : Obstacle
     [SerializeField] private int multiplierValue;
     [SerializeField] private Image imageObstacle;
     [SerializeField] private string idEffect;
-
-    public override void AddObstacleEffect()
-    {
-
-    }
-
     public override void AddScoreMultiply()
     {
         _scoreMultiply = new MultiplyScoreMultiply(multiplierValue);
@@ -30,7 +24,7 @@ public class MultiplierObstacle : Obstacle
             {
                 ApplyScoreMultiply();
                 ApplyObstacleEffect(idEffect, transform);
-                ApplyRocketMove();
+                ApplyRocketMove(this);
 
                 imageObstacle.enabled = false;
                 colliderObstacle.enabled = false;
