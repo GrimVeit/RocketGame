@@ -5,35 +5,38 @@ using UnityEngine;
 public class ObstacleEffectPresenter
 {
     private readonly ObstacleEffectModel _model;
-    private readonly ObstacleEffectView _view;
 
-    public ObstacleEffectPresenter(ObstacleEffectModel model, ObstacleEffectView view)
+    public ObstacleEffectPresenter(ObstacleEffectModel model)
     {
         _model = model;
-        _view = view;
     }
 
     public void Initialize()
     {
-        ActivateEvents();
+
     }
 
     public void Dispose()
-    {
-        DeactivateEvents();
-    }
-
-    private void ActivateEvents()
-    {
-
-    }
-
-    private void DeactivateEvents()
     {
 
     }
 
     #region Input
+
+    public void AddObstacle(IObstacleEffectProvider obstacleEffectProvider)
+    {
+        _model.AddObstacleEffectProvider(obstacleEffectProvider);
+    }
+
+    public void RemoveObstacle(IObstacleEffectProvider obstacleEffectProvider)
+    {
+        _model.RemoveObstacleEffectProvider(obstacleEffectProvider);
+    }
+
+    public void Clear()
+    {
+        _model.Clear();
+    }
 
     #endregion
 }

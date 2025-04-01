@@ -13,8 +13,18 @@ public class ArrivalState_Game : IState
     private readonly AltitudePresenter _altitudePresenter;
     private readonly CourseDisplacementPresenter _courseDisplacementPresenter;
     private readonly ScoreMultiplierPresenter _scoreMultiplierPresenter;
+    private readonly ObstacleEffectPresenter _obstacleEffectPresenter;
 
-    public ArrivalState_Game(IGlobalStateMachineProvider stateProvider, RocketMovePresenter rocketMovePresenter, PlatformPresenter platformPresenter, UIMiniGameSceneRoot sceneRoot, ObstaclePresenter obstaclePresenter, AltitudePresenter altitudePresenter, CourseDisplacementPresenter courseDisplacementPresenter, ScoreMultiplierPresenter scoreMultiplierPresenter)
+    public ArrivalState_Game(
+        IGlobalStateMachineProvider stateProvider, 
+        RocketMovePresenter rocketMovePresenter, 
+        PlatformPresenter platformPresenter, 
+        UIMiniGameSceneRoot sceneRoot, 
+        ObstaclePresenter obstaclePresenter, 
+        AltitudePresenter altitudePresenter, 
+        CourseDisplacementPresenter courseDisplacementPresenter, 
+        ScoreMultiplierPresenter scoreMultiplierPresenter, 
+        ObstacleEffectPresenter obstacleEffectPresenter)
     {
         _stateProvider = stateProvider;
         _rocketMovePresenter = rocketMovePresenter;
@@ -24,6 +34,7 @@ public class ArrivalState_Game : IState
         _altitudePresenter = altitudePresenter;
         _courseDisplacementPresenter = courseDisplacementPresenter;
         _scoreMultiplierPresenter = scoreMultiplierPresenter;
+        _obstacleEffectPresenter = obstacleEffectPresenter;
     }
 
     public void EnterState()
@@ -39,6 +50,7 @@ public class ArrivalState_Game : IState
         _altitudePresenter.Clear();
         _courseDisplacementPresenter.Clear();
         _scoreMultiplierPresenter.Clear();
+        _obstacleEffectPresenter.Clear();
     }
 
     public void ExitState()

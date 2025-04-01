@@ -31,6 +31,9 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
     private CourseDisplacementPresenter courseDisplacementPresenter;
     private ScoreMultiplierPresenter scoreMultiplierPresenter;
 
+    private AnimationFramePresenter animationFramePresenter;
+    private ObstacleEffectPresenter obstacleEffectPresenter;
+
     private GameGlobalStateMachine stateMachine;
 
     public void Run(UIRootView uIRootView)
@@ -56,12 +59,15 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         betSelectPresenter = new BetSelectPresenter(new BetSelectModel(), viewContainer.GetView<BetSelectView>());
         betPreparePresenter = new BetPreparePresenter(new BetPrepareModel(bankPresenter), viewContainer.GetView<BetPrepareView>());
 
-        obstacleSpawnerPresenter = new ObstacleSpawnerPresenter(new ObstacleSpawnerModel(spawnPointsData, 0.4f, 2), viewContainer.GetView<ObstacleSpawnerView>());
+        obstacleSpawnerPresenter = new ObstacleSpawnerPresenter(new ObstacleSpawnerModel(spawnPointsData, 0.3f, 0.7f), viewContainer.GetView<ObstacleSpawnerView>());
         obstaclePresenter = new ObstaclePresenter(viewContainer.GetView<ObstacleView>());
 
         altitudePresenter = new AltitudePresenter(new AltitudeModel(), viewContainer.GetView<AltitudeView>());
         courseDisplacementPresenter = new CourseDisplacementPresenter(new CourseDisplacementModel(), viewContainer.GetView<CourseDisplacementView>());
         scoreMultiplierPresenter = new ScoreMultiplierPresenter(new ScoreMultiplierModel(), viewContainer.GetView<ScoreMultiplierView>());
+
+        animationFramePresenter = new AnimationFramePresenter(new AnimationFrameModel(), viewContainer.GetView<AnimationFrameView>());
+        obstacleEffectPresenter = new ObstacleEffectPresenter(new ObstacleEffectModel(animationFramePresenter));
 
         stateMachine = new GameGlobalStateMachine(
             rocketMovePresenter, 
@@ -74,7 +80,8 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
             betPreparePresenter,
             altitudePresenter,
             courseDisplacementPresenter,
-            scoreMultiplierPresenter);
+            scoreMultiplierPresenter,
+            obstacleEffectPresenter);
 
         sceneRoot.SetSoundProvider(soundPresenter);
         sceneRoot.Activate();
@@ -105,6 +112,9 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         courseDisplacementPresenter.Initialize();
         scoreMultiplierPresenter.Initialize();
 
+        animationFramePresenter.Initialize();
+        obstacleEffectPresenter.Initialize();
+
         stateMachine.Initialize();
 
     }
@@ -124,6 +134,8 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         obstacleSpawnerPresenter.OnSpawnObstacle += obstaclePresenter.AddObstacle;
         obstacleSpawnerPresenter.OnSpawnObstacle += scoreMultiplierPresenter.AddObstacle;
         obstaclePresenter.OnDestroyObstacle += scoreMultiplierPresenter.RemoveObstacle;
+        obstacleSpawnerPresenter.OnSpawnObstacle += obstacleEffectPresenter.AddObstacle;
+        obstaclePresenter.OnDestroyObstacle += obstacleEffectPresenter.RemoveObstacle;
 
     }
 
@@ -142,6 +154,8 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         obstacleSpawnerPresenter.OnSpawnObstacle -= obstaclePresenter.AddObstacle;
         obstacleSpawnerPresenter.OnSpawnObstacle -= scoreMultiplierPresenter.AddObstacle;
         obstaclePresenter.OnDestroyObstacle -= scoreMultiplierPresenter.RemoveObstacle;
+        obstacleSpawnerPresenter.OnSpawnObstacle -= obstacleEffectPresenter.AddObstacle;
+        obstaclePresenter.OnDestroyObstacle -= obstacleEffectPresenter.RemoveObstacle;
     }
 
     private void ActivateTransitionsSceneEvents()
@@ -186,6 +200,9 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         altitudePresenter?.Dispose();
         courseDisplacementPresenter?.Dispose();
         scoreMultiplierPresenter?.Dispose();
+
+        animationFramePresenter?.Dispose();
+        obstacleEffectPresenter?.Dispose();
 
         stateMachine?.Dispose();
     }

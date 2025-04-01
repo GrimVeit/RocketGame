@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8464447183256271489
+--- !u!1 &4082127544156290892
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,25 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8026478232642735996}
-  - component: {fileID: 7323163375871552461}
-  - component: {fileID: 1391770958792771049}
-  - component: {fileID: 5337460554524837268}
-  - component: {fileID: 8419773859779029960}
+  - component: {fileID: 5996273035041985543}
+  - component: {fileID: 5210569922874867814}
+  - component: {fileID: 1820166577001838232}
+  - component: {fileID: 1949188556624953885}
   m_Layer: 5
-  m_Name: Divide__2
+  m_Name: BlueStar_AnimationFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &8026478232642735996
+--- !u!224 &5996273035041985543
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8464447183256271489}
+  m_GameObject: {fileID: 4082127544156290892}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -36,24 +35,24 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -302, y: 522}
-  m_SizeDelta: {x: 130, y: 130}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &7323163375871552461
+--- !u!222 &5210569922874867814
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8464447183256271489}
+  m_GameObject: {fileID: 4082127544156290892}
   m_CullTransparentMesh: 1
---- !u!114 &1391770958792771049
+--- !u!114 &1820166577001838232
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8464447183256271489}
+  m_GameObject: {fileID: 4082127544156290892}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -67,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 16b344c50ea3b3d499761dcdbeeb4622, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 814249e35702d6d478b3964a1737499c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -77,55 +76,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5337460554524837268
+--- !u!114 &1949188556624953885
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8464447183256271489}
+  m_GameObject: {fileID: 4082127544156290892}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8616da4f3c3a1246ac1d4cf724b1bab, type: 3}
+  m_Script: {fileID: 11500000, guid: 9803417bb7de90645aac95781c411ef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderObstacle: {fileID: 8419773859779029960}
-  transformObstacle: {fileID: 8026478232642735996}
-  divideValue: 2
-  imageObstacle: {fileID: 1391770958792771049}
-  idEffect: BlueStar
---- !u!58 &8419773859779029960
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8464447183256271489}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 65
+  id: BlueStar
+  sprites:
+  - {fileID: 21300000, guid: 814249e35702d6d478b3964a1737499c, type: 3}
+  - {fileID: 21300000, guid: b34987259562ae6478431d40c616f034, type: 3}
+  - {fileID: 21300000, guid: 6290e6265cc96a643927897ca8c4be3d, type: 3}
+  imageAnimation: {fileID: 1820166577001838232}
+  frameRate: 0.2

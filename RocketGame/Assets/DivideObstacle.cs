@@ -1,9 +1,14 @@
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DivideObstacle : Obstacle
 {
     [SerializeField] private int divideValue;
-
+    [SerializeField] private Transform transformSprite;
+    [SerializeField] private float knockbackDistance = 0.2f;
+    [SerializeField] private float knockbackDuration = 0.2f;
+    [SerializeField] private string idEffect;
     public override void AddObstacleEffect()
     {
 
@@ -24,6 +29,12 @@ public class DivideObstacle : Obstacle
             if (rocket.CourseRoute == _spawnPointData.CourseRoute)
             {
                 ApplyScoreMultiply();
+                ApplyObstacleEffect(idEffect, transform);
+
+                colliderObstacle.enabled = false;
+
+                Vector2 knockbackDirection = (transform.position - (Vector3)collision.ClosestPoint(transform.position)).normalized;
+                transformSprite.DOMove((Vector2)transform.position + knockbackDirection * knockbackDistance, knockbackDuration).SetEase(Ease.OutQuad);
             }
         }
     }

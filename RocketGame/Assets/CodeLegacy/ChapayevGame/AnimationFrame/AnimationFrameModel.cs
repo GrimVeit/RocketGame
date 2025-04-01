@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class AnimationFrameModel
 {
-    public event Action<string, Vector3, int> OnActivateAnimation;
+    public event Action<string, Transform, int> OnActivateAnimation;
 
-    public void ActivateAnimation(string id, Vector3 target, int cycles)
+    public void ActivateAnimation(string id, Transform target, int cycles)
     {
         OnActivateAnimation?.Invoke(id, target, cycles);
     }

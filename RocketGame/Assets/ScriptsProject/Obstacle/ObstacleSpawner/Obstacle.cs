@@ -2,7 +2,7 @@ using System;
 using DG.Tweening;
 using UnityEngine;
 
-public abstract class Obstacle : MonoBehaviour, IScoreMultiplyProvider
+public abstract class Obstacle : MonoBehaviour, IScoreMultiplyProvider, IObstacleEffectProvider
 {
     [SerializeField] private protected Collider2D colliderObstacle;
     [SerializeField] private protected Transform transformObstacle;
@@ -46,10 +46,16 @@ public abstract class Obstacle : MonoBehaviour, IScoreMultiplyProvider
         OnApplyScoreMultiply?.Invoke( _scoreMultiply);
     }
 
+    private protected void ApplyObstacleEffect(string id, Transform vector)
+    {
+        OnApplyObstacleEffect?.Invoke(id, vector);
+    }
+
     #region Input
 
     public event Action<Obstacle> OnEndMove;
     public event Action<IScoreMultiply> OnApplyScoreMultiply;
+    public event Action<string, Transform> OnApplyObstacleEffect;
 
     #endregion
 }

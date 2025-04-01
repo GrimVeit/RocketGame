@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Rocket : MonoBehaviour
 {
-    public int CourseRoute;
+    public int CourseRoute = 4;
 
     [SerializeField] private Transform transformSpriteRocket;
     [SerializeField] private Image imageRocketStatic;

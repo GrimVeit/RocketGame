@@ -1,8 +1,11 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SummObstacle : Obstacle
 {
     [SerializeField] private int summValue;
+    [SerializeField] private Image imageObstacle;
+    [SerializeField] private string idEffect;
 
     public override void AddObstacleEffect()
     {
@@ -24,6 +27,10 @@ public class SummObstacle : Obstacle
             if (rocket.CourseRoute == _spawnPointData.CourseRoute)
             {
                 ApplyScoreMultiply();
+                ApplyObstacleEffect(idEffect, transform);
+
+                imageObstacle.enabled = false;
+                colliderObstacle.enabled = false;
             }
         }
     }

@@ -92,6 +92,8 @@ MonoBehaviour:
   colliderObstacle: {fileID: 909419952039586051}
   transformObstacle: {fileID: 2443693774486505612}
   multiplierValue: 2
+  imageObstacle: {fileID: 7913978331701322242}
+  idEffect: YellowStar
 --- !u!58 &909419952039586051
 CircleCollider2D:
   m_ObjectHideFlags: 0

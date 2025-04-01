@@ -35,7 +35,7 @@ public class AnimationFramePresenter : IAnimationFrameProvider
 
     #region Input
 
-    public void ActivateAnimation(string id, Vector3 target, int cycles = -1)
+    public void ActivateAnimation(string id, Transform target, int cycles = -1)
     {
         model.ActivateAnimation(id, target, cycles);
     }
@@ -45,5 +45,5 @@ public class AnimationFramePresenter : IAnimationFrameProvider
 
 public interface IAnimationFrameProvider
 {
-    public void ActivateAnimation(string id, Vector3 target, int cycles = -1);
+    public void ActivateAnimation(string id, Transform target, int cycles = -1);
 }

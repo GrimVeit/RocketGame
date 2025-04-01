@@ -92,6 +92,8 @@ MonoBehaviour:
   colliderObstacle: {fileID: 8832225364618729798}
   transformObstacle: {fileID: 1945166739835493658}
   summValue: 10
+  imageObstacle: {fileID: 1670152304245991705}
+  idEffect: BlueStar
 --- !u!58 &8832225364618729798
 CircleCollider2D:
   m_ObjectHideFlags: 0

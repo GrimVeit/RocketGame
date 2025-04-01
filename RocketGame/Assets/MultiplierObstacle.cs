@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MultiplierObstacle : Obstacle
 {
     [SerializeField] private int multiplierValue;
+    [SerializeField] private Image imageObstacle;
+    [SerializeField] private string idEffect;
 
     public override void AddObstacleEffect()
     {
@@ -26,6 +29,10 @@ public class MultiplierObstacle : Obstacle
             if (rocket.CourseRoute == _spawnPointData.CourseRoute)
             {
                 ApplyScoreMultiply();
+                ApplyObstacleEffect(idEffect, transform);
+
+                imageObstacle.enabled = false;
+                colliderObstacle.enabled = false;
             }
         }
     }
