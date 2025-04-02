@@ -30,6 +30,7 @@ public class RocketMovePresenter : IRocketMoveProvider
 
     private void ActivateEvents()
     {
+        _model.OnSetCourseRoute += _view.SetCourseNumber;
         _model.OnMoveToRight += _view.MoveRight;
         _model.OnMoveToLeft += _view.MoveLeft;
         _model.OnMoveToWinLeft += _view.MoveToWinLeft;
@@ -41,6 +42,7 @@ public class RocketMovePresenter : IRocketMoveProvider
 
     private void DeactivateEvents()
     {
+        _model.OnSetCourseRoute -= _view.SetCourseNumber;
         _model.OnMoveToRight -= _view.MoveRight;
         _model.OnMoveToLeft -= _view.MoveLeft;
         _model.OnMoveToWinLeft -= _view.MoveToWinLeft;

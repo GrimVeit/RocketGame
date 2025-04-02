@@ -10,7 +10,7 @@ public class GameGlobalStateMachine : IGlobalStateMachineProvider
     public GameGlobalStateMachine(
         RocketMovePresenter rocketMovePresenter, 
         PlatformPresenter platformPresenter, 
-        ScrollBackgroundPresenter scrollBackgroundPresenter, 
+        ScrollBackgroundPresenter scrollBackgroundPresenter,
         UIMiniGameSceneRoot sceneRoot, 
         ObstacleSpawnerPresenter obstacleSpawnerPresenter, 
         ObstaclePresenter obstaclePresenter,

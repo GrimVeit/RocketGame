@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: 1
   m_EditorClassIdentifier: 
   id: 0
-  chance: 0.2
+  chance: 0.6

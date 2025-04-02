@@ -4,6 +4,7 @@ using Random = UnityEngine.Random;
 
 public class RocketMoveModel
 {
+    public event Action<int> OnSetCourseRoute;
     public event Action<int> OnMoveToLeft;
     public event Action<int> OnMoveToRight;
     public event Action OnMoveToWinLeft;
@@ -48,6 +49,7 @@ public class RocketMoveModel
             return;
         }
 
+        OnSetCourseRoute?.Invoke(currentRouteNumber);
         OnMoveToLeft?.Invoke(currentRouteNumber);
     }
 
@@ -63,12 +65,14 @@ public class RocketMoveModel
             return;
         }
 
+        OnSetCourseRoute?.Invoke(currentRouteNumber);
         OnMoveToRight?.Invoke(currentRouteNumber);
     }
 
     public void Restart()
     {
         currentRouteNumber = 4;
+        OnSetCourseRoute?.Invoke(currentRouteNumber);
     }
 
     public void MoveToBase()

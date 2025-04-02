@@ -44,9 +44,13 @@ public class RocketMoveView : View
         rocket.OnEndMoveToStart -= HandleEndMoveToStart;
     }
 
-    public void MoveLeft(int routeNumber)
+    public void SetCourseNumber(int routeNumber)
     {
         rocket.SetRoute(routeNumber);
+    }
+
+    public void MoveLeft(int routeNumber)
+    {
         rocket.MoveTo(transforms[routeNumber].position + new Vector3(0, Random.Range(-0.2f, 0.2f)), 0.3f);
         rocket.RotateTo(vectorRotateToLeft, 0.3f);
         rocket.Shake(durationShake, strengthShake, vibratoShake, randomnessShake);
@@ -54,7 +58,6 @@ public class RocketMoveView : View
 
     public void MoveRight(int routeNumber)
     {
-        rocket.SetRoute(routeNumber);
         rocket.MoveTo(transforms[routeNumber].position + new Vector3(0, Random.Range(-0.2f, 0.2f)), 0.3f);
         rocket.RotateTo(vectorRotateToRight, 0.5f);
         rocket.Shake(durationShake, strengthShake, vibratoShake, randomnessShake);

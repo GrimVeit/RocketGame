@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class ObstacleSpawnerView : View
 {
-    [SerializeField] private List<Obstacle> obstaclePrefabs = new List<Obstacle>();
+    [SerializeField] private ObstacleSpawnChance spawnChance;
     [SerializeField] private Transform transformParent;
     [SerializeField] private List<PathRouteData> spawnPoints = new List<PathRouteData>();
 
@@ -14,7 +14,7 @@ public class ObstacleSpawnerView : View
     {
         var data = spawnPoints.FirstOrDefault(d => d.Id == id);
 
-        var obstaclePrefab = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Count)];
+        var obstaclePrefab = spawnChance.GetRandomObstacle();
 
         var obstacle = Instantiate(obstaclePrefab, transformParent);
         obstacle.transform.SetPositionAndRotation(data.StartPoint.position, obstaclePrefab.transform.rotation);

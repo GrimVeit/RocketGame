@@ -62,7 +62,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         betSelectPresenter = new BetSelectPresenter(new BetSelectModel(), viewContainer.GetView<BetSelectView>());
         betPreparePresenter = new BetPreparePresenter(new BetPrepareModel(bankPresenter), viewContainer.GetView<BetPrepareView>());
 
-        obstacleSpawnerPresenter = new ObstacleSpawnerPresenter(new ObstacleSpawnerModel(spawnPointsData, 0.3f, 0.7f), viewContainer.GetView<ObstacleSpawnerView>());
+        obstacleSpawnerPresenter = new ObstacleSpawnerPresenter(new ObstacleSpawnerModel(spawnPointsData, 0.1f, 0.3f), viewContainer.GetView<ObstacleSpawnerView>());
         obstaclePresenter = new ObstaclePresenter(viewContainer.GetView<ObstacleView>());
         obstacleRocketMovePresenter = new ObstacleRocketMovePresenter(new ObstacleRocketMoveModel(rocketMovePresenter, pathData));
 
@@ -77,7 +77,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         stateMachine = new GameGlobalStateMachine(
             rocketMovePresenter, 
             platformPresenter, 
-            scrollBackgroundPresenter, 
+            scrollBackgroundPresenter,
             sceneRoot, 
             obstacleSpawnerPresenter, 
             obstaclePresenter, 
