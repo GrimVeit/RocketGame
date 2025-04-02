@@ -32,6 +32,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
     private AltitudePresenter altitudePresenter;
     private CourseDisplacementPresenter courseDisplacementPresenter;
     private ScoreMultiplierPresenter scoreMultiplierPresenter;
+    private ScorePresenter scorePresenter;
 
     private AnimationFramePresenter animationFramePresenter;
     private ObstacleEffectPresenter obstacleEffectPresenter;
@@ -68,6 +69,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         altitudePresenter = new AltitudePresenter(new AltitudeModel(), viewContainer.GetView<AltitudeView>());
         courseDisplacementPresenter = new CourseDisplacementPresenter(new CourseDisplacementModel(), viewContainer.GetView<CourseDisplacementView>());
         scoreMultiplierPresenter = new ScoreMultiplierPresenter(new ScoreMultiplierModel(), viewContainer.GetView<ScoreMultiplierView>());
+        scorePresenter = new ScorePresenter(new ScoreModel(bankPresenter, PlayerPrefsKeys.WIN_RECORD, PlayerPrefsKeys.WIN_LAST), viewContainer.GetView<ScoreView>());
 
         animationFramePresenter = new AnimationFramePresenter(new AnimationFrameModel(), viewContainer.GetView<AnimationFrameView>());
         obstacleEffectPresenter = new ObstacleEffectPresenter(new ObstacleEffectModel(animationFramePresenter));
@@ -85,7 +87,8 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
             courseDisplacementPresenter,
             scoreMultiplierPresenter,
             obstacleEffectPresenter,
-            obstacleRocketMovePresenter);
+            obstacleRocketMovePresenter,
+            scorePresenter);
 
         sceneRoot.SetSoundProvider(soundPresenter);
         sceneRoot.Activate();
@@ -116,6 +119,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         altitudePresenter.Initialize();
         courseDisplacementPresenter.Initialize();
         scoreMultiplierPresenter.Initialize();
+        scorePresenter.Initialize();
 
         animationFramePresenter.Initialize();
         obstacleEffectPresenter.Initialize();
@@ -136,6 +140,10 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
         rocketControlPresenter.OnMoveLeft += rocketMovePresenter.MoveLeft;
         rocketControlPresenter.OnMoveRight += rocketMovePresenter.MoveRight;
+
+
+        storeBetPresenter.OnChooseBet += scorePresenter.SetBet;
+        scoreMultiplierPresenter.OnChangeScoreMultipliyer += scorePresenter.SetMultiplier;
 
 
         obstacleSpawnerPresenter.OnSpawnObstacle += obstaclePresenter.AddObstacle;
@@ -163,6 +171,10 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
         rocketControlPresenter.OnMoveLeft -= rocketMovePresenter.MoveLeft;
         rocketControlPresenter.OnMoveRight -= rocketMovePresenter.MoveRight;
+
+
+        storeBetPresenter.OnChooseBet -= scorePresenter.SetBet;
+        scoreMultiplierPresenter.OnChangeScoreMultipliyer -= scorePresenter.SetMultiplier;
 
 
         obstacleSpawnerPresenter.OnSpawnObstacle -= obstaclePresenter.AddObstacle;
@@ -220,6 +232,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         altitudePresenter?.Dispose();
         courseDisplacementPresenter?.Dispose();
         scoreMultiplierPresenter?.Dispose();
+        scorePresenter?.Dispose();
 
         animationFramePresenter?.Dispose();
         obstacleEffectPresenter?.Dispose();

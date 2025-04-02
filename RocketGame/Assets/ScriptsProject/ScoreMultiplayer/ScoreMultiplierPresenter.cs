@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -52,6 +53,16 @@ public class ScoreMultiplierPresenter
     public void Clear()
     {
         _model.Clear();
+    }
+
+    #endregion
+
+    #region Output
+
+    public event Action<float> OnChangeScoreMultipliyer
+    {
+        add => _model.OnChangeScoreMultipliyer += value;
+        remove => _model.OnChangeScoreMultipliyer -= value;
     }
 
     #endregion

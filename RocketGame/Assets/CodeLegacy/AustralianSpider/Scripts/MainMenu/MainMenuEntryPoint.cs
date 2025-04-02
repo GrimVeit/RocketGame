@@ -128,8 +128,8 @@ public class MainMenuEntryPoint : MonoBehaviour
         bankPresenter?.Dispose();
 
         internetPresenter?.Dispose();
-        firebaseAuthenticationPresenter.Dispose();
-        firebaseDatabaseRealtimePresenter.Dispose();
+        firebaseAuthenticationPresenter?.Dispose();
+        firebaseDatabaseRealtimePresenter?.Dispose();
 
         stateMachine.Dispose();
     }

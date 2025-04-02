@@ -13,7 +13,7 @@ public class FirebaseDatabaseRealtimeModel
     public event Action<List<UserData>> OnGetUsersRecords;
 
     public string Nickname { get; private set; }
-    public int Record { get; private set; }
+    public float Record { get; private set; }
 
     private List<UserData> userRecordsDictionary = new List<UserData>();
 
@@ -32,12 +32,14 @@ public class FirebaseDatabaseRealtimeModel
 
     public void Initialize()
     {
-        Record = PlayerPrefs.GetInt(PlayerPrefsKeys.WIN_RECORD, 0);
+        Record = PlayerPrefs.GetFloat(PlayerPrefsKeys.WIN_RECORD, 0);
+
+        Debug.Log(Record);
     }
 
     public void Dispose()
     {
-        PlayerPrefs.SetInt(PlayerPrefsKeys.WIN_RECORD, Record);
+        PlayerPrefs.SetFloat(PlayerPrefsKeys.WIN_RECORD, Record);
     }
 
     public void CreateNewAccountInServer()
@@ -103,7 +105,7 @@ public class FirebaseDatabaseRealtimeModel
         foreach (var user in data.Children)
         {
             string name = user.Child("Nickname").Value.ToString();
-            int record = int.Parse(user.Child("Record").Value.ToString());
+            float record = float.Parse(user.Child("Record").Value.ToString());
             userRecordsDictionary.Add(new UserData(name, record));
         }
 
@@ -130,7 +132,7 @@ public class FirebaseDatabaseRealtimeModel
         foreach (var user in data.Children)
         {
             string name = user.Child("Nickname").Value.ToString();
-            int record = int.Parse(user.Child("Record").Value.ToString());
+            float record = float.Parse(user.Child("Record").Value.ToString());
             OnGetUserFromPlace?.Invoke(new UserData(name, record));
         }
 
@@ -146,9 +148,9 @@ public class FirebaseDatabaseRealtimeModel
 public class UserData
 {
     public string Nickname;
-    public int Record;
+    public float Record;
 
-    public UserData(string nickname, int record)
+    public UserData(string nickname, float record)
     {
         Nickname = nickname;
         Record = record;
