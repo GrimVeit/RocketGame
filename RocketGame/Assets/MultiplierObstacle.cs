@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +5,13 @@ public class MultiplierObstacle : Obstacle
 {
     [SerializeField] private int multiplierValue;
     [SerializeField] private Image imageObstacle;
+    [SerializeField] private Transform transformMove;
     [SerializeField] private string idEffect;
+
+    private void Awake()
+    {
+        transformMove.position = Vector3.Lerp(transformRandomLeft.position, transformRandomRight.position, Random.Range(0, 1f));
+    }
     public override void AddScoreMultiply()
     {
         _scoreMultiply = new MultiplyScoreMultiply(multiplierValue);
@@ -23,7 +27,7 @@ public class MultiplierObstacle : Obstacle
             if (rocket.CourseRoute == _pathRouteData.CourseRoute)
             {
                 ApplyScoreMultiply();
-                ApplyObstacleEffect(idEffect, transform);
+                ApplyObstacleEffect(idEffect, transformMove);
                 ApplyRocketMove(this);
 
                 imageObstacle.enabled = false;

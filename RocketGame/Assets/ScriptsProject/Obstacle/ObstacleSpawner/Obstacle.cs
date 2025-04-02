@@ -7,6 +7,8 @@ public abstract class Obstacle : MonoBehaviour, IScoreMultiplyProvider, IObstacl
 
     [SerializeField] private protected Collider2D colliderObstacle;
     [SerializeField] private protected Transform transformObstacle;
+    [SerializeField] private protected Transform transformRandomLeft;
+    [SerializeField] private protected Transform transformRandomRight;
     [SerializeField] private ObstacleType type;
 
     private protected PathRouteData _pathRouteData;
