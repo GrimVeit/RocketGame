@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stepProbabilities:
   - step: 2
-    probability: 0
+    probability: 20
   - step: 1
-    probability: 0
+    probability: 80
   - step: -1
-    probability: 100
+    probability: 10
   pathZone: 1
   obstacleType: 0

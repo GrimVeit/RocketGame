@@ -189,6 +189,7 @@ MonoBehaviour:
   imageObstacle: {fileID: 8369182790858523762}
   transformMove: {fileID: 4872326958828119608}
   idEffect: BlueStar
+  idSound: Obstacle_Sum5
 --- !u!58 &8672846280670316430
 CircleCollider2D:
   m_ObjectHideFlags: 0

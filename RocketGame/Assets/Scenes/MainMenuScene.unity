@@ -648,17 +648,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 895687166}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1245926581}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 65, y: -65}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -99.369995, y: -91.5}
+  m_SizeDelta: {x: 67, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &895687168
 MonoBehaviour:
@@ -680,7 +680,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 212fb26e3ffa2324e9b065d2fa70525c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -884,7 +884,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &932018334
 RectTransform:
   m_ObjectHideFlags: 0
@@ -972,7 +972,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 932018333}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -2270,39 +2270,11 @@ MonoBehaviour:
   sounds:
   - id: Background
     audioSource: {fileID: 1144957915}
-    audioClip: {fileID: 8300000, guid: d20973ad9618dc54492e40e97f12bd2d, type: 3}
-    volume: 0.5
+    audioClip: {fileID: 8300000, guid: 7799b00656b17c24ab187f3e22b7632b, type: 3}
+    volume: 1
     pitch: 1
     isLoop: 1
     isPlayAwake: 1
-  - id: Swoosh
-    audioSource: {fileID: 654767109}
-    audioClip: {fileID: 8300000, guid: 711e80b8026800c46b64bd49b282a998, type: 3}
-    volume: 0.05
-    pitch: 1.1
-    isLoop: 0
-    isPlayAwake: 0
-  - id: NewItem
-    audioSource: {fileID: 654767109}
-    audioClip: {fileID: 8300000, guid: bbda5cb2ce55bbb448d3e48612d5e563, type: 3}
-    volume: 0.2
-    pitch: 1
-    isLoop: 0
-    isPlayAwake: 0
-  - id: Click
-    audioSource: {fileID: 367649324}
-    audioClip: {fileID: 8300000, guid: d267264bba550264ea43044cacfb9c62, type: 3}
-    volume: 0.25
-    pitch: 1
-    isLoop: 0
-    isPlayAwake: 0
-  - id: Select
-    audioSource: {fileID: 1226881508}
-    audioClip: {fileID: 8300000, guid: 42fe261eec0eabe4b95222ad914d70a9, type: 3}
-    volume: 0.5
-    pitch: 1
-    isLoop: 0
-    isPlayAwake: 0
 --- !u!1 &2037529634
 GameObject:
   m_ObjectHideFlags: 0
@@ -2925,5 +2897,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 2138375269}
   - {fileID: 926885647}
-  - {fileID: 2002616253}
   - {fileID: 7268127844772316494}
+  - {fileID: 2002616253}

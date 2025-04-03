@@ -16,6 +16,9 @@ public class ArrivalState_Game : IState
     private readonly ObstacleEffectPresenter _obstacleEffectPresenter;
     private readonly ObstacleRocketMovePresenter _obstacleRocketMovePresenter;
 
+    private readonly ISoundProvider _soundProvider;
+    private readonly ISound _soundGameStart;
+
     public ArrivalState_Game(
         IGlobalStateMachineProvider stateProvider, 
         RocketMovePresenter rocketMovePresenter, 
@@ -26,7 +29,8 @@ public class ArrivalState_Game : IState
         CourseDisplacementPresenter courseDisplacementPresenter, 
         ScoreMultiplierPresenter scoreMultiplierPresenter, 
         ObstacleEffectPresenter obstacleEffectPresenter,
-        ObstacleRocketMovePresenter obstacleRocketMovePresenter)
+        ObstacleRocketMovePresenter obstacleRocketMovePresenter,
+        ISoundProvider soundProvider)
     {
         _stateProvider = stateProvider;
         _rocketMovePresenter = rocketMovePresenter;
@@ -38,6 +42,8 @@ public class ArrivalState_Game : IState
         _scoreMultiplierPresenter = scoreMultiplierPresenter;
         _obstacleEffectPresenter = obstacleEffectPresenter;
         _obstacleRocketMovePresenter = obstacleRocketMovePresenter;
+        _soundProvider = soundProvider;
+        _soundGameStart = _soundProvider.GetSound("Background_GameStart");
     }
 
     public void EnterState()
@@ -55,6 +61,9 @@ public class ArrivalState_Game : IState
         _scoreMultiplierPresenter.Clear();
         _obstacleEffectPresenter.Clear();
         _obstacleRocketMovePresenter.Clear();
+
+        _soundGameStart.Play();
+        _soundGameStart.SetVolume(0, 1, 0.1f);
     }
 
     public void ExitState()

@@ -2,7 +2,7 @@ using System;
 using DG.Tweening;
 using UnityEngine;
 
-public abstract class Obstacle : MonoBehaviour, IScoreMultiplyProvider, IObstacleEffectProvider, IObstacleRocketControlProvider, IObstacleKnockProvider
+public abstract class Obstacle : MonoBehaviour, IScoreMultiplyProvider, IObstacleEffectProvider, IObstacleRocketControlProvider, IObstacleKnockProvider, IObstacleSoundProvider
 {
 
     [SerializeField] private protected Collider2D colliderObstacle;
@@ -61,12 +61,18 @@ public abstract class Obstacle : MonoBehaviour, IScoreMultiplyProvider, IObstacl
         OnApplyObstacleEffect?.Invoke(id, vector);
     }
 
+    private protected void ApplyObstacleSound(string id)
+    {
+        OnApplyObstacleSound?.Invoke(id);
+    }
+
     #region Input
 
     public event Action<Obstacle> OnEndMove;
     public event Action<IScoreMultiply> OnApplyScoreMultiply;
     public event Action<string, Transform> OnApplyObstacleEffect;
     public event Action<ObstacleType, PathZone, IObstacleKnockProvider> OnApplyObstacleRocketControl;
+    public event Action<string> OnApplyObstacleSound;
 
     #endregion
 }

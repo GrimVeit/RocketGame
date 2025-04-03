@@ -82,10 +82,12 @@ public class Rocket : MonoBehaviour
 
         Shake(1f, 10f, 200, 500);
 
+        ActivateFireOne();
+
         sequenceMoveStart = DOTween.Sequence();
-        sequenceMoveStart.AppendInterval(0.3f).OnComplete(() =>
+        sequenceMoveStart.AppendInterval(0.1f).OnComplete(() =>
         {
-            ActivateFireOne();
+
         });
 
         sequenceMoveStart.Append(transform.DOMove(target, 2f).SetEase(Ease.InCubic).OnComplete(() =>

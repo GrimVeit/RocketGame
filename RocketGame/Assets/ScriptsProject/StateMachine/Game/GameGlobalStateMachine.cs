@@ -21,13 +21,15 @@ public class GameGlobalStateMachine : IGlobalStateMachineProvider
         ScoreMultiplierPresenter scoreMultiplierPresenter,
         ObstacleEffectPresenter obstacleEffectPresenter,
         ObstacleRocketMovePresenter obstacleRocketMovePresenter,
-        ScorePresenter scorePresenter)
+        ScorePresenter scorePresenter,
+        ISoundProvider soundProvider,
+        IParticleEffectProvider particleEffectProvider)
     {
-        states[typeof(ArrivalState_Game)] = new ArrivalState_Game(this, rocketMovePresenter, platformPresenter, sceneRoot, obstaclePresenter, altitudePresenter, courseDisplacementPresenter, scoreMultiplierPresenter, obstacleEffectPresenter, obstacleRocketMovePresenter);
-        states[typeof(PrepareState_Game)] = new PrepareState_Game(this, sceneRoot, storeBetPresenter, betPreparePresenter);
-        states[typeof(LaunchState_Game)] = new LaunchState_Game(this, rocketMovePresenter, sceneRoot, altitudePresenter);
-        states[typeof(MainGameState_Game)] = new MainGameState_Game(this, platformPresenter, rocketMovePresenter, scrollBackgroundPresenter, sceneRoot, obstacleSpawnerPresenter, courseDisplacementPresenter);
-        states[typeof(WinState_Game)] = new WinState_Game(this, sceneRoot, rocketMovePresenter, obstaclePresenter, altitudePresenter, scorePresenter);
+        states[typeof(ArrivalState_Game)] = new ArrivalState_Game(this, rocketMovePresenter, platformPresenter, sceneRoot, obstaclePresenter, altitudePresenter, courseDisplacementPresenter, scoreMultiplierPresenter, obstacleEffectPresenter, obstacleRocketMovePresenter, soundProvider);
+        states[typeof(PrepareState_Game)] = new PrepareState_Game(this, sceneRoot, storeBetPresenter, betPreparePresenter, soundProvider);
+        states[typeof(LaunchState_Game)] = new LaunchState_Game(this, rocketMovePresenter, sceneRoot, altitudePresenter, soundProvider);
+        states[typeof(MainGameState_Game)] = new MainGameState_Game(this, platformPresenter, rocketMovePresenter, scrollBackgroundPresenter, sceneRoot, obstacleSpawnerPresenter, courseDisplacementPresenter, soundProvider);
+        states[typeof(WinState_Game)] = new WinState_Game(this, sceneRoot, rocketMovePresenter, obstaclePresenter, altitudePresenter, scorePresenter, particleEffectProvider);
     }
 
     public void Initialize()

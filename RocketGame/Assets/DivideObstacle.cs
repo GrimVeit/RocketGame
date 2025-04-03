@@ -12,6 +12,7 @@ public class DivideObstacle : Obstacle
     [SerializeField] private float knockbackDistance = 0.2f;
     [SerializeField] private float knockbackDuration = 0.2f;
     [SerializeField] private string idEffect;
+    [SerializeField] private string idSound;
     [SerializeField] private ColliderTrigger trigger;
 
     private void Awake()
@@ -51,6 +52,7 @@ public class DivideObstacle : Obstacle
             ApplyScoreMultiply();
             ApplyObstacleEffect(idEffect, transform);
             ApplyRocketMove(this);
+            ApplyObstacleSound(idSound);
 
             colliderObstacle.enabled = false;
         }

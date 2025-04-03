@@ -45,6 +45,7 @@ public class FirebaseDatabaseRealtimeModel
     public void CreateNewAccountInServer()
     {
         Nickname = auth.CurrentUser.Email.Split('@')[0];
+        Record = 0;
         PlayerPrefs.SetInt(PlayerPrefsKeys.WIN_RECORD, 0);
         PlayerPrefs.SetString(PlayerPrefsKeys.NICKNAME, Nickname);
         UserData user = new(Nickname, 0);

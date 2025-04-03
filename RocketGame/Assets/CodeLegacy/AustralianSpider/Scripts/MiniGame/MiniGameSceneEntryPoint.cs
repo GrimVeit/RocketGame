@@ -36,6 +36,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
     private AnimationFramePresenter animationFramePresenter;
     private ObstacleEffectPresenter obstacleEffectPresenter;
+    private ObstacleSoundPresenter obstacleSoundPresenter;
 
     private GameGlobalStateMachine stateMachine;
 
@@ -73,6 +74,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
         animationFramePresenter = new AnimationFramePresenter(new AnimationFrameModel(), viewContainer.GetView<AnimationFrameView>());
         obstacleEffectPresenter = new ObstacleEffectPresenter(new ObstacleEffectModel(animationFramePresenter));
+        obstacleSoundPresenter = new ObstacleSoundPresenter(new ObstacleSoundModel(soundPresenter));
 
         stateMachine = new GameGlobalStateMachine(
             rocketMovePresenter, 
@@ -88,7 +90,9 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
             scoreMultiplierPresenter,
             obstacleEffectPresenter,
             obstacleRocketMovePresenter,
-            scorePresenter);
+            scorePresenter,
+            soundPresenter,
+            particleEffectPresenter);
 
         sceneRoot.SetSoundProvider(soundPresenter);
         sceneRoot.Activate();
@@ -123,6 +127,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
         animationFramePresenter.Initialize();
         obstacleEffectPresenter.Initialize();
+        obstacleSoundPresenter.Initialize();
 
         stateMachine.Initialize();
 
@@ -154,6 +159,9 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         obstacleSpawnerPresenter.OnSpawnObstacle += obstacleEffectPresenter.AddObstacle;
         obstaclePresenter.OnDestroyObstacle += obstacleEffectPresenter.RemoveObstacle;
 
+        obstacleSpawnerPresenter.OnSpawnObstacle += obstacleSoundPresenter.AddObstacle;
+        obstaclePresenter.OnDestroyObstacle += obstacleSoundPresenter.RemoveObstacle;
+
         obstacleSpawnerPresenter.OnSpawnObstacle += obstacleRocketMovePresenter.AddObstacle;
         obstaclePresenter.OnDestroyObstacle += obstacleRocketMovePresenter.RemoveObstacle;
 
@@ -184,6 +192,9 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
         obstacleSpawnerPresenter.OnSpawnObstacle -= obstacleEffectPresenter.AddObstacle;
         obstaclePresenter.OnDestroyObstacle -= obstacleEffectPresenter.RemoveObstacle;
+
+        obstacleSpawnerPresenter.OnSpawnObstacle -= obstacleSoundPresenter.AddObstacle;
+        obstaclePresenter.OnDestroyObstacle -= obstacleSoundPresenter.RemoveObstacle;
 
         obstacleSpawnerPresenter.OnSpawnObstacle -= obstacleRocketMovePresenter.AddObstacle;
         obstaclePresenter.OnDestroyObstacle -= obstacleRocketMovePresenter.RemoveObstacle;
@@ -236,6 +247,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
         animationFramePresenter?.Dispose();
         obstacleEffectPresenter?.Dispose();
+        obstacleSoundPresenter?.Dispose();
 
         stateMachine?.Dispose();
     }

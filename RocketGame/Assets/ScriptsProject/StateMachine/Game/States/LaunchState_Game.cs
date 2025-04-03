@@ -10,12 +10,18 @@ public class LaunchState_Game : IState
     private readonly UIMiniGameSceneRoot _sceneRoot;
     private readonly AltitudePresenter _altitudePresenter;
 
-    public LaunchState_Game(IGlobalStateMachineProvider stateProvider, RocketMovePresenter rocketMovePresenter, UIMiniGameSceneRoot sceneRoot, AltitudePresenter altitudePresenter)
+    private readonly ISoundProvider _soundProvider;
+    private readonly ISound _soundGameLaunch;
+
+    public LaunchState_Game(IGlobalStateMachineProvider stateProvider, RocketMovePresenter rocketMovePresenter, UIMiniGameSceneRoot sceneRoot, AltitudePresenter altitudePresenter, ISoundProvider soundProvider)
     {
         _stateProvider = stateProvider;
         _rocketMovePresenter = rocketMovePresenter;
         _sceneRoot = sceneRoot;
         _altitudePresenter = altitudePresenter;
+
+        _soundProvider = soundProvider;
+        _soundGameLaunch = _soundProvider.GetSound("Background_GameLaunch");
     }
 
     public void EnterState()
@@ -27,6 +33,9 @@ public class LaunchState_Game : IState
         _rocketMovePresenter.MoveToStart();
         _sceneRoot.CloseFooterPanel();
         _altitudePresenter.ActivateAltitude();
+
+        _soundGameLaunch.Play();
+        _soundGameLaunch.SetVolume(0, 1, 0.1f);
     }
 
     public void ExitState()
@@ -34,6 +43,7 @@ public class LaunchState_Game : IState
         Debug.Log("ACTIVATE STATE - LAUNCH(3)");
 
         _rocketMovePresenter.OnEndMoveToStart -= ChangeStateToMain;
+        _soundGameLaunch?.Stop();
     }
 
     private void ChangeStateToMain()

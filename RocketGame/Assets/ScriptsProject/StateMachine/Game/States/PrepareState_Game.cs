@@ -9,12 +9,17 @@ public class PrepareState_Game : IState
     private readonly StoreBetPresenter _storeBetPresenter;
     private readonly BetPreparePresenter _betPreparePresenter;
 
-    public PrepareState_Game(IGlobalStateMachineProvider stateProvider, UIMiniGameSceneRoot sceneRoot, StoreBetPresenter storeBetPresenter, BetPreparePresenter betPreparePresenter)
+    private readonly ISoundProvider _soundProvider;
+    private readonly ISound _soundGameStart;
+
+    public PrepareState_Game(IGlobalStateMachineProvider stateProvider, UIMiniGameSceneRoot sceneRoot, StoreBetPresenter storeBetPresenter, BetPreparePresenter betPreparePresenter, ISoundProvider soundProvider)
     {
         _stateProvider = stateProvider;
         _sceneRoot = sceneRoot;
         _storeBetPresenter = storeBetPresenter;
         _betPreparePresenter = betPreparePresenter;
+        _soundProvider = soundProvider;
+        _soundGameStart = _soundProvider.GetSound("Background_GameStart");
     }
 
     public void EnterState()
@@ -37,6 +42,8 @@ public class PrepareState_Game : IState
 
         _storeBetPresenter.Deactivate();
         _betPreparePresenter.Deactivate();
+
+        _soundGameStart.SetVolume(1, 0, 0.1f, _soundGameStart.Stop);
     }
 
     private void ChangeStateToLaunch()

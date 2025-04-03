@@ -13,7 +13,10 @@ public class MainGameState_Game : IState
     private readonly ObstacleSpawnerPresenter _obstacleSpawnerPresenter;
     private readonly CourseDisplacementPresenter _courseDisplacementPresenter;
 
-    public MainGameState_Game(IGlobalStateMachineProvider stateMachineProvider, PlatformPresenter platformPresenter, RocketMovePresenter rocketMovePresenter, ScrollBackgroundPresenter scrollBackgroundPresenter, UIMiniGameSceneRoot sceneRoot, ObstacleSpawnerPresenter obstacleSpawnerPresenter, CourseDisplacementPresenter courseDisplacementPresenter)
+    private readonly ISoundProvider _soundProvider;
+    private readonly ISound _soundGameMain;
+
+    public MainGameState_Game(IGlobalStateMachineProvider stateMachineProvider, PlatformPresenter platformPresenter, RocketMovePresenter rocketMovePresenter, ScrollBackgroundPresenter scrollBackgroundPresenter, UIMiniGameSceneRoot sceneRoot, ObstacleSpawnerPresenter obstacleSpawnerPresenter, CourseDisplacementPresenter courseDisplacementPresenter, ISoundProvider soundProvider)
     {
         _stateMachineProvider = stateMachineProvider;
         _platformPresenter = platformPresenter;
@@ -22,6 +25,9 @@ public class MainGameState_Game : IState
         _sceneRoot = sceneRoot;
         _obstacleSpawnerPresenter = obstacleSpawnerPresenter;
         _courseDisplacementPresenter = courseDisplacementPresenter;
+
+        _soundProvider = soundProvider;
+        _soundGameMain = _soundProvider.GetSound("Background_GameMain");
     }
 
     public void EnterState()
@@ -36,6 +42,9 @@ public class MainGameState_Game : IState
         _platformPresenter.DeactivatePlatform();
         _sceneRoot.OpenFooterPanel();
         _obstacleSpawnerPresenter.ActivateSpawner();
+
+        _soundGameMain.SetVolume(1);
+        _soundGameMain.Play();
     }
 
     public void ExitState()
@@ -49,6 +58,8 @@ public class MainGameState_Game : IState
 
         _scrollBackgroundPresenter.DeactivateScroll();
         _obstacleSpawnerPresenter.DeactivateSpawner();
+
+        _soundGameMain.SetVolume(1, 0, 0.1f, _soundGameMain.Stop);
     }
 
     private void ChangeStateToWin()

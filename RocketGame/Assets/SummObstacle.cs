@@ -7,6 +7,7 @@ public class SummObstacle : Obstacle
     [SerializeField] private Image imageObstacle;
     [SerializeField] private Transform transformMove;
     [SerializeField] private string idEffect;
+    [SerializeField] private string idSound;
 
     private void Awake()
     {
@@ -30,6 +31,7 @@ public class SummObstacle : Obstacle
                 ApplyScoreMultiply();
                 ApplyObstacleEffect(idEffect, transformMove);
                 ApplyRocketMove(this);
+                ApplyObstacleSound(idSound);
 
                 imageObstacle.enabled = false;
                 colliderObstacle.enabled = false;

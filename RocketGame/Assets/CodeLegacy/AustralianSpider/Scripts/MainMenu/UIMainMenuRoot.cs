@@ -27,8 +27,6 @@ public class UIMainMenuRoot : UIRoot
         mainPanel.OnClickToLeaderboard += HandleClickToLeaderboard;
 
         leaderboardPanel.OnClickToCancelFromLeaderboard += HandleClickToCancel;
-
-        OpenMainPanel();
     }
 
 

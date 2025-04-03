@@ -420,4 +420,5 @@ MonoBehaviour:
   knockbackDistance: 0.2
   knockbackDuration: 0.2
   idEffect: Lightning
+  idSound: Obstacle_Divide2
   trigger: {fileID: 6645404089067912676}
