@@ -108,6 +108,8 @@ public class UIMiniGameSceneRoot : UIRoot
 
     private void HandleClickToExit_MainPanel()
     {
+        soundProvider.PlayOneShot("Click");
+
         OnClickToExit_MainPanel?.Invoke();
     }
 
@@ -119,6 +121,8 @@ public class UIMiniGameSceneRoot : UIRoot
 
     private void HandleClickToBet_FooterPanel()
     {
+        soundProvider.PlayOneShot("Click");
+
         OnClickToBet_FooterPanel?.Invoke();
     }
 
@@ -130,6 +134,8 @@ public class UIMiniGameSceneRoot : UIRoot
 
     private void HandleClickToExit_BetPanel()
     {
+        soundProvider.PlayOneShot("Click");
+
         OnClickToExit_BetPanel?.Invoke();
     }
 

@@ -79,11 +79,15 @@ public class UIMainMenuRoot : UIRoot
 
     private void HandleClickToPlay()
     {
+        soundProvider.PlayOneShot("Click");
+
         OnClickToPlay?.Invoke();
     }
 
     private void HandleClickToLeaderboard()
     {
+        soundProvider.PlayOneShot("Click");
+
         OnClickToLeaderboard?.Invoke();
     }
 
@@ -95,6 +99,8 @@ public class UIMainMenuRoot : UIRoot
 
     private void HandleClickToCancel()
     {
+        soundProvider.PlayOneShot("Click");
+
         OnClickToCancel?.Invoke();
     }
 

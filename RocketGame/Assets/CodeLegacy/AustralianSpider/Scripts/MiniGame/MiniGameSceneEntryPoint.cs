@@ -60,7 +60,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         rocketControlPresenter = new RocketControlPresenter(new RocketControlModel(), viewContainer.GetView<RocketControlView>());
 
         storeBetPresenter = new StoreBetPresenter(new StoreBetModel(PlayerPrefsKeys.BET, 2.4f));
-        betSelectPresenter = new BetSelectPresenter(new BetSelectModel(), viewContainer.GetView<BetSelectView>());
+        betSelectPresenter = new BetSelectPresenter(new BetSelectModel(soundPresenter), viewContainer.GetView<BetSelectView>());
         betPreparePresenter = new BetPreparePresenter(new BetPrepareModel(bankPresenter), viewContainer.GetView<BetPrepareView>());
 
         obstacleSpawnerPresenter = new ObstacleSpawnerPresenter(new ObstacleSpawnerModel(spawnPointsData, 0.1f, 0.3f), viewContainer.GetView<ObstacleSpawnerView>());
