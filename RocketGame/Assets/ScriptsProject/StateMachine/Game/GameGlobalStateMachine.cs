@@ -29,7 +29,7 @@ public class GameGlobalStateMachine : IGlobalStateMachineProvider
         states[typeof(PrepareState_Game)] = new PrepareState_Game(this, sceneRoot, storeBetPresenter, betPreparePresenter, soundProvider);
         states[typeof(LaunchState_Game)] = new LaunchState_Game(this, rocketMovePresenter, sceneRoot, altitudePresenter, soundProvider);
         states[typeof(MainGameState_Game)] = new MainGameState_Game(this, platformPresenter, rocketMovePresenter, scrollBackgroundPresenter, sceneRoot, obstacleSpawnerPresenter, courseDisplacementPresenter, soundProvider);
-        states[typeof(WinState_Game)] = new WinState_Game(this, sceneRoot, rocketMovePresenter, obstaclePresenter, altitudePresenter, scorePresenter, particleEffectProvider);
+        states[typeof(WinState_Game)] = new WinState_Game(this, sceneRoot, rocketMovePresenter, obstaclePresenter, altitudePresenter, scorePresenter, particleEffectProvider, soundProvider);
     }
 
     public void Initialize()

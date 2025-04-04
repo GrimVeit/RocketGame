@@ -36,6 +36,8 @@ public class UIMiniGameSceneRoot : UIRoot
         mainPanel.OnClickToExit += HandleClickToExit_MainPanel;
         footerPanel.OnClickToOpenBet += HandleClickToBet_FooterPanel;
         betPanel.OnClickToExit += HandleClickToExit_BetPanel;
+
+        OpenMainPanel();
     }
 
     public void Deactivate()
@@ -46,6 +48,11 @@ public class UIMiniGameSceneRoot : UIRoot
 
         if (currentPanel != null)
             CloseOtherPanel(currentPanel);
+    }
+
+    public void OpenMainPanel()
+    {
+        OpenPanel(mainPanel);
     }
 
 

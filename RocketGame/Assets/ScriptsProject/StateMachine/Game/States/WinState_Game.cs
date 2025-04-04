@@ -12,10 +12,11 @@ public class WinState_Game : IState
     private readonly AltitudePresenter _altitudePresenter;
     private readonly ScorePresenter _scorePresenter;
     private readonly IParticleEffectProvider _particleEffectProvider;
+    private readonly ISoundProvider _soundProvider;
 
     private IEnumerator coroutineTimer;
 
-    public WinState_Game(IGlobalStateMachineProvider stateProvider, UIMiniGameSceneRoot sceneRoot, RocketMovePresenter rocketMovePresenter, ObstaclePresenter obstaclePresenter, AltitudePresenter altitudePresenter, ScorePresenter scorePresenter, IParticleEffectProvider particleEffectProvider)
+    public WinState_Game(IGlobalStateMachineProvider stateProvider, UIMiniGameSceneRoot sceneRoot, RocketMovePresenter rocketMovePresenter, ObstaclePresenter obstaclePresenter, AltitudePresenter altitudePresenter, ScorePresenter scorePresenter, IParticleEffectProvider particleEffectProvider, ISoundProvider soundProvider)
     {
         _stateProvider = stateProvider;
         _sceneRoot = sceneRoot;
@@ -24,6 +25,7 @@ public class WinState_Game : IState
         _altitudePresenter = altitudePresenter;
         _scorePresenter = scorePresenter;
         _particleEffectProvider = particleEffectProvider;
+        _soundProvider = soundProvider;
     }
 
     public void EnterState()
@@ -39,6 +41,7 @@ public class WinState_Game : IState
         _altitudePresenter.DeactivateAltitude();
         _scorePresenter.Win();
         _particleEffectProvider.Play("Win");
+        _soundProvider.PlayOneShot("WinGame");
 
         if(coroutineTimer != null ) Coroutines.Stop(coroutineTimer);
 
