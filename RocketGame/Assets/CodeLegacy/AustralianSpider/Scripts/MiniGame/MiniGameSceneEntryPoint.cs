@@ -252,21 +252,6 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         stateMachine?.Dispose();
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Z))
-        {
-            scrollBackgroundPresenter.ActivateScroll();
-            platformPresenter.DeactivatePlatform();
-        }
-
-        if (Input.GetKeyUp(KeyCode.Z))
-        {
-            scrollBackgroundPresenter.DeactivateScroll();
-            platformPresenter.ActivatePlatform();
-        }
-    }
-
     private void OnDestroy()
     {
         Dispose();

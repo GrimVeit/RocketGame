@@ -1129,11 +1129,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1372820909}
+  m_Father: {fileID: 1583400353}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -99.369995, y: -91.5}
+  m_AnchoredPosition: {x: -99.369995, y: -91.50006}
   m_SizeDelta: {x: 67, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &261086517
@@ -3380,20 +3380,20 @@ MonoBehaviour:
     - timeToInterval: 0
       particleSystemPrefab: {fileID: 3163946680720769229, guid: 9c4c1342f0016d04c8bddaad9f68881e, type: 3}
       particleTransform: {fileID: 1808741054}
-      minSize: 1
-      maxSize: 2
+      minSize: 0.5
+      maxSize: 0.6
       isPlayAwake: 0
     - timeToInterval: 0
       particleSystemPrefab: {fileID: 6006790211137986845, guid: d64ac9209a4c8ad4ba3ed0baff16af59, type: 3}
       particleTransform: {fileID: 1808741054}
-      minSize: 1
-      maxSize: 2
+      minSize: 0.5
+      maxSize: 0.6
       isPlayAwake: 0
     - timeToInterval: 0
       particleSystemPrefab: {fileID: 1864392905350765002, guid: e0de0e7677dc5ac41aad7cc1ab1f87bf, type: 3}
       particleTransform: {fileID: 1808741054}
-      minSize: 1
-      maxSize: 2
+      minSize: 0.5
+      maxSize: 0.6
       isPlayAwake: 0
 --- !u!1 &810943425
 GameObject:
@@ -5388,10 +5388,10 @@ RectTransform:
   - {fileID: 1695730197}
   m_Father: {fileID: 1583400353}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 170}
-  m_SizeDelta: {x: 1080, y: 340}
+  m_SizeDelta: {x: 0, y: 340}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1321173157
 MonoBehaviour:
@@ -5688,7 +5688,6 @@ RectTransform:
   - {fileID: 496802162}
   - {fileID: 1229554188}
   - {fileID: 253760563}
-  - {fileID: 261086516}
   - {fileID: 1584629741}
   - {fileID: 1957677306}
   - {fileID: 1988324183}
@@ -6896,6 +6895,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1321173156}
+  - {fileID: 261086516}
   m_Father: {fileID: 767340471}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
