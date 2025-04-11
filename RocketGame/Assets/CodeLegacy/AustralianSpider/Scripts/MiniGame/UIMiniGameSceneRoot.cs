@@ -7,6 +7,7 @@ public class UIMiniGameSceneRoot : UIRoot
     [SerializeField] private FooterPanel_Game footerPanel;
     [SerializeField] private BetPanel_Game betPanel;
     [SerializeField] private WinPanel_Game winPanel;
+    [SerializeField] private HouseChoosePanel_Game houseChoosePanel;
 
     private ISoundProvider soundProvider;
 
@@ -21,6 +22,7 @@ public class UIMiniGameSceneRoot : UIRoot
         footerPanel.Initialize();
         betPanel.Initialize();
         winPanel.Initialize();
+        houseChoosePanel.Initialize();
     }
 
     public void Dispose()
@@ -29,6 +31,7 @@ public class UIMiniGameSceneRoot : UIRoot
         footerPanel.Dispose();
         betPanel.Dispose();
         winPanel.Dispose();
+        houseChoosePanel?.Dispose();
     }
 
     public void Activate()
@@ -45,6 +48,9 @@ public class UIMiniGameSceneRoot : UIRoot
         mainPanel.OnClickToExit -= HandleClickToExit_MainPanel;
         footerPanel.OnClickToOpenBet -= HandleClickToBet_FooterPanel;
         betPanel.OnClickToExit -= HandleClickToExit_BetPanel;
+
+        CloseHouseChoosePanel();
+        CloseFooterPanel();
 
         if (currentPanel != null)
             CloseOtherPanel(currentPanel);
@@ -105,6 +111,23 @@ public class UIMiniGameSceneRoot : UIRoot
         if(!winPanel.IsActive) return;
 
         CloseOtherPanel(winPanel);
+    }
+
+
+
+
+    public void OpenHouseChoosePanel()
+    {
+        if(houseChoosePanel.IsActive) return;
+
+        OpenOtherPanel(houseChoosePanel);
+    }
+
+    public void CloseHouseChoosePanel()
+    {
+        if(!houseChoosePanel.IsActive) return;
+
+        CloseOtherPanel(houseChoosePanel);
     }
 
     #region Input

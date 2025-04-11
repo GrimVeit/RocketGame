@@ -29,6 +29,7 @@ public class PrepareState_Game : IState
         _betPreparePresenter.OnPlay += ChangeStateToLaunch;
 
         _sceneRoot.OpenFooterPanel();   
+        _sceneRoot.OpenHouseChoosePanel();
 
         _storeBetPresenter.Activate();
         _betPreparePresenter.Activate();
@@ -40,6 +41,7 @@ public class PrepareState_Game : IState
 
         _betPreparePresenter.OnPlay -= ChangeStateToLaunch;
 
+        _sceneRoot.CloseHouseChoosePanel();
         _storeBetPresenter.Deactivate();
         _betPreparePresenter.Deactivate();
 
