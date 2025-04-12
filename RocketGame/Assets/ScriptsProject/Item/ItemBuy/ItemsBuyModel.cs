@@ -19,12 +19,12 @@ public class ItemsBuyModel
 
     public void Initialize()
     {
-        _storeOpenItems.OnSelectOpenItems += SetItemGroup;
+        _storeOpenItems.OnSelectItemGroupForBuyItemGroup += SetItemGroup;
     }
 
     public void Dispose()
     {
-        _storeOpenItems.OnSelectOpenItems -= SetItemGroup;
+        _storeOpenItems.OnSelectItemGroupForBuyItemGroup -= SetItemGroup;
     }
 
     public void BuyItems()

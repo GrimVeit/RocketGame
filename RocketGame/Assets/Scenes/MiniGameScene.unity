@@ -550,6 +550,7 @@ GameObject:
   - component: {fileID: 61200132}
   - component: {fileID: 61200131}
   - component: {fileID: 61200133}
+  - component: {fileID: 61200134}
   m_Layer: 5
   m_Name: Bed
   m_TagString: Untagged
@@ -659,6 +660,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &61200134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61200129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c5d7eaa165e10e4497bbb5af597a77e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 2
+  buttonChooseSelect: {fileID: 61200133}
+  imageOpenItem: {fileID: 61200131}
+  spriteActive: {fileID: 21300000, guid: 3fe144b1184112b4c9a7ee96bd6760b4, type: 3}
+  spriteDeactive: {fileID: 21300000, guid: 67163934e1813054ebdcaff2f7cede20, type: 3}
 --- !u!1 &61325969
 GameObject:
   m_ObjectHideFlags: 0
@@ -1598,6 +1616,7 @@ GameObject:
   - component: {fileID: 132301063}
   - component: {fileID: 132301062}
   - component: {fileID: 132301064}
+  - component: {fileID: 132301065}
   m_Layer: 5
   m_Name: Lighting
   m_TagString: Untagged
@@ -1707,6 +1726,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &132301065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132301060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c5d7eaa165e10e4497bbb5af597a77e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 4
+  buttonChooseSelect: {fileID: 132301064}
+  imageOpenItem: {fileID: 132301062}
+  spriteActive: {fileID: 21300000, guid: 3fe144b1184112b4c9a7ee96bd6760b4, type: 3}
+  spriteDeactive: {fileID: 21300000, guid: 67163934e1813054ebdcaff2f7cede20, type: 3}
 --- !u!1 &142344413
 GameObject:
   m_ObjectHideFlags: 0
@@ -2837,6 +2873,7 @@ RectTransform:
   m_Children:
   - {fileID: 2071947450}
   - {fileID: 354146614}
+  - {fileID: 2072629038}
   m_Father: {fileID: 1742090742}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -3987,6 +4024,7 @@ GameObject:
   - component: {fileID: 476881430}
   - component: {fileID: 476881429}
   - component: {fileID: 476881431}
+  - component: {fileID: 476881432}
   m_Layer: 5
   m_Name: Nightstand
   m_TagString: Untagged
@@ -4096,6 +4134,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &476881432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476881427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c5d7eaa165e10e4497bbb5af597a77e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 1
+  buttonChooseSelect: {fileID: 476881431}
+  imageOpenItem: {fileID: 476881429}
+  spriteActive: {fileID: 21300000, guid: 3fe144b1184112b4c9a7ee96bd6760b4, type: 3}
+  spriteDeactive: {fileID: 21300000, guid: 67163934e1813054ebdcaff2f7cede20, type: 3}
 --- !u!1 &477810571
 GameObject:
   m_ObjectHideFlags: 0
@@ -5427,7 +5482,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &658109500
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5527,7 +5582,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 658109499}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -6379,11 +6434,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 61200130}
-  - {fileID: 476881428}
-  - {fileID: 132301061}
   - {fileID: 1384724264}
+  - {fileID: 476881428}
+  - {fileID: 61200130}
   - {fileID: 848470189}
+  - {fileID: 132301061}
   m_Father: {fileID: 658109500}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
@@ -6605,6 +6660,7 @@ GameObject:
   - component: {fileID: 848470191}
   - component: {fileID: 848470190}
   - component: {fileID: 848470192}
+  - component: {fileID: 848470193}
   m_Layer: 5
   m_Name: Rug
   m_TagString: Untagged
@@ -6714,6 +6770,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &848470193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848470188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c5d7eaa165e10e4497bbb5af597a77e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 3
+  buttonChooseSelect: {fileID: 848470192}
+  imageOpenItem: {fileID: 848470190}
+  spriteActive: {fileID: 21300000, guid: 3fe144b1184112b4c9a7ee96bd6760b4, type: 3}
+  spriteDeactive: {fileID: 21300000, guid: 67163934e1813054ebdcaff2f7cede20, type: 3}
 --- !u!1 &849753555
 GameObject:
   m_ObjectHideFlags: 0
@@ -10298,6 +10371,7 @@ GameObject:
   - component: {fileID: 1384724266}
   - component: {fileID: 1384724265}
   - component: {fileID: 1384724267}
+  - component: {fileID: 1384724268}
   m_Layer: 5
   m_Name: Monitor
   m_TagString: Untagged
@@ -10407,6 +10481,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1384724268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384724263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c5d7eaa165e10e4497bbb5af597a77e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  buttonChooseSelect: {fileID: 1384724267}
+  imageOpenItem: {fileID: 1384724265}
+  spriteActive: {fileID: 21300000, guid: 3fe144b1184112b4c9a7ee96bd6760b4, type: 3}
+  spriteDeactive: {fileID: 21300000, guid: 67163934e1813054ebdcaff2f7cede20, type: 3}
 --- !u!1 &1391253083
 GameObject:
   m_ObjectHideFlags: 0
@@ -16508,6 +16599,60 @@ MonoBehaviour:
   - {fileID: 1757685340}
   - {fileID: 384762175}
   - {fileID: 1343889089}
+--- !u!1 &2072629037
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2072629038}
+  - component: {fileID: 2072629039}
+  m_Layer: 5
+  m_Name: ItemOpenView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2072629038
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072629037}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 296444400}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2072629039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072629037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a71079df8291514cba43dcf13c271e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+  - {fileID: 1384724268}
+  - {fileID: 476881432}
+  - {fileID: 61200134}
+  - {fileID: 848470193}
+  - {fileID: 132301065}
 --- !u!1 &2080476175
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [CreateAssetMenu(fileName = "ItemGroup", menuName = "Game/Item/New Group")]
 public class ItemGroup : ScriptableObject
@@ -23,6 +24,13 @@ public class ItemGroup : ScriptableObject
     public Item GetItemById(int id)
     {
         return items.FirstOrDefault(i => i.ID == id);
+    }
+
+    public Item GetRandomItem()
+    {
+        var index = Random.Range(0, items.Count);
+
+        return items[index];
     }
 
     public void SetData(ItemDatas itemDatas)

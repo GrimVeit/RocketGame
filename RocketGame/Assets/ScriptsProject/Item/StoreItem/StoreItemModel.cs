@@ -8,7 +8,10 @@ public class StoreItemModel
     public event Action<ItemGroup> OnOpenItems;
     public event Action<ItemGroup> OnCloseItems;
 
-    public event Action<ItemGroup> OnSelectOpenItems;
+    public event Action<ItemGroup> OnSelectItemGroupForBuyItemGroup;
+
+    public event Action<ItemGroup, int> OnSelectItem;
+    public event Action<ItemGroup, int> OnDeselectItem;
 
     private readonly ItemGroups _itemGroups;
     private readonly string _fileName;
@@ -98,7 +101,7 @@ public class StoreItemModel
         File.WriteAllText(FilePath, json);
     }
 
-    public void SelectForBuyItemGroup(int index)
+    public void SelectItemGroupForBuyItemGroup(int index)
     {
         var itemGroup = _itemGroups.GetItemGroupById(index);
 
@@ -108,7 +111,79 @@ public class StoreItemModel
             return;
         }
 
-        OnSelectOpenItems?.Invoke(itemGroup);
+        OnSelectItemGroupForBuyItemGroup?.Invoke(itemGroup);
+    }
+
+    public void ChooseAllItemsById(int index)
+    {
+        var itemGroup = _itemGroups.GetItemGroupById(index);
+
+        if (itemGroup == null)
+        {
+            Debug.LogError("Not found item group by id - " + index);
+            return;
+        }
+
+        itemGroup.items.ForEach(item => 
+        {
+            if (item.ItemData.IsSelect)
+            {
+                OnSelectItem?.Invoke(itemGroup, item.ID);
+            }
+            else
+            {
+                OnDeselectItem?.Invoke(itemGroup, item.ID);
+            }
+        });
+    }
+
+    public void OpenItemGroup(int index)
+    {
+        var itemGroup = _itemGroups.GetItemGroupById(index);
+
+        if (itemGroup == null)
+        {
+            Debug.LogError("Not found item group by id - " + index);
+            return;
+        }
+
+        itemGroup.ItemDatas.IsOpen = true;
+        OnOpenItems?.Invoke(itemGroup);
+
+        var item = itemGroup.GetRandomItem();
+
+        SelectItem(itemGroup, item.ID);
+
+    }
+
+    public void SelectItem(int indexItemGroup, int indexItem)
+    {
+        var itemGroup = _itemGroups.GetItemGroupById(indexItem);
+
+        SelectItem(itemGroup, indexItem);
+    }
+
+    private void SelectItem(ItemGroup itemGroup, int indexItem)
+    {
+        var item = itemGroup.GetItemById(indexItem);
+
+        if(item == null)
+        {
+            Debug.LogError($"Not found item in group id - {itemGroup.ID} by id - {indexItem}");
+            return;
+        }
+
+        itemGroup.items.ForEach(ig =>
+        {
+            if (ig.ItemData.IsSelect)
+            {
+                ig.ItemData.IsSelect = false;
+                OnDeselectItem?.Invoke(itemGroup, ig.ID);
+            }
+        });
+        item.ItemData.IsSelect = true;
+
+        OnSelectItem?.Invoke(itemGroup, indexItem);
     }
 }
 

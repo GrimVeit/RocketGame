@@ -44,6 +44,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
     private StoreItemPresenter storeItemPresenter_Bedroom;
     private ItemPreviewPresenter itemPreviewPresenter_Bedroom;
     private ItemsBuyPresenter itemsBuyPresenter_Bedroom;
+    private OpenItemPresenter openItemPresenter_Bedroom;
 
     public void Run(UIRootView uIRootView)
     {
@@ -84,6 +85,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         storeItemPresenter_Bedroom = new StoreItemPresenter(new StoreItemModel("BedroomItems", itemGroups_Bedroom));
         itemPreviewPresenter_Bedroom = new ItemPreviewPresenter(viewContainer.GetView<ItemPreviewView>());
         itemsBuyPresenter_Bedroom = new ItemsBuyPresenter(new ItemsBuyModel(storeItemPresenter_Bedroom, bankPresenter), viewContainer.GetView<ItemsBuyView>());
+        openItemPresenter_Bedroom = new OpenItemPresenter(viewContainer.GetView<OpenItemView>());
 
         stateMachine = new GameGlobalStateMachine(
             rocketMovePresenter, 
@@ -139,7 +141,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         obstacleSoundPresenter.Initialize();
 
 
-
+        openItemPresenter_Bedroom.Initialize();
         itemPreviewPresenter_Bedroom.Initialize();
         itemsBuyPresenter_Bedroom.Initialize();
         storeItemPresenter_Bedroom.Initialize();
@@ -182,7 +184,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
 
 
-        itemPreviewPresenter_Bedroom.OnChooseBuyItemGroup += storeItemPresenter_Bedroom.SelectForBuyItemGroup;
+        itemPreviewPresenter_Bedroom.OnChooseBuyItemGroup += storeItemPresenter_Bedroom.SelectItemGroupForBuyItemGroup;
 
 
     }
@@ -223,7 +225,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
 
 
-        itemPreviewPresenter_Bedroom.OnChooseBuyItemGroup -= storeItemPresenter_Bedroom.SelectForBuyItemGroup;
+        itemPreviewPresenter_Bedroom.OnChooseBuyItemGroup -= storeItemPresenter_Bedroom.SelectItemGroupForBuyItemGroup;
     }
 
     private void ActivateTransitionsSceneEvents()
@@ -277,7 +279,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
 
 
-
+        openItemPresenter_Bedroom.Dispose();
         itemPreviewPresenter_Bedroom.Dispose();
         itemsBuyPresenter_Bedroom.Dispose();
         storeItemPresenter_Bedroom.Dispose();

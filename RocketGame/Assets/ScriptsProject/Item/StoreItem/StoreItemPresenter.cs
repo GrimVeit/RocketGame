@@ -1,11 +1,8 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class StoreItemPresenter : IStoreOpenItems
 {
-    private StoreItemModel _model;
+    private readonly StoreItemModel _model;
 
     public StoreItemPresenter(StoreItemModel model)
     {
@@ -14,12 +11,12 @@ public class StoreItemPresenter : IStoreOpenItems
 
     public void Initialize()
     {
-
+        _model.Initialize();
     }
 
     public void Dispose()
     {
-
+        _model.Dispose();
     }
 
     #region Input
@@ -29,21 +26,48 @@ public class StoreItemPresenter : IStoreOpenItems
 
     }
 
-    public void SelectForBuyItemGroup(int index)
+    public void SelectItemGroupForBuyItemGroup(int indexGroup)
     {
-        Debug.Log(index);
+        _model.SelectItemGroupForBuyItemGroup(indexGroup);
+    }
 
-        _model.SelectForBuyItemGroup(index);
+    public void SelectItemGroupForSelectItem(int indexGroup)
+    {
+        _model.SelectItemGroupForBuyItemGroup(indexGroup);
     }
 
     #endregion
 
     #region Output
 
-    public event Action<ItemGroup> OnSelectOpenItems
+    public event Action<ItemGroup> OnOpenItems
     {
-        add => _model.OnSelectOpenItems += value;
-        remove => _model.OnSelectOpenItems -= value;
+        add => _model.OnOpenItems += value;
+        remove => _model.OnOpenItems -= value;
+    }
+
+    public event Action<ItemGroup> OnCloseItems
+    {
+        add => _model.OnCloseItems += value;
+        remove => _model.OnCloseItems -= value;
+    }
+
+    public event Action<ItemGroup> OnSelectItemGroupForBuyItemGroup
+    {
+        add => _model.OnSelectItemGroupForBuyItemGroup += value;
+        remove => _model.OnSelectItemGroupForBuyItemGroup -= value;
+    }
+
+    public event Action<ItemGroup, int> OnSelectItem
+    {
+        add => _model.OnSelectItem += value;
+        remove => _model.OnSelectItem -= value;
+    }
+
+    public event Action<ItemGroup, int> OnDeselectItem
+    {
+        add => _model.OnDeselectItem += value;
+        remove => _model.OnDeselectItem -= value;
     }
 
     #endregion
@@ -51,6 +75,6 @@ public class StoreItemPresenter : IStoreOpenItems
 
 public interface IStoreOpenItems
 {
-    public event Action<ItemGroup> OnSelectOpenItems;
+    public event Action<ItemGroup> OnSelectItemGroupForBuyItemGroup;
     void OpenItems();
 }
