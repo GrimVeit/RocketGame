@@ -4,18 +4,20 @@ using UnityEngine.UI;
 
 public class ItemPreview : MonoBehaviour
 {
+    public int ID => id;
+
     [SerializeField] private int id;
     [SerializeField] private Button buttonItem;
     [SerializeField] private GameObject objectPreview;
 
     public void Initialize()
     {
-        buttonItem.onClick.AddListener(() => OnChooseItemGroup?.Invoke(id));
+        buttonItem.onClick.AddListener(() => OnChooseBuyItemGroup?.Invoke(id));
     }
 
     public void Dispose()
     {
-        buttonItem.onClick.RemoveListener(() => OnChooseItemGroup?.Invoke(id));
+        buttonItem.onClick.RemoveListener(() => OnChooseBuyItemGroup?.Invoke(id));
     }
 
     public void Activate()
@@ -32,7 +34,7 @@ public class ItemPreview : MonoBehaviour
 
     #region Input
 
-    public event Action<int> OnChooseItemGroup;
+    public event Action<int> OnChooseBuyItemGroup;
 
     #endregion
 }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ItemsBuyPresenter
 {
-    private ItemsBuyModel _model;
-    private ItemsBuyView _view;
+    private readonly ItemsBuyModel _model;
+    private readonly ItemsBuyView _view;
 
     public ItemsBuyPresenter(ItemsBuyModel model, ItemsBuyView view)
     {
@@ -18,6 +18,7 @@ public class ItemsBuyPresenter
         ActivateEvents();
 
         _model.Initialize();
+        _view.Initialize();
     }
 
     public void Dispose()
@@ -25,15 +26,20 @@ public class ItemsBuyPresenter
         DeactivateEvents();
 
         _model.Dispose();
+        _view.Dispose();
     }
 
     private void ActivateEvents()
     {
+        _view.OnBuyItemGroup += _model.BuyItems;
+
         _model.OnSetItemGroup += _view.SetData;
     }
 
     private void DeactivateEvents()
     {
+        _view.OnBuyItemGroup -= _model.BuyItems;
+
         _model.OnSetItemGroup -= _view.SetData;
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class MiniGameSceneEntryPoint : MonoBehaviour
 {
     [SerializeField] private Sounds sounds;
-    [SerializeField] private ItemGroups itemGroups;
+    [SerializeField] private ItemGroups itemGroups_Bedroom;
     [SerializeField] private SpawnPointsData spawnPointsData;
     [SerializeField] private PathData pathData;
     [SerializeField] private UIMiniGameSceneRoot sceneRootPrefab;
@@ -41,11 +41,9 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
     private GameGlobalStateMachine stateMachine;
 
-    private StoreItemPresenter storeItemPresenter_Bed;
-    private StoreItemPresenter storeItemPresenter_Lighting;
-    private StoreItemPresenter storeItemPresenter_Monitor;
-    private StoreItemPresenter storeItemPresenter_Rug;
-    private StoreItemPresenter storeItemPresenter_Nightstand;
+    private StoreItemPresenter storeItemPresenter_Bedroom;
+    private ItemPreviewPresenter itemPreviewPresenter_Bedroom;
+    private ItemsBuyPresenter itemsBuyPresenter_Bedroom;
 
     public void Run(UIRootView uIRootView)
     {
@@ -82,6 +80,10 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         animationFramePresenter = new AnimationFramePresenter(new AnimationFrameModel(), viewContainer.GetView<AnimationFrameView>());
         obstacleEffectPresenter = new ObstacleEffectPresenter(new ObstacleEffectModel(animationFramePresenter));
         obstacleSoundPresenter = new ObstacleSoundPresenter(new ObstacleSoundModel(soundPresenter));
+
+        storeItemPresenter_Bedroom = new StoreItemPresenter(new StoreItemModel("BedroomItems", itemGroups_Bedroom));
+        itemPreviewPresenter_Bedroom = new ItemPreviewPresenter(viewContainer.GetView<ItemPreviewView>());
+        itemsBuyPresenter_Bedroom = new ItemsBuyPresenter(new ItemsBuyModel(storeItemPresenter_Bedroom, bankPresenter), viewContainer.GetView<ItemsBuyView>());
 
         stateMachine = new GameGlobalStateMachine(
             rocketMovePresenter, 
@@ -136,6 +138,12 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         obstacleEffectPresenter.Initialize();
         obstacleSoundPresenter.Initialize();
 
+
+
+        itemPreviewPresenter_Bedroom.Initialize();
+        itemsBuyPresenter_Bedroom.Initialize();
+        storeItemPresenter_Bedroom.Initialize();
+
         stateMachine.Initialize();
 
     }
@@ -172,6 +180,11 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         obstacleSpawnerPresenter.OnSpawnObstacle += obstacleRocketMovePresenter.AddObstacle;
         obstaclePresenter.OnDestroyObstacle += obstacleRocketMovePresenter.RemoveObstacle;
 
+
+
+        itemPreviewPresenter_Bedroom.OnChooseBuyItemGroup += storeItemPresenter_Bedroom.SelectForBuyItemGroup;
+
+
     }
 
     private void DeactivateEvents()
@@ -205,6 +218,12 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
         obstacleSpawnerPresenter.OnSpawnObstacle -= obstacleRocketMovePresenter.AddObstacle;
         obstaclePresenter.OnDestroyObstacle -= obstacleRocketMovePresenter.RemoveObstacle;
+
+
+
+
+
+        itemPreviewPresenter_Bedroom.OnChooseBuyItemGroup -= storeItemPresenter_Bedroom.SelectForBuyItemGroup;
     }
 
     private void ActivateTransitionsSceneEvents()
@@ -255,6 +274,13 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         animationFramePresenter?.Dispose();
         obstacleEffectPresenter?.Dispose();
         obstacleSoundPresenter?.Dispose();
+
+
+
+
+        itemPreviewPresenter_Bedroom.Dispose();
+        itemsBuyPresenter_Bedroom.Dispose();
+        storeItemPresenter_Bedroom.Dispose();
 
         stateMachine?.Dispose();
     }

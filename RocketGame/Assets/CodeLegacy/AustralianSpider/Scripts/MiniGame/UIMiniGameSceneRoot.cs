@@ -207,6 +207,7 @@ public class UIMiniGameSceneRoot : UIRoot
     public void CloseHouseBedroomBuyItemPanel()
     {
         if (!houseBedroomBuyItemPanel.IsActive) return;
+
         CloseOtherPanel(houseBedroomBuyItemPanel);
     }
 

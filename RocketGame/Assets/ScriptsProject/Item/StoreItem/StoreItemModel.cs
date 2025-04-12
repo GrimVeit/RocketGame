@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class StoreItemModel : IStoreOpenItems
+public class StoreItemModel
 {
     public event Action<ItemGroup> OnOpenItems;
     public event Action<ItemGroup> OnCloseItems;
 
-    public event Action<IStoreOpenItems, ItemGroup> OnSelectOpenItems;
+    public event Action<ItemGroup> OnSelectOpenItems;
 
     private readonly ItemGroups _itemGroups;
     private readonly string _fileName;
@@ -56,6 +56,8 @@ public class StoreItemModel : IStoreOpenItems
             {
                 _itemGroups.itemGroups[i].items[j].SetData(_itemGroupDatas.ItemDatas[i].Datas[j]);
             }
+
+            _itemGroups.itemGroups[i].SetData(_itemGroupDatas.ItemDatas[i]);
         }
 
 
@@ -96,32 +98,17 @@ public class StoreItemModel : IStoreOpenItems
         File.WriteAllText(FilePath, json);
     }
 
-    public void SelectItems()
+    public void SelectForBuyItemGroup(int index)
     {
-        //OnSelectOpenItems?.Invoke(this, _itemGroups);
-    }
+        var itemGroup = _itemGroups.GetItemGroupById(index);
 
-    public void OpenItems()
-    {
-        //if(_itemGroupDatas.IsOpen) return;
+        if(itemGroup == null)
+        {
+            Debug.LogError("Not found item group by id - " + index);
+            return;
+        }
 
-        //_itemGroupDatas.IsOpen = true;
-        //OnOpenItems?.Invoke();
-
-        //for (int i = 0; i < _itemGroupDatas.Datas.Length; i++) 
-        //{
-        //    OnOpenItem?.Invoke(_itemGroups.items[i]);
-
-        //    if(i == 0)
-        //    {
-        //        _currentItem = _itemGroups.items[i];
-        //        OnSelectItem?.Invoke(_currentItem);
-        //    }
-        //    else
-        //    {
-        //        OnDeselectItem?.Invoke(_itemGroups.items[i]);
-        //    }
-        //}
+        OnSelectOpenItems?.Invoke(itemGroup);
     }
 }
 

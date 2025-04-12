@@ -8,8 +8,8 @@ public class ItemGroups : ScriptableObject
 {
     public List<ItemGroup> itemGroups = new();
 
-    public ItemGroup GetItemGroupByType(ItemType itemType)
+    public ItemGroup GetItemGroupById(int id)
     {
-        return itemGroups.FirstOrDefault(i => i.ItemType == itemType);
+        return itemGroups.FirstOrDefault(i => i.ID == id);
     }
 }

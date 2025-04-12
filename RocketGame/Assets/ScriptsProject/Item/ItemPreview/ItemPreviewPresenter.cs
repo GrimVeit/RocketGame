@@ -1,48 +1,47 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemPreviewPresenter
 {
-    private readonly ItemPreviewModel _model;
     private readonly ItemPreviewView _view;
 
-    public ItemPreviewPresenter(ItemPreviewModel model, ItemPreviewView view)
+    public ItemPreviewPresenter(ItemPreviewView view)
     {
-        _model = model;
         _view = view;
     }
 
     public void Initialize()
     {
-        ActivateEvents();
+        _view.Initialize();
     }
 
     public void Dispose()
     {
-        DeactivateEvents();
-    }
-
-    private void ActivateEvents()
-    {
-
-    }
-    
-    private void DeactivateEvents()
-    {
-
+        _view.Dispose();
     }
 
     #region Input
 
-    public void Activate()
+    public void Activate(int index)
     {
-
+        _view.Activate(index);
     }
 
-    public void Deactivate()
+    public void Deactivate(int index)
     {
+        _view.Deactivate(index);
+    }
 
+    #endregion
+
+    #region Output
+
+    public event Action<int> OnChooseBuyItemGroup
+    {
+        add => _view.OnChooseBuyItemGroup += value;
+        remove => _view.OnChooseBuyItemGroup -= value;
     }
 
     #endregion

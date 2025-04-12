@@ -24,19 +24,26 @@ public class StoreItemPresenter : IStoreOpenItems
 
     #region Input
 
-    public event Action<IStoreOpenItems, ItemGroup> OnSelectOpenItems
+    public void OpenItems()
     {
-        add => _model.OnSelectOpenItems += value;
-        remove => _model.OnSelectOpenItems -= value;
+
+    }
+
+    public void SelectForBuyItemGroup(int index)
+    {
+        Debug.Log(index);
+
+        _model.SelectForBuyItemGroup(index);
     }
 
     #endregion
 
     #region Output
 
-    public void OpenItems()
+    public event Action<ItemGroup> OnSelectOpenItems
     {
-        _model.OpenItems();
+        add => _model.OnSelectOpenItems += value;
+        remove => _model.OnSelectOpenItems -= value;
     }
 
     #endregion
@@ -44,6 +51,6 @@ public class StoreItemPresenter : IStoreOpenItems
 
 public interface IStoreOpenItems
 {
-    public event Action<IStoreOpenItems, ItemGroup> OnSelectOpenItems;
+    public event Action<ItemGroup> OnSelectOpenItems;
     void OpenItems();
 }

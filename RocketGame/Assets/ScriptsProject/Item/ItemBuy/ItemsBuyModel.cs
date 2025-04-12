@@ -1,21 +1,17 @@
 using System;
-using System.Collections.Generic;
 
 public class ItemsBuyModel
 {
     public event Action<ItemGroup> OnSetItemGroup;
 
-    public List<IStoreOpenItems> _storeOpenItems;
+    public event Action<int> OnOpenItemGroup;
 
-    private IStoreOpenItems _currentStore;
     private ItemGroup _currentItemGroup;
 
     private IMoneyProvider _moneyProvider;
+    private IStoreOpenItems _storeOpenItems;
 
-    private int maxCountBuy => _storeOpenItems.Count;
-    private int currentCountBuy;
-
-    public ItemsBuyModel(List<IStoreOpenItems> storeOpenItems, IMoneyProvider moneyProvider)
+    public ItemsBuyModel(IStoreOpenItems storeOpenItems, IMoneyProvider moneyProvider)
     {
         _storeOpenItems = storeOpenItems;
         _moneyProvider = moneyProvider;
@@ -23,25 +19,25 @@ public class ItemsBuyModel
 
     public void Initialize()
     {
-        _storeOpenItems.ForEach(sot => sot.OnSelectOpenItems += SetItems);
+        _storeOpenItems.OnSelectOpenItems += SetItemGroup;
     }
 
     public void Dispose()
     {
-        _storeOpenItems.ForEach(sot => sot.OnSelectOpenItems -= SetItems);
+        _storeOpenItems.OnSelectOpenItems -= SetItemGroup;
     }
 
-    private void SetItems(IStoreOpenItems storeOpenItems, ItemGroup itemGroup)
-    {
-        _currentStore = storeOpenItems;
-        _currentItemGroup = itemGroup;
-    }
-
-    public void OpenItems()
+    public void BuyItems()
     {
         if (!_moneyProvider.CanAfford(_currentItemGroup.Price)) return;
 
         _moneyProvider.SendMoney(-_currentItemGroup.Price);
-        _currentStore.OpenItems();
+        OnOpenItemGroup?.Invoke(_currentItemGroup.ID);
+    }
+
+    private void SetItemGroup(ItemGroup itemGroup)
+    {
+        _currentItemGroup = itemGroup;
+        OnSetItemGroup?.Invoke(_currentItemGroup);
     }
 }
