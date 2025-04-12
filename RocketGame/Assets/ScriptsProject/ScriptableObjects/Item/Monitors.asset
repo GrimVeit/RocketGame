@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb357036449242d48b2bbfe95dbdeb74, type: 3}
+  m_Name: Monitors
+  m_EditorClassIdentifier: 
+  title: Monitor
+  price: 120
+  items:
+  - {fileID: 11400000, guid: 81501ff4ffc45ec4e84404bd5b7ab9c6, type: 2}
+  - {fileID: 11400000, guid: 79810483d50a32143864f75116a59221, type: 2}
+  - {fileID: 11400000, guid: e51870afd9d3f0c40907c7e7027bb86d, type: 2}

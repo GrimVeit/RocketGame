@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb357036449242d48b2bbfe95dbdeb74, type: 3}
+  m_Name: Nightstands
+  m_EditorClassIdentifier: 
+  id: 1
+  title: Nightstand
+  price: 170
+  itemType: 0
+  items:
+  - {fileID: 11400000, guid: b08dd6d856b23fe46bbb4fcc9360a069, type: 2}
+  - {fileID: 11400000, guid: 99fc90c15839d9647ad79f968af46ddc, type: 2}
+  - {fileID: 11400000, guid: 314f5d5449c47914b911d73b04c88600, type: 2}

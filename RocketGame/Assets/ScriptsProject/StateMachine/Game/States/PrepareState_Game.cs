@@ -27,6 +27,7 @@ public class PrepareState_Game : IState
         Debug.Log("ACTIVATE STATE - PREPARE(2)");
 
         _betPreparePresenter.OnPlay += ChangeStateToLaunch;
+        _sceneRoot.OnClickToHouse_HouseChoosePanel += ChangeStateToHouseBedroom;
 
         _sceneRoot.OpenFooterPanel();   
         _sceneRoot.OpenHouseChoosePanel();
@@ -40,6 +41,7 @@ public class PrepareState_Game : IState
         Debug.Log("DEACTIVATE STATE - PREPARE(2)");
 
         _betPreparePresenter.OnPlay -= ChangeStateToLaunch;
+        _sceneRoot.OnClickToHouse_HouseChoosePanel -= ChangeStateToHouseBedroom;
 
         _sceneRoot.CloseHouseChoosePanel();
         _storeBetPresenter.Deactivate();
@@ -51,5 +53,10 @@ public class PrepareState_Game : IState
     private void ChangeStateToLaunch()
     {
         _stateProvider.SetState(_stateProvider.GetState<LaunchState_Game>());
+    }
+
+    private void ChangeStateToHouseBedroom()
+    {
+        _stateProvider.SetState(_stateProvider.GetState<HouseBedroomState_Game>());
     }
 }

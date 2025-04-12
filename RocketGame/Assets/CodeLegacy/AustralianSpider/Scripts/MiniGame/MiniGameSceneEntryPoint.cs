@@ -5,6 +5,7 @@ using UnityEngine;
 public class MiniGameSceneEntryPoint : MonoBehaviour
 {
     [SerializeField] private Sounds sounds;
+    [SerializeField] private ItemGroups itemGroups;
     [SerializeField] private SpawnPointsData spawnPointsData;
     [SerializeField] private PathData pathData;
     [SerializeField] private UIMiniGameSceneRoot sceneRootPrefab;
@@ -39,6 +40,12 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
     private ObstacleSoundPresenter obstacleSoundPresenter;
 
     private GameGlobalStateMachine stateMachine;
+
+    private StoreItemPresenter storeItemPresenter_Bed;
+    private StoreItemPresenter storeItemPresenter_Lighting;
+    private StoreItemPresenter storeItemPresenter_Monitor;
+    private StoreItemPresenter storeItemPresenter_Rug;
+    private StoreItemPresenter storeItemPresenter_Nightstand;
 
     public void Run(UIRootView uIRootView)
     {

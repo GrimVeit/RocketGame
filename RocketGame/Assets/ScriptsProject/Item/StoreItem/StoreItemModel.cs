@@ -1,29 +1,26 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using UnityEngine;
 
-public class StoreItemModel
+public class StoreItemModel : IStoreOpenItems
 {
-    public event Action<Item> OnOpenItem;
-    public event Action<Item> OnCloseItem;
-    public event Action<Item> OnSelectItem;
-    public event Action<Item> OnDeselectItem;
+    public event Action<ItemGroup> OnOpenItems;
+    public event Action<ItemGroup> OnCloseItems;
 
-    private readonly ItemGroup _itemGroup;
+    public event Action<IStoreOpenItems, ItemGroup> OnSelectOpenItems;
+
+    private readonly ItemGroups _itemGroups;
     private readonly string _fileName;
     public string FilePath => Path.Combine(Application.persistentDataPath, $"{_fileName}.json");
 
     private Item _currentItem;
-    private ItemData _currentItemData;
-    private List<ItemData> _itemDatas = new List<ItemData>();
+    private ItemGroupDatas _itemGroupDatas;
 
-    public StoreItemModel(string fileName, ItemGroup itemGroup)
+    public StoreItemModel(string fileName, ItemGroups itemGroups)
     {
         _fileName = fileName;
-        _itemGroup = itemGroup;
+        _itemGroups = itemGroups;
     }
 
     public void Initialize()
@@ -31,68 +28,111 @@ public class StoreItemModel
         if (File.Exists(FilePath))
         {
             string loadedJson = File.ReadAllText(FilePath);
-            ItemDatas itemDatas = JsonUtility.FromJson<ItemDatas>(loadedJson);
-
-            //Debug.Log("Success");
-
-            _itemDatas = itemDatas.Datas.ToList();
+            _itemGroupDatas = JsonUtility.FromJson<ItemGroupDatas>(loadedJson);
         }
         else
         {
-            //Debug.Log("HDBNJJJJJJJJJJJJJJJJJJJJJJ");
+            List<ItemDatas> itemDatasList = new();
 
-            _itemDatas = new List<ItemData>();
 
-            for (int i = 0; i < _itemGroup.items.Count; i++)
+            for (int i = 0; i < _itemGroups.itemGroups.Count; i++)
             {
-                _itemDatas.Add(new ItemData(false, false));
+                List<ItemData> itemDataList = new();
+
+                for (int j = 0; j < _itemGroups.itemGroups[i].items.Count; j++)
+                {
+                    itemDataList.Add(new ItemData(false));
+                }
+
+                itemDatasList.Add(new ItemDatas(itemDataList.ToArray(), false));
+            }
+
+            _itemGroupDatas = new ItemGroupDatas(itemDatasList.ToArray());
+        }
+
+        for (int i = 0; i < _itemGroups.itemGroups.Count; i++)
+        {
+            for (int j = 0; j < _itemGroups.itemGroups[i].items.Count; j++)
+            {
+                _itemGroups.itemGroups[i].items[j].SetData(_itemGroupDatas.ItemDatas[i].Datas[j]);
             }
         }
 
-        //for (int i = 0; i < _itemGroup.items.Count; i++)
-        //{
-        //    _itemGroup.items[i].SetData(_itemDatas[i]);
 
-        //    if (_itemGroup.items[i].DesignData.IsOpen)
-        //        OnOpenCoverCardDesign?.Invoke(_itemGroup.CoverCardDesigns[i]);
-        //    else
-        //        OnCloseCoverCardDesign?.Invoke(_itemGroup.CoverCardDesigns[i]);
+
+        for (int i = 0; i < _itemGroups.itemGroups.Count; i++)
+        {
+            var itemGroup = _itemGroupDatas.ItemDatas[i];
+
+            if (itemGroup.IsOpen)
+            {
+                OnOpenItems?.Invoke(_itemGroups.itemGroups[i]);
+            }
+            else
+            {
+                OnCloseItems?.Invoke(_itemGroups.itemGroups[i]);
+            }
+        }
+
+        //if (_itemGroupDatas.IsOpen)
+        //{
+        //    OnOpenItems?.Invoke();
+        //}
+        //else
+        //{
+        //    OnCloseItems?.Invoke();
         //}
 
-        //SelectCoverCardDesign(GetSelectCoverCardDesignIndex());
+
+        //for (int i = 0; i < _itemGroups.items.Count; i++)
+        //{
+        //    _itemGroups.items[i].SetData(_itemGroupDatas.Datas[i]);
+        //}
     }
 
     public void Dispose()
     {
-        string json = JsonUtility.ToJson(new ItemDatas(_itemDatas.ToArray()));
+        string json = JsonUtility.ToJson(_itemGroupDatas);
         File.WriteAllText(FilePath, json);
     }
 
-    public void BuyCoverCardDesign(int number)
+    public void SelectItems()
     {
-        //var faceCardDesign = _itemGroup.GetItemById(number);
-
-        //if (faceCardDesign.ItemData.IsOpen) return;
-
-        //faceCardDesign..IsOpen = true;
-        //OnOpenCoverCardDesign?.Invoke(faceCardDesign);
+        //OnSelectOpenItems?.Invoke(this, _itemGroups);
     }
 
-    public void SelectItem(int number)
+    public void OpenItems()
     {
-        //if (_currentItem != null)
-        //{
-        //    _currentItem.DesignData.IsSelect = false;
-        //    OnDeselectCoverCardDesign?.Invoke(_currentItem);
-        //}
+        //if(_itemGroupDatas.IsOpen) return;
 
-        //_currentItem = _itemGroup.GetCoverCardDesignById(number);
+        //_itemGroupDatas.IsOpen = true;
+        //OnOpenItems?.Invoke();
 
-        //if (_currentItem != null)
+        //for (int i = 0; i < _itemGroupDatas.Datas.Length; i++) 
         //{
-        //    _currentItem.DesignData.IsSelect = true;
-        //    OnSelectCoverCardDesign?.Invoke(_currentItem);
+        //    OnOpenItem?.Invoke(_itemGroups.items[i]);
+
+        //    if(i == 0)
+        //    {
+        //        _currentItem = _itemGroups.items[i];
+        //        OnSelectItem?.Invoke(_currentItem);
+        //    }
+        //    else
+        //    {
+        //        OnDeselectItem?.Invoke(_itemGroups.items[i]);
+        //    }
         //}
+    }
+}
+
+[Serializable]
+public class ItemGroupDatas
+{
+    public ItemDatas[] ItemDatas;
+
+    public ItemGroupDatas(ItemDatas[] datas)
+    {
+        ItemDatas = datas;
     }
 }
 
@@ -100,32 +140,27 @@ public class StoreItemModel
 public class ItemDatas
 {
     public ItemData[] Datas;
+    public bool IsOpen;
 
-    public ItemDatas(ItemData[] datas)
+    public ItemDatas(ItemData[] datas, bool isOpen)
     {
         Datas = datas;
+        IsOpen = isOpen;
     }
 }
 
 [Serializable]
 public class ItemData
 {
-    public bool IsOpen;
     public bool IsSelect;
 
-    public ItemData(bool isOpen, bool isSelect)
+    public ItemData(bool isSelect)
     {
-        this.IsOpen = isOpen;
         this.IsSelect = isSelect;
     }
 
     public void Select()
     {
         IsSelect = true;
-    }
-
-    public void Open()
-    {
-        IsOpen = true;
     }
 }

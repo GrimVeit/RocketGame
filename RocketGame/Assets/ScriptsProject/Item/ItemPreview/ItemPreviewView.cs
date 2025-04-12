@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemPreviewView : MonoBehaviour
+public class ItemPreviewView : View
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //[SerializeField] private 
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    #region Output
+
+    //public event 
+
+    #endregion
 }
