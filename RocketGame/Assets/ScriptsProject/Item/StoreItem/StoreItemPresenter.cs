@@ -45,6 +45,27 @@ public class StoreItemPresenter : IStoreOpenItems
 
     #region Output
 
+    public event Action OnOpenAllItems
+    {
+        add => _model.OnOpenAllItems += value;
+        remove => _model.OnOpenAllItems -= value;
+    }
+
+    public event Action OnOpenItems_None
+    {
+        add => _model.OnOpenItems_None += value;
+        remove => _model.OnOpenItems_None -= value;
+    }
+
+    public event Action OnSelectItem_None
+    {
+        add => _model.OnSelectItem_None += value;
+        remove => _model.OnSelectItem_None -= value;
+    }
+
+
+
+
     public event Action<ItemGroup> OnOpenItems
     {
         add => _model.OnOpenItems += value;

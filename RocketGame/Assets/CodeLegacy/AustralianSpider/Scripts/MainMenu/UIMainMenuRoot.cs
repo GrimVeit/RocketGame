@@ -36,6 +36,9 @@ public class UIMainMenuRoot : UIRoot
         mainPanel.OnClickToLeaderboard -= HandleClickToLeaderboard;
 
         leaderboardPanel.OnClickToCancelFromLeaderboard -= HandleClickToCancel;
+
+        if(currentPanel != null)
+            CloseOtherPanel(currentPanel);
     }
 
     public void Dispose()

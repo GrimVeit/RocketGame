@@ -7,9 +7,11 @@ public class UIMiniGameSceneRoot : UIRoot
     [SerializeField] private FooterPanel_Game footerPanel;
     [SerializeField] private BetPanel_Game betPanel;
     [SerializeField] private WinPanel_Game winPanel;
+    [SerializeField] private ExitPanel_Game exitPanel;
 
     [SerializeField] private HouseChoosePanel_Game houseChoosePanel;
 
+    [SerializeField] private BalanceHousePanel_Game houseBalancePanel;
     [SerializeField] private HouseBedroomPanel_Game houseBedroomPanel;
     [SerializeField] private HouseBedroomBuyItemPanel_Game houseBedroomBuyItemPanel;
     [SerializeField] private HouseBedroomSelectItemPanel_Game houseBedroomSelectItemPanel;
@@ -27,9 +29,11 @@ public class UIMiniGameSceneRoot : UIRoot
         footerPanel.Initialize();
         betPanel.Initialize();
         winPanel.Initialize();
+        exitPanel.Initialize();
 
         houseChoosePanel.Initialize();
 
+        houseBalancePanel.Initialize();
         houseBedroomPanel.Initialize();
         houseBedroomBuyItemPanel.Initialize();
         houseBedroomSelectItemPanel.Initialize();
@@ -41,9 +45,11 @@ public class UIMiniGameSceneRoot : UIRoot
         footerPanel.Dispose();
         betPanel.Dispose();
         winPanel.Dispose();
+        exitPanel.Dispose();
 
         houseChoosePanel.Dispose();
 
+        houseBalancePanel.Dispose();
         houseBedroomPanel.Dispose();
         houseBedroomBuyItemPanel.Dispose();
         houseBedroomSelectItemPanel.Dispose();
@@ -51,7 +57,7 @@ public class UIMiniGameSceneRoot : UIRoot
 
     public void Activate()
     {
-        mainPanel.OnClickToExit += HandleClickToExit_MainPanel;
+        exitPanel.OnClickToExit += HandleClickToExit_ExitPanel;
         footerPanel.OnClickToOpenBet += HandleClickToBet_FooterPanel;
         betPanel.OnClickToExit += HandleClickToExit_BetPanel;
         houseChoosePanel.OnClickToHouse += HandleClickToHouse_HouseChoosePanel;
@@ -69,7 +75,7 @@ public class UIMiniGameSceneRoot : UIRoot
 
     public void Deactivate()
     {
-        mainPanel.OnClickToExit -= HandleClickToExit_MainPanel;
+        exitPanel.OnClickToExit -= HandleClickToExit_ExitPanel;
         footerPanel.OnClickToOpenBet -= HandleClickToBet_FooterPanel;
         betPanel.OnClickToExit -= HandleClickToExit_BetPanel;
         houseChoosePanel.OnClickToHouse -= HandleClickToHouse_HouseChoosePanel;
@@ -84,6 +90,7 @@ public class UIMiniGameSceneRoot : UIRoot
 
         CloseHouseChoosePanel();
         CloseFooterPanel();
+        CloseExitPanel();
 
         if (currentPanel != null)
             CloseOtherPanel(currentPanel);
@@ -149,6 +156,23 @@ public class UIMiniGameSceneRoot : UIRoot
 
 
 
+    public void OpenExitPanel()
+    {
+        if(exitPanel.IsActive) return;
+
+        OpenOtherPanel(exitPanel);
+    }
+
+    public void CloseExitPanel()
+    {
+        if(!exitPanel.IsActive) return;
+
+        CloseOtherPanel(exitPanel);
+    }
+
+
+
+
     public void OpenHouseChoosePanel()
     {
         if(houseChoosePanel.IsActive) return;
@@ -166,6 +190,23 @@ public class UIMiniGameSceneRoot : UIRoot
     #region House
 
     #region BEDROOM
+
+    public void OpenHouseBalancePanel()
+    {
+        if(houseBalancePanel.IsActive) return;
+
+        OpenOtherPanel(houseBalancePanel);
+    }
+
+    public void CloseHouseBalancePanel()
+    {
+        if(!houseBalancePanel.IsActive) return;
+
+        CloseOtherPanel(houseBalancePanel);
+    }
+
+
+
 
     public void OpenHouseBedroomPanel()
     {
@@ -220,15 +261,15 @@ public class UIMiniGameSceneRoot : UIRoot
 
     #region Output
 
-    #region MainPanel
+    #region ExitPanel
 
-    public event Action OnClickToExit_MainPanel;
+    public event Action OnClickToExit_ExitPanel;
 
-    private void HandleClickToExit_MainPanel()
+    private void HandleClickToExit_ExitPanel()
     {
         soundProvider.PlayOneShot("Click");
 
-        OnClickToExit_MainPanel?.Invoke();
+        OnClickToExit_ExitPanel?.Invoke();
     }
 
     #endregion

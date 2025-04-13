@@ -31,7 +31,6 @@ public class LaunchState_Game : IState
         _rocketMovePresenter.OnEndMoveToStart += ChangeStateToMain;
 
         _rocketMovePresenter.MoveToStart();
-        _sceneRoot.CloseFooterPanel();
         _altitudePresenter.ActivateAltitude();
 
         _soundGameLaunch.Play();

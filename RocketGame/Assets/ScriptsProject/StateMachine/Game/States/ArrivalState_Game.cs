@@ -54,7 +54,6 @@ public class ArrivalState_Game : IState
         _rocketMovePresenter.OnEndMoveToBase += ChangeStateToPrepare;
 
         _rocketMovePresenter.MoveToBase();
-        _sceneRoot.CloseFooterPanel();
         _obstaclePresenter.ClearObstacles();
         _altitudePresenter.Clear();
         _courseDisplacementPresenter.Clear();

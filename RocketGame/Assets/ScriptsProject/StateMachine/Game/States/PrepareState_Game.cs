@@ -30,6 +30,7 @@ public class PrepareState_Game : IState
         _sceneRoot.OnClickToHouse_HouseChoosePanel += ChangeStateToHouseBedroom;
 
         _sceneRoot.OpenFooterPanel();   
+        _sceneRoot.OpenExitPanel();
         _sceneRoot.OpenHouseChoosePanel();
 
         _storeBetPresenter.Activate();
@@ -44,6 +45,8 @@ public class PrepareState_Game : IState
         _sceneRoot.OnClickToHouse_HouseChoosePanel -= ChangeStateToHouseBedroom;
 
         _sceneRoot.CloseHouseChoosePanel();
+        _sceneRoot.CloseExitPanel();
+        _sceneRoot.CloseFooterPanel();
         _storeBetPresenter.Deactivate();
         _betPreparePresenter.Deactivate();
 

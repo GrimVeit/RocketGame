@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class StoreItemModel
 {
+    public event Action OnOpenItems_None;
+    public event Action OnSelectItem_None;
+    public event Action OnOpenAllItems;
+
     public event Action<ItemGroup> OnOpenItems;
     public event Action<ItemGroup> OnCloseItems;
 
@@ -156,6 +160,7 @@ public class StoreItemModel
 
         itemGroup.ItemDatas.IsOpen = true;
         OnOpenItems?.Invoke(itemGroup);
+        OnOpenItems_None?.Invoke();
 
         var item = itemGroup.GetRandomItem();
 
@@ -191,6 +196,7 @@ public class StoreItemModel
 
         item.ItemData.IsSelect = true;
         OnSelectItem?.Invoke(itemGroup, item);
+        OnSelectItem_None?.Invoke();
     }
 }
 

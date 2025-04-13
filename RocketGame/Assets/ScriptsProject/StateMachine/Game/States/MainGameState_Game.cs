@@ -41,6 +41,7 @@ public class MainGameState_Game : IState
         _scrollBackgroundPresenter.ActivateScroll();
         _platformPresenter.DeactivatePlatform();
         _sceneRoot.OpenFooterPanel();
+        _sceneRoot.OpenExitPanel();
         _obstacleSpawnerPresenter.ActivateSpawner();
 
         _soundGameMain.SetVolume(1);

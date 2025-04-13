@@ -251,7 +251,10 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         sceneRoot.OnClickToBet_FooterPanel += sceneRoot.OpenBetPanel;
         sceneRoot.OnClickToExit_BetPanel += sceneRoot.CloseBetPanel;
 
-        sceneRoot.OnClickToExit_MainPanel += HandleGoToMenu;
+        sceneRoot.OnClickToExit_ExitPanel += HandleGoToMenu;
+
+        storeItemPresenter_Bedroom.OnOpenItems_None += sceneRoot.CloseHouseBedroomBuyItemPanel;
+        storeItemPresenter_Bedroom.OnSelectItem_None += sceneRoot.CloseHouseBedroomSelectItemPanel;
     }
 
     private void DeactivateTransitionsSceneEvents()
@@ -259,7 +262,10 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         sceneRoot.OnClickToBet_FooterPanel += sceneRoot.OpenBetPanel;
         sceneRoot.OnClickToExit_BetPanel += sceneRoot.CloseBetPanel;
 
-        sceneRoot.OnClickToExit_MainPanel -= HandleGoToMenu;
+        sceneRoot.OnClickToExit_ExitPanel -= HandleGoToMenu;
+
+        storeItemPresenter_Bedroom.OnOpenItems_None -= sceneRoot.CloseHouseBedroomBuyItemPanel;
+        storeItemPresenter_Bedroom.OnSelectItem_None -= sceneRoot.CloseHouseBedroomSelectItemPanel;
     }
 
     public void Dispose()

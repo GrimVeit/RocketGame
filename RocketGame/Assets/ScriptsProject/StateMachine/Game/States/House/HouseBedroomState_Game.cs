@@ -24,6 +24,7 @@ public class HouseBedroomState_Game : IState
         _sceneRoot.OnClickToExit_BuyItemsBedroomPanel += _sceneRoot.CloseHouseBedroomBuyItemPanel;
 
         _sceneRoot.OpenHouseBedroomPanel();
+        _sceneRoot.OpenHouseBalancePanel();
     }
 
     public void ExitState()
@@ -36,6 +37,7 @@ public class HouseBedroomState_Game : IState
         _sceneRoot.OnClickToExit_BuyItemsBedroomPanel -= _sceneRoot.CloseHouseBedroomBuyItemPanel;
 
         _sceneRoot.CloseHouseBedroomPanel();
+        _sceneRoot.CloseHouseBalancePanel();
     }
 
     private void ChangeStateToPrepare()

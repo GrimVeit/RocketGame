@@ -33,6 +33,7 @@ public class WinState_Game : IState
         Debug.Log("ACTIVATE STATE - WIN(5)");
 
         _sceneRoot.CloseFooterPanel();
+        _sceneRoot.CloseExitPanel();
         _sceneRoot.CloseBetPanel();
         _sceneRoot.OpenWinPanel();
 
