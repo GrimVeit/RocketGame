@@ -44,7 +44,9 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
     private StoreItemPresenter storeItemPresenter_Bedroom;
     private ItemPreviewPresenter itemPreviewPresenter_Bedroom;
     private ItemsBuyPresenter itemsBuyPresenter_Bedroom;
-    private OpenItemPresenter openItemPresenter_Bedroom;
+    private OpenItemPresenter itemOpenPresenter_Bedroom;
+    private ItemSelectPresenter itemSelectPresenter_Bedroom;
+    private ItemVisualPresenter itemVisualPresenter_Bedroom;
 
     public void Run(UIRootView uIRootView)
     {
@@ -85,7 +87,9 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         storeItemPresenter_Bedroom = new StoreItemPresenter(new StoreItemModel("BedroomItems", itemGroups_Bedroom));
         itemPreviewPresenter_Bedroom = new ItemPreviewPresenter(viewContainer.GetView<ItemPreviewView>());
         itemsBuyPresenter_Bedroom = new ItemsBuyPresenter(new ItemsBuyModel(storeItemPresenter_Bedroom, bankPresenter), viewContainer.GetView<ItemsBuyView>());
-        openItemPresenter_Bedroom = new OpenItemPresenter(viewContainer.GetView<OpenItemView>());
+        itemOpenPresenter_Bedroom = new OpenItemPresenter(viewContainer.GetView<OpenItemView>());
+        itemSelectPresenter_Bedroom = new ItemSelectPresenter(new ItemSelectModel(), viewContainer.GetView<ItemSelectView>());
+        itemVisualPresenter_Bedroom = new ItemVisualPresenter(viewContainer.GetView<ItemVisualView>());
 
         stateMachine = new GameGlobalStateMachine(
             rocketMovePresenter, 
@@ -141,7 +145,9 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         obstacleSoundPresenter.Initialize();
 
 
-        openItemPresenter_Bedroom.Initialize();
+        itemVisualPresenter_Bedroom.Initialize();
+        itemSelectPresenter_Bedroom.Initialize();
+        itemOpenPresenter_Bedroom.Initialize();
         itemPreviewPresenter_Bedroom.Initialize();
         itemsBuyPresenter_Bedroom.Initialize();
         storeItemPresenter_Bedroom.Initialize();
@@ -185,7 +191,19 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
 
         itemPreviewPresenter_Bedroom.OnChooseBuyItemGroup += storeItemPresenter_Bedroom.SelectItemGroupForBuyItemGroup;
+        storeItemPresenter_Bedroom.OnOpenItems += itemPreviewPresenter_Bedroom.Deactivate;
+        storeItemPresenter_Bedroom.OnCloseItems += itemPreviewPresenter_Bedroom.Activate;
 
+        itemOpenPresenter_Bedroom.OnChooseSelectItemGroupForSelectItem += storeItemPresenter_Bedroom.SelectItemGroupForSelectItem;
+        storeItemPresenter_Bedroom.OnOpenItems += itemOpenPresenter_Bedroom.ActivateOpenItem;
+        storeItemPresenter_Bedroom.OnCloseItems += itemOpenPresenter_Bedroom.DeactivateOpenItem;
+
+        storeItemPresenter_Bedroom.OnSelectItem += itemVisualPresenter_Bedroom.SetVisual;
+
+        itemSelectPresenter_Bedroom.OnChooseItemForSelect += storeItemPresenter_Bedroom.SelectItem;
+        storeItemPresenter_Bedroom.OnSelectItemGroupForSelectItem += itemSelectPresenter_Bedroom.SetItemGroup;
+        storeItemPresenter_Bedroom.OnSelectItem += itemSelectPresenter_Bedroom.Select;
+        storeItemPresenter_Bedroom.OnDeselectItem += itemSelectPresenter_Bedroom.Deselect;
 
     }
 
@@ -278,8 +296,9 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         obstacleSoundPresenter?.Dispose();
 
 
-
-        openItemPresenter_Bedroom.Dispose();
+        itemVisualPresenter_Bedroom.Dispose();
+        itemSelectPresenter_Bedroom.Dispose();
+        itemOpenPresenter_Bedroom.Dispose();
         itemPreviewPresenter_Bedroom.Dispose();
         itemsBuyPresenter_Bedroom.Dispose();
         storeItemPresenter_Bedroom.Dispose();

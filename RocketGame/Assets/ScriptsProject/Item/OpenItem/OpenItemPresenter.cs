@@ -21,14 +21,14 @@ public class OpenItemPresenter
 
     #region Input
 
-    public void ActivateOpenItem(int index)
+    public void ActivateOpenItem(ItemGroup itemGroup)
     {
-        _view.Activate(index);
+        _view.Activate(itemGroup.ID);
     }
 
-    public void DeactivateOpenItem(int index)
+    public void DeactivateOpenItem(ItemGroup itemGroup)
     {
-        _view.Deactivate(index);
+        _view.Deactivate(itemGroup.ID);
     }
 
     #endregion

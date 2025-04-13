@@ -24,14 +24,14 @@ public class ItemPreviewPresenter
 
     #region Input
 
-    public void Activate(int index)
+    public void Activate(ItemGroup itemGroup)
     {
-        _view.Activate(index);
+        _view.Activate(itemGroup.ID);
     }
 
-    public void Deactivate(int index)
+    public void Deactivate(ItemGroup itemGroup)
     {
-        _view.Deactivate(index);
+        _view.Deactivate(itemGroup.ID);
     }
 
     #endregion

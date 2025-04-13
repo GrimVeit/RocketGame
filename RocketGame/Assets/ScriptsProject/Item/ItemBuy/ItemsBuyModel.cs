@@ -4,8 +4,6 @@ public class ItemsBuyModel
 {
     public event Action<ItemGroup> OnSetItemGroup;
 
-    public event Action<int> OnOpenItemGroup;
-
     private ItemGroup _currentItemGroup;
 
     private IMoneyProvider _moneyProvider;
@@ -32,7 +30,7 @@ public class ItemsBuyModel
         if (!_moneyProvider.CanAfford(_currentItemGroup.Price)) return;
 
         _moneyProvider.SendMoney(-_currentItemGroup.Price);
-        OnOpenItemGroup?.Invoke(_currentItemGroup.ID);
+        _storeOpenItems.OpenItemGroup(_currentItemGroup.ID);
     }
 
     private void SetItemGroup(ItemGroup itemGroup)

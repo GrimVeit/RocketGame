@@ -21,11 +21,6 @@ public class StoreItemPresenter : IStoreOpenItems
 
     #region Input
 
-    public void OpenItems()
-    {
-
-    }
-
     public void SelectItemGroupForBuyItemGroup(int indexGroup)
     {
         _model.SelectItemGroupForBuyItemGroup(indexGroup);
@@ -33,7 +28,17 @@ public class StoreItemPresenter : IStoreOpenItems
 
     public void SelectItemGroupForSelectItem(int indexGroup)
     {
-        _model.SelectItemGroupForBuyItemGroup(indexGroup);
+        _model.SelectItemGroupForSelectItem(indexGroup);
+    }
+
+    public void OpenItemGroup(int id)
+    {
+        _model.OpenItemGroup(id);
+    }
+
+    public void SelectItem(int groubId, int itemId)
+    {
+        _model.SelectItem(groubId, itemId);
     }
 
     #endregion
@@ -52,29 +57,36 @@ public class StoreItemPresenter : IStoreOpenItems
         remove => _model.OnCloseItems -= value;
     }
 
+    public event Action<ItemGroup, Item> OnSelectItem
+    {
+        add => _model.OnSelectItem += value;
+        remove => _model.OnSelectItem -= value;
+    }
+
+    public event Action<ItemGroup, Item> OnDeselectItem
+    {
+        add => _model.OnDeselectItem += value;
+        remove => _model.OnDeselectItem -= value;
+    }
+
+
+
     public event Action<ItemGroup> OnSelectItemGroupForBuyItemGroup
     {
         add => _model.OnSelectItemGroupForBuyItemGroup += value;
         remove => _model.OnSelectItemGroupForBuyItemGroup -= value;
     }
 
-    public event Action<ItemGroup, int> OnSelectItem
+    public event Action<ItemGroup> OnSelectItemGroupForSelectItem
     {
-        add => _model.OnSelectItem += value;
-        remove => _model.OnSelectItem -= value;
+        add => _model.OnSelectItemGroupForSelectItem += value;
+        remove => _model.OnSelectItemGroupForSelectItem -= value;
     }
-
-    public event Action<ItemGroup, int> OnDeselectItem
-    {
-        add => _model.OnDeselectItem += value;
-        remove => _model.OnDeselectItem -= value;
-    }
-
     #endregion
 }
 
 public interface IStoreOpenItems
 {
     public event Action<ItemGroup> OnSelectItemGroupForBuyItemGroup;
-    void OpenItems();
+    void OpenItemGroup(int id);
 }

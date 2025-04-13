@@ -34,6 +34,7 @@ public class ItemsBuyView : View
         textPrice.text = itemGroup.Price.ToString();
 
         gridLayoutGroup.cellSize = itemBuySizes.GetSizeById(itemGroup.ID);
+        gridLayoutGroup.spacing = new Vector2(0, itemBuySizes.GetSpaceById(itemGroup.ID));
 
         foreach (Transform item in transformItems)
         {
@@ -73,6 +74,19 @@ public class ItemBuySizes
 
         return sizeClass.Size;
     }
+
+    public float GetSpaceById(int id)
+    {
+        var sizeClass = sizes.FirstOrDefault(size => size.ID == id);
+
+        if (sizeClass == null)
+        {
+            Debug.LogError("Not found size by id -" + id);
+            return 0;
+        }
+
+        return sizeClass.Space;
+    }
 }
 
 [System.Serializable]
@@ -80,7 +94,9 @@ public class ItemBuySize
 {
     [SerializeField] private int id;
     [SerializeField] private Vector2 size;
+    [SerializeField] private float space;
 
     public int ID => id;
     public Vector2 Size => size;
+    public float Space => space;
 }

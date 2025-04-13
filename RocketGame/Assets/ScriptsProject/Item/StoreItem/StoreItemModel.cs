@@ -9,9 +9,10 @@ public class StoreItemModel
     public event Action<ItemGroup> OnCloseItems;
 
     public event Action<ItemGroup> OnSelectItemGroupForBuyItemGroup;
+    public event Action<ItemGroup> OnSelectItemGroupForSelectItem;
 
-    public event Action<ItemGroup, int> OnSelectItem;
-    public event Action<ItemGroup, int> OnDeselectItem;
+    public event Action<ItemGroup, Item> OnSelectItem;
+    public event Action<ItemGroup, Item> OnDeselectItem;
 
     private readonly ItemGroups _itemGroups;
     private readonly string _fileName;
@@ -67,15 +68,31 @@ public class StoreItemModel
 
         for (int i = 0; i < _itemGroups.itemGroups.Count; i++)
         {
-            var itemGroup = _itemGroupDatas.ItemDatas[i];
+            var itemDatas = _itemGroupDatas.ItemDatas[i];
 
-            if (itemGroup.IsOpen)
+
+            if (itemDatas.IsOpen)
             {
                 OnOpenItems?.Invoke(_itemGroups.itemGroups[i]);
             }
             else
             {
                 OnCloseItems?.Invoke(_itemGroups.itemGroups[i]);
+            }
+
+
+            for (int j = 0; j < _itemGroups.itemGroups[i].items.Count; j++)
+            {
+                var itemData = _itemGroupDatas.ItemDatas[i].Datas[j];
+
+                if (itemData.IsSelect)
+                {
+                    OnSelectItem?.Invoke(_itemGroups.itemGroups[i], _itemGroups.itemGroups[i].items[j]);
+                }
+                else
+                {
+                    OnDeselectItem?.Invoke(_itemGroups.itemGroups[i], _itemGroups.itemGroups[i].items[j]);
+                }
             }
         }
 
@@ -114,7 +131,7 @@ public class StoreItemModel
         OnSelectItemGroupForBuyItemGroup?.Invoke(itemGroup);
     }
 
-    public void ChooseAllItemsById(int index)
+    public void SelectItemGroupForSelectItem(int index)
     {
         var itemGroup = _itemGroups.GetItemGroupById(index);
 
@@ -124,17 +141,7 @@ public class StoreItemModel
             return;
         }
 
-        itemGroup.items.ForEach(item => 
-        {
-            if (item.ItemData.IsSelect)
-            {
-                OnSelectItem?.Invoke(itemGroup, item.ID);
-            }
-            else
-            {
-                OnDeselectItem?.Invoke(itemGroup, item.ID);
-            }
-        });
+        OnSelectItemGroupForSelectItem?.Invoke(itemGroup);
     }
 
     public void OpenItemGroup(int index)
@@ -158,7 +165,7 @@ public class StoreItemModel
 
     public void SelectItem(int indexItemGroup, int indexItem)
     {
-        var itemGroup = _itemGroups.GetItemGroupById(indexItem);
+        var itemGroup = _itemGroups.GetItemGroupById(indexItemGroup);
 
         SelectItem(itemGroup, indexItem);
     }
@@ -178,12 +185,12 @@ public class StoreItemModel
             if (ig.ItemData.IsSelect)
             {
                 ig.ItemData.IsSelect = false;
-                OnDeselectItem?.Invoke(itemGroup, ig.ID);
+                OnDeselectItem?.Invoke(itemGroup, ig);
             }
         });
-        item.ItemData.IsSelect = true;
 
-        OnSelectItem?.Invoke(itemGroup, indexItem);
+        item.ItemData.IsSelect = true;
+        OnSelectItem?.Invoke(itemGroup, item);
     }
 }
 
