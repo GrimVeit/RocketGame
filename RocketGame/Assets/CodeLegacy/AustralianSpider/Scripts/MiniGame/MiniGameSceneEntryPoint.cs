@@ -85,10 +85,10 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         obstacleSoundPresenter = new ObstacleSoundPresenter(new ObstacleSoundModel(soundPresenter));
 
         storeItemPresenter_Bedroom = new StoreItemPresenter(new StoreItemModel("BedroomItems", itemGroups_Bedroom));
-        itemPreviewPresenter_Bedroom = new ItemPreviewPresenter(viewContainer.GetView<ItemPreviewView>());
-        itemsBuyPresenter_Bedroom = new ItemsBuyPresenter(new ItemsBuyModel(storeItemPresenter_Bedroom, bankPresenter), viewContainer.GetView<ItemsBuyView>());
-        itemOpenPresenter_Bedroom = new OpenItemPresenter(viewContainer.GetView<OpenItemView>());
-        itemSelectPresenter_Bedroom = new ItemSelectPresenter(new ItemSelectModel(), viewContainer.GetView<ItemSelectView>());
+        itemPreviewPresenter_Bedroom = new ItemPreviewPresenter(new ItemPreviewModel(), viewContainer.GetView<ItemPreviewView>());
+        itemsBuyPresenter_Bedroom = new ItemsBuyPresenter(new ItemsBuyModel(storeItemPresenter_Bedroom, bankPresenter, soundPresenter), viewContainer.GetView<ItemsBuyView>());
+        itemOpenPresenter_Bedroom = new OpenItemPresenter(new OpenItemModel(), viewContainer.GetView<OpenItemView>());
+        itemSelectPresenter_Bedroom = new ItemSelectPresenter(new ItemSelectModel(soundPresenter), viewContainer.GetView<ItemSelectView>());
         itemVisualPresenter_Bedroom = new ItemVisualPresenter(viewContainer.GetView<ItemVisualView>());
 
         stateMachine = new GameGlobalStateMachine(

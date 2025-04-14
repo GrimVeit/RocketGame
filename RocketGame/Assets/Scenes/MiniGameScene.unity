@@ -713,6 +713,9 @@ MonoBehaviour:
   imageOpenItem: {fileID: 61200131}
   spriteActive: {fileID: 21300000, guid: 3fe144b1184112b4c9a7ee96bd6760b4, type: 3}
   spriteDeactive: {fileID: 21300000, guid: 67163934e1813054ebdcaff2f7cede20, type: 3}
+  textItem: {fileID: 511309696}
+  colorOpen: {r: 0.16470589, g: 0.9843137, b: 0.9019608, a: 1}
+  colorClose: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
 --- !u!1 &61325969
 GameObject:
   m_ObjectHideFlags: 0
@@ -2114,6 +2117,9 @@ MonoBehaviour:
   imageOpenItem: {fileID: 132301062}
   spriteActive: {fileID: 21300000, guid: 3fe144b1184112b4c9a7ee96bd6760b4, type: 3}
   spriteDeactive: {fileID: 21300000, guid: 67163934e1813054ebdcaff2f7cede20, type: 3}
+  textItem: {fileID: 1853160989}
+  colorOpen: {r: 0.16470589, g: 0.9843137, b: 0.9019608, a: 1}
+  colorClose: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
 --- !u!1 &142344413
 GameObject:
   m_ObjectHideFlags: 0
@@ -4777,6 +4783,9 @@ MonoBehaviour:
   imageOpenItem: {fileID: 476881429}
   spriteActive: {fileID: 21300000, guid: 3fe144b1184112b4c9a7ee96bd6760b4, type: 3}
   spriteDeactive: {fileID: 21300000, guid: 67163934e1813054ebdcaff2f7cede20, type: 3}
+  textItem: {fileID: 130522565}
+  colorOpen: {r: 0.16470589, g: 0.9843137, b: 0.9019608, a: 1}
+  colorClose: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
 --- !u!1 &477810571
 GameObject:
   m_ObjectHideFlags: 0
@@ -7652,6 +7661,9 @@ MonoBehaviour:
   imageOpenItem: {fileID: 848470190}
   spriteActive: {fileID: 21300000, guid: 3fe144b1184112b4c9a7ee96bd6760b4, type: 3}
   spriteDeactive: {fileID: 21300000, guid: 67163934e1813054ebdcaff2f7cede20, type: 3}
+  textItem: {fileID: 53682059}
+  colorOpen: {r: 0.16470589, g: 0.9843137, b: 0.9019608, a: 1}
+  colorClose: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
 --- !u!1 &849753555
 GameObject:
   m_ObjectHideFlags: 0
@@ -12088,6 +12100,9 @@ MonoBehaviour:
   imageOpenItem: {fileID: 1384724265}
   spriteActive: {fileID: 21300000, guid: 3fe144b1184112b4c9a7ee96bd6760b4, type: 3}
   spriteDeactive: {fileID: 21300000, guid: 67163934e1813054ebdcaff2f7cede20, type: 3}
+  textItem: {fileID: 1533770196}
+  colorOpen: {r: 0.16470589, g: 0.9843137, b: 0.9019608, a: 1}
+  colorClose: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
 --- !u!1 &1391253083
 GameObject:
   m_ObjectHideFlags: 0

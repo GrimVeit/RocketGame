@@ -87,6 +87,16 @@ public class Sound : ISound
         audioSource.Play();
     }
 
+    public void Pause()
+    {
+        audioSource.Pause();
+    }
+
+    public void Resume()
+    {
+        audioSource.Play();
+    }
+
     public void PlayOneShot()
     {
         audioSource.volume = volume;
@@ -147,7 +157,9 @@ public interface ISound
 {
     public float Volume { get;  }
     public void Play();
+    public void Resume();
     public void PlayOneShot();
+    public void Pause();
     public void Stop();
     public void SetVolume(float vol);
     public void SetVolume(float startVolume, float endVolume, Action action = null);

@@ -280,6 +280,8 @@ public class UIMiniGameSceneRoot : UIRoot
 
     private void HandleClickToHouse_HouseChoosePanel()
     {
+        soundProvider.PlayOneShot("Click");
+
         OnClickToHouse_HouseChoosePanel?.Invoke();
     }
 
@@ -319,6 +321,8 @@ public class UIMiniGameSceneRoot : UIRoot
 
     private void HandleClickToGame_HouseBedroomPanel()
     {
+        soundProvider.PlayOneShot("Click");
+
         OnClickToGame_HouseBedroomPanel?.Invoke();
     }
 
@@ -327,6 +331,8 @@ public class UIMiniGameSceneRoot : UIRoot
 
     private void HandleClickToBuyItems_HouseBedroomPanel()
     {
+        soundProvider.PlayOneShot("Click");
+
         OnClickToBuyItems_HouseBedroomPanel.Invoke();
     }
 
@@ -335,6 +341,8 @@ public class UIMiniGameSceneRoot : UIRoot
 
     private void HandleClickToSelectItems_HouseBedroomPanel()
     {
+        soundProvider.PlayOneShot("Click");
+
         OnClickToSelectItems_HouseBedroomPanel?.Invoke();
     }
 
@@ -346,6 +354,8 @@ public class UIMiniGameSceneRoot : UIRoot
 
     private void HandleClickToExit_SelectItemsBedroomPanel()
     {
+        soundProvider.PlayOneShot("Click");
+
         OnClickToExit_SelectItemsBedroomPanel?.Invoke();
     }
 
@@ -356,6 +366,8 @@ public class UIMiniGameSceneRoot : UIRoot
 
     private void HandleClickToExit_BuyItemsBedroomPanel()
     {
+        soundProvider.PlayOneShot("Click");
+
         OnClickToExit_BuyItemsBedroomPanel?.Invoke();
     }
 

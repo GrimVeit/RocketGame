@@ -30,7 +30,7 @@ public class ItemsBuyView : View
 
     public void SetData(ItemGroup itemGroup)
     {
-        textTypeItem.text = itemGroup.Title;
+        textTypeItem.text = itemGroup.Title.ToUpper();
         textPrice.text = itemGroup.Price.ToString();
 
         gridLayoutGroup.cellSize = itemBuySizes.GetSizeById(itemGroup.ID);

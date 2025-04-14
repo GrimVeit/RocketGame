@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,9 @@ public class OpenItem : MonoBehaviour
     [SerializeField] private Image imageOpenItem;
     [SerializeField] private Sprite spriteActive;
     [SerializeField] private Sprite spriteDeactive;
+    [SerializeField] private TextMeshProUGUI textItem;
+    [SerializeField] private Color colorOpen;
+    [SerializeField] private Color colorClose;
 
     public void Initialize()
     {
@@ -27,12 +31,14 @@ public class OpenItem : MonoBehaviour
     public void Activate()
     {
         imageOpenItem.sprite = spriteActive;
+        textItem.color = colorOpen;
         buttonChooseSelect.enabled = true;
     }
 
     public void Deactivate()
     {
         imageOpenItem.sprite = spriteDeactive;
+        textItem.color = colorClose;
         buttonChooseSelect.enabled = false;
     }
 

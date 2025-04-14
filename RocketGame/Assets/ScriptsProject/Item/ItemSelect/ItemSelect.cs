@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,9 @@ public class ItemSelect : MonoBehaviour
     [SerializeField] private Sprite spriteSelectButton;
     [SerializeField] private Sprite spriteDeselectButton;
     [SerializeField] private Button buttonSelect;
+    [SerializeField] private TextMeshProUGUI textButton;
+    [SerializeField] private Color colorSelect;
+    [SerializeField] private Color colorDeselect;
     private int id;
 
     public void Initialize()
@@ -32,12 +36,14 @@ public class ItemSelect : MonoBehaviour
     public void Select()
     {
         imageButton.sprite = spriteSelectButton;
+        textButton.color = colorSelect;
         buttonSelect.enabled = false;
     }
 
     public void Deselect()
     {
         imageButton.sprite = spriteDeselectButton;
+        textButton.color = colorDeselect;
         buttonSelect.enabled = true;
     }
 

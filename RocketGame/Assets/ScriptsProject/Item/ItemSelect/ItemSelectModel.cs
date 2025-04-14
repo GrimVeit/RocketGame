@@ -13,6 +13,13 @@ public class ItemSelectModel
 
     private int _currentGroupId;
 
+    public ISoundProvider _soundProvider;
+
+    public ItemSelectModel(ISoundProvider soundProvider)
+    {
+        _soundProvider = soundProvider;
+    }
+
     public void SetItemGroup(ItemGroup itemGroup)
     {
         _currentGroupId = itemGroup.ID;
@@ -23,6 +30,8 @@ public class ItemSelectModel
     public void Select(ItemGroup itemGroup, Item item)
     {
         if (_currentGroupId != itemGroup.ID) return;
+
+        _soundProvider.PlayOneShot("Click");
 
         OnSelectItem?.Invoke(item.ID);
 

@@ -2,33 +2,55 @@ using System;
 
 public class OpenItemPresenter
 {
+    private readonly OpenItemModel _model;
     private readonly OpenItemView _view;
 
-    public OpenItemPresenter(OpenItemView view)
+    public OpenItemPresenter(OpenItemModel model, OpenItemView view)
     {
+        _model = model;
         _view = view;
     }
 
     public void Initialize()
     {
+        ActivateEvents();
+
         _view.Initialize();
     }
 
     public void Dispose()
     {
-        _view?.Dispose();
+        DeactivateEvents();
+
+        _view.Dispose();
+    }
+
+    private void ActivateEvents()
+    {
+        _view.OnChooseSelectItemGroup += _model.ChooseSelectItemGroupForSelectItem;
+
+        _model.OnActivateOpenItem += _view.Activate;
+        _model.OnDeactivateOpenItem += _view.Deactivate;
+    }
+
+    private void DeactivateEvents()
+    {
+        _view.OnChooseSelectItemGroup -= _model.ChooseSelectItemGroupForSelectItem;
+
+        _model.OnActivateOpenItem -= _view.Activate;
+        _model.OnDeactivateOpenItem -= _view.Deactivate;
     }
 
     #region Input
 
     public void ActivateOpenItem(ItemGroup itemGroup)
     {
-        _view.Activate(itemGroup.ID);
+        _model.ActivateOpenItem(itemGroup);
     }
 
     public void DeactivateOpenItem(ItemGroup itemGroup)
     {
-        _view.Deactivate(itemGroup.ID);
+        _model.DeactivateOpenItem(itemGroup);
     }
 
     #endregion
@@ -37,8 +59,8 @@ public class OpenItemPresenter
 
     public event Action<int> OnChooseSelectItemGroupForSelectItem
     {
-        add => _view.OnChooseSelectItemGroup += value;
-        remove => _view.OnChooseSelectItemGroup -= value;
+        add => _model.OnChooseSelectItemGroupForSelectItem += value;
+        remove => _model.OnChooseSelectItemGroupForSelectItem -= value;
     }
 
     #endregion

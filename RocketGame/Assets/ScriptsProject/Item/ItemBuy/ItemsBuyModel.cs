@@ -6,13 +6,15 @@ public class ItemsBuyModel
 
     private ItemGroup _currentItemGroup;
 
-    private IMoneyProvider _moneyProvider;
-    private IStoreOpenItems _storeOpenItems;
+    private readonly ISoundProvider _soundProvider;
+    private readonly IMoneyProvider _moneyProvider;
+    private readonly IStoreOpenItems _storeOpenItems;
 
-    public ItemsBuyModel(IStoreOpenItems storeOpenItems, IMoneyProvider moneyProvider)
+    public ItemsBuyModel(IStoreOpenItems storeOpenItems, IMoneyProvider moneyProvider, ISoundProvider soundProvider)
     {
         _storeOpenItems = storeOpenItems;
         _moneyProvider = moneyProvider;
+        _soundProvider = soundProvider;
     }
 
     public void Initialize()
@@ -29,6 +31,7 @@ public class ItemsBuyModel
     {
         if (!_moneyProvider.CanAfford(_currentItemGroup.Price)) return;
 
+        _soundProvider.PlayOneShot("Click");
         _moneyProvider.SendMoney(-_currentItemGroup.Price);
         _storeOpenItems.OpenItemGroup(_currentItemGroup.ID);
     }

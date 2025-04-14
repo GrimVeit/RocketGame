@@ -58,7 +58,7 @@ public class ItemSelectView : View
     {
         ClearItems();
 
-        textTypeItem.text = itemGroup.Title;
+        textTypeItem.text = itemGroup.Title.ToUpper();
 
         gridLayoutGroup.cellSize = itemBuySizes.GetSizeById(itemGroup.ID);
         gridLayoutGroup.spacing = new Vector2(0, itemBuySizes.GetSpaceById(itemGroup.ID));
