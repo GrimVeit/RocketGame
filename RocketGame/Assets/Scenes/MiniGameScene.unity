@@ -4174,20 +4174,20 @@ MonoBehaviour:
   itemBuySizes:
     sizes:
     - id: 0
-      size: {x: 260, y: 235}
-      space: 60
+      size: {x: 250, y: 270}
+      space: 55
     - id: 1
-      size: {x: 215, y: 210}
-      space: 60
+      size: {x: 195, y: 270}
+      space: 55
     - id: 2
-      size: {x: 450, y: 210}
-      space: 40
+      size: {x: 230, y: 270}
+      space: 55
     - id: 3
-      size: {x: 215, y: 215}
-      space: 70
+      size: {x: 300, y: 270}
+      space: 55
     - id: 4
-      size: {x: 70, y: 300}
-      space: 20
+      size: {x: 256, y: 270}
+      space: 55
   textTypeItem: {fileID: 1211090949}
   textPrice: {fileID: 599977033}
   buttonBuy: {fileID: 1510996666}
@@ -6309,20 +6309,20 @@ MonoBehaviour:
   itemBuySizes:
     sizes:
     - id: 0
-      size: {x: 260, y: 235}
-      space: 60
+      size: {x: 290, y: 270}
+      space: 55
     - id: 1
-      size: {x: 215, y: 210}
-      space: 60
+      size: {x: 280, y: 270}
+      space: 55
     - id: 2
-      size: {x: 450, y: 210}
-      space: 40
+      size: {x: 540, y: 270}
+      space: 55
     - id: 3
-      size: {x: 215, y: 215}
-      space: 70
+      size: {x: 270, y: 270}
+      space: 55
     - id: 4
-      size: {x: 70, y: 300}
-      space: 20
+      size: {x: 75, y: 270}
+      space: 55
   textTypeItem: {fileID: 1746173151}
   textPrice: {fileID: 1792300298}
   buttonBuy: {fileID: 1035117321}
@@ -8210,20 +8210,20 @@ MonoBehaviour:
   itemBuySizes:
     sizes:
     - id: 0
-      size: {x: 260, y: 235}
+      size: {x: 135, y: 270}
       space: 160
     - id: 1
-      size: {x: 215, y: 210}
+      size: {x: 295, y: 270}
       space: 160
     - id: 2
-      size: {x: 450, y: 210}
+      size: {x: 320, y: 270}
       space: 160
     - id: 3
-      size: {x: 215, y: 215}
+      size: {x: 310, y: 270}
       space: 160
     - id: 4
-      size: {x: 70, y: 300}
-      space: 120
+      size: {x: 390, y: 270}
+      space: 160
   textTypeItem: {fileID: 321433740}
   itemSelectPrefab: {fileID: 7863336863071514223, guid: b301b602e71ec8c4d89faf81b1cb85d1, type: 3}
   transformItems: {fileID: 664001211}
@@ -11727,20 +11727,20 @@ MonoBehaviour:
   itemBuySizes:
     sizes:
     - id: 0
-      size: {x: 260, y: 235}
+      size: {x: 250, y: 270}
       space: 160
     - id: 1
-      size: {x: 215, y: 210}
+      size: {x: 195, y: 270}
       space: 160
     - id: 2
-      size: {x: 450, y: 210}
+      size: {x: 230, y: 270}
       space: 160
     - id: 3
-      size: {x: 215, y: 215}
+      size: {x: 300, y: 270}
       space: 160
     - id: 4
-      size: {x: 70, y: 300}
-      space: 120
+      size: {x: 256, y: 270}
+      space: 160
   textTypeItem: {fileID: 1022103186}
   itemSelectPrefab: {fileID: 7863336863071514223, guid: b301b602e71ec8c4d89faf81b1cb85d1, type: 3}
   transformItems: {fileID: 651841622}
@@ -22752,20 +22752,20 @@ MonoBehaviour:
   itemBuySizes:
     sizes:
     - id: 0
-      size: {x: 260, y: 235}
-      space: 60
+      size: {x: 135, y: 270}
+      space: 55
     - id: 1
-      size: {x: 215, y: 210}
-      space: 60
+      size: {x: 295, y: 270}
+      space: 55
     - id: 2
-      size: {x: 450, y: 210}
-      space: 40
+      size: {x: 320, y: 270}
+      space: 55
     - id: 3
-      size: {x: 215, y: 215}
-      space: 70
+      size: {x: 310, y: 270}
+      space: 55
     - id: 4
-      size: {x: 70, y: 300}
-      space: 20
+      size: {x: 390, y: 270}
+      space: 55
   textTypeItem: {fileID: 1363020304}
   textPrice: {fileID: 591591257}
   buttonBuy: {fileID: 12119296}
@@ -26417,20 +26417,20 @@ MonoBehaviour:
   itemBuySizes:
     sizes:
     - id: 0
-      size: {x: 260, y: 235}
+      size: {x: 290, y: 270}
       space: 160
     - id: 1
-      size: {x: 215, y: 210}
+      size: {x: 280, y: 270}
       space: 160
     - id: 2
-      size: {x: 450, y: 210}
+      size: {x: 540, y: 270}
       space: 160
     - id: 3
-      size: {x: 215, y: 215}
+      size: {x: 270, y: 270}
       space: 160
     - id: 4
-      size: {x: 70, y: 300}
-      space: 120
+      size: {x: 75, y: 270}
+      space: 160
   textTypeItem: {fileID: 126522232}
   itemSelectPrefab: {fileID: 7863336863071514223, guid: b301b602e71ec8c4d89faf81b1cb85d1, type: 3}
   transformItems: {fileID: 817396434}
@@ -28725,11 +28725,17 @@ MonoBehaviour:
     imageButton: {fileID: 464520180}
     spriteActive: {fileID: 21300000, guid: 0adb556e754f7e844af8a0b7b29d94c1, type: 3}
     spriteDeactive: {fileID: 21300000, guid: af511feedf36568428820ab2ab98bff0, type: 3}
+    text: {fileID: 1307893415}
+    colorActive: {r: 0.76729554, g: 0.7375635, b: 0.6538902, a: 1}
+    colorDeactive: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
   - id: 1
     button: {fileID: 1965989478}
     imageButton: {fileID: 1965989479}
     spriteActive: {fileID: 21300000, guid: 0adb556e754f7e844af8a0b7b29d94c1, type: 3}
     spriteDeactive: {fileID: 21300000, guid: af511feedf36568428820ab2ab98bff0, type: 3}
+    text: {fileID: 473646014}
+    colorActive: {r: 0.76862746, g: 0.7411765, b: 0.654902, a: 1}
+    colorDeactive: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
 --- !u!1 &1717025082
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,16 +38,21 @@ public class RoomTransition
     [SerializeField] private Image imageButton;
     [SerializeField] private Sprite spriteActive;
     [SerializeField] private Sprite spriteDeactive;
+    [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private Color colorActive;
+    [SerializeField] private Color colorDeactive;
 
     public void Activate()
     {
         button.enabled = true;
         imageButton.sprite = spriteActive;
+        text.color = colorActive;
     }
 
     public void Deactivate()
     {
         button.enabled = false;
         imageButton.sprite = spriteDeactive;
+        text.color = colorDeactive;
     }
 }

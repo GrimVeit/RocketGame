@@ -31,7 +31,7 @@ public class HouseBioreactorState_Game : IState
 
         _sceneRoot.OpenHouseBioreactorPanel();
 
-        _soundGameStart.SetVolume(0);
+        _soundGameStart.SetVolume(0, 0, 0.1f);
     }
 
     public void ExitState()
