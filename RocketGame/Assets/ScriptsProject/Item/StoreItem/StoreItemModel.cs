@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 
 public class StoreItemModel
@@ -100,6 +101,11 @@ public class StoreItemModel
             }
         }
 
+        if (CheckAllOpens())
+        {
+            OnOpenAllItems?.Invoke();
+        }
+
         //if (_itemGroupDatas.IsOpen)
         //{
         //    OnOpenItems?.Invoke();
@@ -162,6 +168,11 @@ public class StoreItemModel
         OnOpenItems?.Invoke(itemGroup);
         OnOpenItems_None?.Invoke();
 
+        if (CheckAllOpens())
+        {
+            OnOpenAllItems?.Invoke();
+        }
+
         var item = itemGroup.GetRandomItem();
 
         SelectItem(itemGroup, item.ID);
@@ -197,6 +208,11 @@ public class StoreItemModel
         item.ItemData.IsSelect = true;
         OnSelectItem?.Invoke(itemGroup, item);
         OnSelectItem_None?.Invoke();
+    }
+
+    private bool CheckAllOpens()
+    {
+        return _itemGroups.itemGroups.Any(ig => ig.ItemDatas.IsOpen == true);
     }
 }
 

@@ -6,6 +6,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 {
     [SerializeField] private Sounds sounds;
     [SerializeField] private ItemGroups itemGroups_Bedroom;
+    [SerializeField] private ItemGroups itemGroups_Bioreactor;
     [SerializeField] private SpawnPointsData spawnPointsData;
     [SerializeField] private PathData pathData;
     [SerializeField] private UIMiniGameSceneRoot sceneRootPrefab;
@@ -41,12 +42,21 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
     private GameGlobalStateMachine stateMachine;
 
+    private RoomTransitionPresenter roomTransitionPresenter;
+
     private StoreItemPresenter storeItemPresenter_Bedroom;
     private ItemPreviewPresenter itemPreviewPresenter_Bedroom;
     private ItemsBuyPresenter itemsBuyPresenter_Bedroom;
     private OpenItemPresenter itemOpenPresenter_Bedroom;
     private ItemSelectPresenter itemSelectPresenter_Bedroom;
     private ItemVisualPresenter itemVisualPresenter_Bedroom;
+
+    private StoreItemPresenter storeItemPresenter_Bioreactor;
+    private ItemPreviewPresenter itemPreviewPresenter_Bioreactor;
+    private ItemsBuyPresenter itemsBuyPresenter_Bioreactor;
+    private OpenItemPresenter itemOpenPresenter_Bioreactor;
+    private ItemSelectPresenter itemSelectPresenter_Bioreactor;
+    private ItemVisualPresenter itemVisualPresenter_Bioreactor;
 
     public void Run(UIRootView uIRootView)
     {
@@ -84,12 +94,21 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         obstacleEffectPresenter = new ObstacleEffectPresenter(new ObstacleEffectModel(animationFramePresenter));
         obstacleSoundPresenter = new ObstacleSoundPresenter(new ObstacleSoundModel(soundPresenter));
 
+        roomTransitionPresenter = new RoomTransitionPresenter(new RoomTransitionModel(), viewContainer.GetView<RoomTransitionView>());
+
         storeItemPresenter_Bedroom = new StoreItemPresenter(new StoreItemModel("BedroomItems", itemGroups_Bedroom));
-        itemPreviewPresenter_Bedroom = new ItemPreviewPresenter(new ItemPreviewModel(), viewContainer.GetView<ItemPreviewView>());
-        itemsBuyPresenter_Bedroom = new ItemsBuyPresenter(new ItemsBuyModel(storeItemPresenter_Bedroom, bankPresenter, soundPresenter), viewContainer.GetView<ItemsBuyView>());
-        itemOpenPresenter_Bedroom = new OpenItemPresenter(new OpenItemModel(), viewContainer.GetView<OpenItemView>());
-        itemSelectPresenter_Bedroom = new ItemSelectPresenter(new ItemSelectModel(soundPresenter), viewContainer.GetView<ItemSelectView>());
-        itemVisualPresenter_Bedroom = new ItemVisualPresenter(viewContainer.GetView<ItemVisualView>());
+        itemPreviewPresenter_Bedroom = new ItemPreviewPresenter(new ItemPreviewModel(), viewContainer.GetView<ItemPreviewView>("Bedroom"));
+        itemsBuyPresenter_Bedroom = new ItemsBuyPresenter(new ItemsBuyModel(storeItemPresenter_Bedroom, bankPresenter, soundPresenter), viewContainer.GetView<ItemsBuyView>("Bedroom"));
+        itemOpenPresenter_Bedroom = new OpenItemPresenter(new OpenItemModel(), viewContainer.GetView<OpenItemView>("Bedroom"));
+        itemSelectPresenter_Bedroom = new ItemSelectPresenter(new ItemSelectModel(soundPresenter), viewContainer.GetView<ItemSelectView>("Bedroom"));
+        itemVisualPresenter_Bedroom = new ItemVisualPresenter(viewContainer.GetView<ItemVisualView>("Bedroom"));
+
+        storeItemPresenter_Bioreactor = new StoreItemPresenter(new StoreItemModel("BioreactorItems", itemGroups_Bioreactor));
+        itemPreviewPresenter_Bioreactor = new ItemPreviewPresenter(new ItemPreviewModel(), viewContainer.GetView<ItemPreviewView>("Bioreactor"));
+        itemsBuyPresenter_Bioreactor = new ItemsBuyPresenter(new ItemsBuyModel(storeItemPresenter_Bioreactor, bankPresenter, soundPresenter), viewContainer.GetView<ItemsBuyView>("Bioreactor"));
+        itemOpenPresenter_Bioreactor = new OpenItemPresenter(new OpenItemModel(), viewContainer.GetView<OpenItemView>("Bioreactor"));
+        itemSelectPresenter_Bioreactor = new ItemSelectPresenter(new ItemSelectModel(soundPresenter), viewContainer.GetView<ItemSelectView>("Bioreactor"));
+        itemVisualPresenter_Bioreactor = new ItemVisualPresenter(viewContainer.GetView<ItemVisualView>("Bioreactor"));
 
         stateMachine = new GameGlobalStateMachine(
             rocketMovePresenter, 
@@ -144,6 +163,8 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         obstacleEffectPresenter.Initialize();
         obstacleSoundPresenter.Initialize();
 
+        roomTransitionPresenter.Initialize();
+
 
         itemVisualPresenter_Bedroom.Initialize();
         itemSelectPresenter_Bedroom.Initialize();
@@ -151,6 +172,13 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         itemPreviewPresenter_Bedroom.Initialize();
         itemsBuyPresenter_Bedroom.Initialize();
         storeItemPresenter_Bedroom.Initialize();
+
+        itemVisualPresenter_Bioreactor.Initialize();
+        itemSelectPresenter_Bioreactor.Initialize();
+        itemOpenPresenter_Bioreactor.Initialize();
+        itemPreviewPresenter_Bioreactor.Initialize();
+        itemsBuyPresenter_Bioreactor.Initialize();
+        storeItemPresenter_Bioreactor.Initialize();
 
         stateMachine.Initialize();
 
@@ -205,6 +233,30 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         storeItemPresenter_Bedroom.OnSelectItem += itemSelectPresenter_Bedroom.Select;
         storeItemPresenter_Bedroom.OnDeselectItem += itemSelectPresenter_Bedroom.Deselect;
 
+        storeItemPresenter_Bedroom.OnOpenAllItems += roomTransitionPresenter.UnlockRoomTwo;
+
+
+
+
+        itemPreviewPresenter_Bioreactor.OnChooseBuyItemGroup += storeItemPresenter_Bioreactor.SelectItemGroupForBuyItemGroup;
+        storeItemPresenter_Bioreactor.OnOpenItems += itemPreviewPresenter_Bioreactor.Deactivate;
+        storeItemPresenter_Bioreactor.OnCloseItems += itemPreviewPresenter_Bioreactor.Activate;
+
+        itemOpenPresenter_Bioreactor.OnChooseSelectItemGroupForSelectItem += storeItemPresenter_Bioreactor.SelectItemGroupForSelectItem;
+        storeItemPresenter_Bioreactor.OnOpenItems += itemOpenPresenter_Bioreactor.ActivateOpenItem;
+        storeItemPresenter_Bioreactor.OnCloseItems += itemOpenPresenter_Bioreactor.DeactivateOpenItem;
+
+        storeItemPresenter_Bioreactor.OnSelectItem += itemVisualPresenter_Bioreactor.SetVisual;
+
+        itemSelectPresenter_Bioreactor.OnChooseItemForSelect += storeItemPresenter_Bioreactor.SelectItem;
+        storeItemPresenter_Bioreactor.OnSelectItemGroupForSelectItem += itemSelectPresenter_Bioreactor.SetItemGroup;
+        storeItemPresenter_Bioreactor.OnSelectItem += itemSelectPresenter_Bioreactor.Select;
+        storeItemPresenter_Bioreactor.OnDeselectItem += itemSelectPresenter_Bioreactor.Deselect;
+
+
+
+
+
     }
 
     private void DeactivateEvents()
@@ -241,9 +293,6 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
 
 
-
-
-        itemPreviewPresenter_Bedroom.OnChooseBuyItemGroup -= storeItemPresenter_Bedroom.SelectItemGroupForBuyItemGroup;
     }
 
     private void ActivateTransitionsSceneEvents()
@@ -255,6 +304,8 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
         storeItemPresenter_Bedroom.OnOpenItems_None += sceneRoot.CloseHouseBedroomBuyItemPanel;
         storeItemPresenter_Bedroom.OnSelectItem_None += sceneRoot.CloseHouseBedroomSelectItemPanel;
+        storeItemPresenter_Bioreactor.OnOpenItems_None += sceneRoot.CloseHouseBioreactorBuyItemPanel;
+        storeItemPresenter_Bioreactor.OnSelectItem_None += sceneRoot.CloseHouseBioreactorSelectItemPanel;
     }
 
     private void DeactivateTransitionsSceneEvents()
@@ -266,6 +317,8 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
         storeItemPresenter_Bedroom.OnOpenItems_None -= sceneRoot.CloseHouseBedroomBuyItemPanel;
         storeItemPresenter_Bedroom.OnSelectItem_None -= sceneRoot.CloseHouseBedroomSelectItemPanel;
+        storeItemPresenter_Bioreactor.OnOpenItems_None -= sceneRoot.CloseHouseBioreactorBuyItemPanel;
+        storeItemPresenter_Bioreactor.OnSelectItem_None -= sceneRoot.CloseHouseBioreactorSelectItemPanel;
     }
 
     public void Dispose()
@@ -301,6 +354,8 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         obstacleEffectPresenter?.Dispose();
         obstacleSoundPresenter?.Dispose();
 
+        roomTransitionPresenter?.Dispose();
+
 
         itemVisualPresenter_Bedroom.Dispose();
         itemSelectPresenter_Bedroom.Dispose();
@@ -308,6 +363,13 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         itemPreviewPresenter_Bedroom.Dispose();
         itemsBuyPresenter_Bedroom.Dispose();
         storeItemPresenter_Bedroom.Dispose();
+
+        itemVisualPresenter_Bioreactor.Dispose();
+        itemSelectPresenter_Bioreactor.Dispose();
+        itemOpenPresenter_Bioreactor.Dispose();
+        itemPreviewPresenter_Bioreactor.Dispose();
+        itemsBuyPresenter_Bioreactor.Dispose();
+        storeItemPresenter_Bioreactor.Dispose();
 
         stateMachine?.Dispose();
     }

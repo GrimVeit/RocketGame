@@ -6,8 +6,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ItemSelectView : View
+public class ItemSelectView : View, IIdentify
 {
+    public string GetID() => id;
+
+    [SerializeField] private string id;
     [SerializeField] private ItemBuySizes itemBuySizes;
     [SerializeField] private TextMeshProUGUI textTypeItem;
     [SerializeField] private ItemSelect itemSelectPrefab;

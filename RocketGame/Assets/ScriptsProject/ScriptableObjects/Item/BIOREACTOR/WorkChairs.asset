@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb357036449242d48b2bbfe95dbdeb74, type: 3}
+  m_Name: WorkChairs
+  m_EditorClassIdentifier: 
+  id: 1
+  title: Work Chair
+  price: 150
+  items:
+  - {fileID: 11400000, guid: e4b2b2506a4bf4c4b9aabb4b6144d4be, type: 2}
+  - {fileID: 11400000, guid: 104ee10fb0b62c94d989d617d7d9a137, type: 2}
+  - {fileID: 11400000, guid: 513f5d572e7c6ca468e49df8019d0329, type: 2}

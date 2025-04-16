@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe7ee7f40ff317498ec54147237ef24, type: 3}
+  m_Name: BioreactorItemGroups
+  m_EditorClassIdentifier: 
+  itemGroups:
+  - {fileID: 11400000, guid: 74bccd1adeafeaf4a9963ddf4435d4ec, type: 2}
+  - {fileID: 11400000, guid: 896bc4f2ec6fbae4292c621ac3fadf6f, type: 2}
+  - {fileID: 11400000, guid: 99417580f4483c047bcc947e5aaca313, type: 2}
+  - {fileID: 11400000, guid: 2c529e882d6ec5b4483eb7c054133278, type: 2}
+  - {fileID: 11400000, guid: 302e412994ff9244fb778fe99b8ab94c, type: 2}

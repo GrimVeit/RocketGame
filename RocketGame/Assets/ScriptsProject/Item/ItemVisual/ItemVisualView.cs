@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ItemVisualView : View
+public class ItemVisualView : View, IIdentify
 {
+    public string GetID() => id;
+
+    [SerializeField] private string id;
     [SerializeField] private List<ItemVisual> itemVisuals = new List<ItemVisual>();
 
     public void Initialize()

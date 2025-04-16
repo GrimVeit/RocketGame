@@ -22,6 +22,7 @@ public class HouseBedroomState_Game : IState
     public void EnterState()
     {
         _sceneRoot.OnClickToGame_HouseBedroomPanel += ChangeStateToPrepare;
+        _sceneRoot.OnClickToBioreactor_HouseBedroomPanel += ChangeStateToBioreactor;
 
         _sceneRoot.OnClickToSelectItems_HouseBedroomPanel += _sceneRoot.OpenHouseBedroomSelectItemPanel;
         _sceneRoot.OnClickToBuyItems_HouseBedroomPanel += _sceneRoot.OpenHouseBedroomBuyItemPanel;
@@ -37,6 +38,7 @@ public class HouseBedroomState_Game : IState
     public void ExitState()
     {
         _sceneRoot.OnClickToGame_HouseBedroomPanel -= ChangeStateToPrepare;
+        _sceneRoot.OnClickToBioreactor_HouseBedroomPanel -= ChangeStateToBioreactor;
 
         _sceneRoot.OnClickToSelectItems_HouseBedroomPanel -= _sceneRoot.OpenHouseBedroomSelectItemPanel;
         _sceneRoot.OnClickToBuyItems_HouseBedroomPanel -= _sceneRoot.OpenHouseBedroomBuyItemPanel;
@@ -53,5 +55,10 @@ public class HouseBedroomState_Game : IState
     private void ChangeStateToPrepare()
     {
         _stateMachineProvider.SetState(_stateMachineProvider.GetState<PrepareState_Game>());
+    }
+
+    private void ChangeStateToBioreactor()
+    {
+        _stateMachineProvider.SetState(_stateMachineProvider.GetState<HouseBioreactorState_Game>());
     }
 }

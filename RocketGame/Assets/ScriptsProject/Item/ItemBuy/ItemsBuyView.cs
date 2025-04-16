@@ -6,8 +6,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ItemsBuyView : View
+public class ItemsBuyView : View, IIdentify
 {
+    public string GetID() => id;
+
+    [SerializeField] private string id;
     [SerializeField] private ItemBuySizes itemBuySizes;
     [SerializeField] private TextMeshProUGUI textTypeItem;
     [SerializeField] private TextMeshProUGUI textPrice;

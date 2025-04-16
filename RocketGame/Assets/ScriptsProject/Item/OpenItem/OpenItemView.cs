@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class OpenItemView : View
+public class OpenItemView : View, IIdentify
 {
+    public string GetID() => id;
+
+    [SerializeField] private string id;
     [SerializeField] private List<OpenItem> items = new List<OpenItem>();
 
     public void Initialize()

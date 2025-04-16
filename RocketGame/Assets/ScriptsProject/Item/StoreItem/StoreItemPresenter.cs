@@ -65,7 +65,6 @@ public class StoreItemPresenter : IStoreOpenItems
 
 
 
-
     public event Action<ItemGroup> OnOpenItems
     {
         add => _model.OnOpenItems += value;

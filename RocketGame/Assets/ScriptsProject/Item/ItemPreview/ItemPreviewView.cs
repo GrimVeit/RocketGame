@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ItemPreviewView : View
+public class ItemPreviewView : View, IIdentify
 {
+    public string GetID() => id;
+
+    [SerializeField] private string id;
     [SerializeField] private List<ItemPreview> itemPreviews = new();
 
     public void Initialize()
