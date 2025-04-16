@@ -212,7 +212,7 @@ public class StoreItemModel
 
     private bool CheckAllOpens()
     {
-        return _itemGroups.itemGroups.Any(ig => ig.ItemDatas.IsOpen == true);
+        return _itemGroups.itemGroups.All(ig => ig.ItemDatas.IsOpen == true);
     }
 }
 

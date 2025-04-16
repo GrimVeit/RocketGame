@@ -32,7 +32,8 @@ public class HouseBedroomState_Game : IState
         _sceneRoot.OpenHouseBedroomPanel();
         _sceneRoot.OpenHouseBalancePanel();
 
-        _soundGameStart.SetVolume(1, 0, 0.1f, _soundGameStart.Pause);
+        _soundGameStart.Pause();
+        _soundGameStart.SetVolume(1, 0, 0.1f);
     }
 
     public void ExitState()
@@ -46,7 +47,6 @@ public class HouseBedroomState_Game : IState
         _sceneRoot.OnClickToExit_BuyItemsBedroomPanel -= _sceneRoot.CloseHouseBedroomBuyItemPanel;
 
         _sceneRoot.CloseHouseBedroomPanel();
-        _sceneRoot.CloseHouseBalancePanel();
 
         _soundGameStart.Play();
         _soundGameStart.SetVolume(0, 1, 0.1f);

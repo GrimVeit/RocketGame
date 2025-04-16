@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PrepareState_Game : IState
@@ -29,6 +27,7 @@ public class PrepareState_Game : IState
         _betPreparePresenter.OnPlay += ChangeStateToLaunch;
         _sceneRoot.OnClickToHouse_HouseChoosePanel += ChangeStateToHouseBedroom;
 
+        _sceneRoot.CloseHouseBalancePanel();
         _sceneRoot.OpenFooterPanel();   
         _sceneRoot.OpenExitPanel();
         _sceneRoot.OpenHouseChoosePanel();
