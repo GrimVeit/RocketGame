@@ -21,6 +21,10 @@ public class UIMiniGameSceneRoot : UIRoot
     [SerializeField] private HouseBioreactorBuyItemPanel_Game houseBioreactorBuyItemPanel;
     [SerializeField] private HouseBioreactorSelectItemPanel_Game houseBioreactorSelectItemPanel;
 
+    [SerializeField] private HouseStoragePanel_Game houseStoragePanel;
+    [SerializeField] private HouseStorageBuyItemPanel_Game houseStorageBuyItemPanel;
+    [SerializeField] private HouseStorageSelectItemPanel_Game houseStorageSelectItemPanel;
+
     private ISoundProvider soundProvider;
 
     public void SetSoundProvider(ISoundProvider soundProvider)
@@ -48,6 +52,11 @@ public class UIMiniGameSceneRoot : UIRoot
         houseBioreactorPanel.Initialize();
         houseBioreactorBuyItemPanel.Initialize();
         houseBioreactorSelectItemPanel.Initialize();
+
+
+        houseStoragePanel.Initialize();
+        houseStorageBuyItemPanel.Initialize();
+        houseStorageSelectItemPanel.Initialize();
     }
 
     public void Dispose()
@@ -70,6 +79,10 @@ public class UIMiniGameSceneRoot : UIRoot
         houseBioreactorPanel.Dispose();
         houseBioreactorBuyItemPanel.Dispose();
         houseBioreactorSelectItemPanel.Dispose();
+
+        houseStoragePanel.Dispose();
+        houseStorageBuyItemPanel.Dispose();
+        houseStorageSelectItemPanel.Dispose();
     }
 
     public void Activate()
@@ -89,10 +102,18 @@ public class UIMiniGameSceneRoot : UIRoot
 
 
         houseBioreactorPanel.OnClickToBedroom += HandleClickToBedroom_HouseBioreactorPanel;
+        houseBioreactorPanel.OnClickToStorage += HandleClickToStorage_HouseBioreactorPanel;
         houseBioreactorPanel.OnClickToSelectItems += HandleClickToSelectItems_HouseBioreactorPanel;
         houseBioreactorPanel.OnClickToBuyItems += HandleClickToBuyItems_HouseBioreactorPanel;
         houseBioreactorBuyItemPanel.OnClickToExit += HandleClickToExit_BuyItemsBioreactorPanel;
         houseBioreactorSelectItemPanel.OnClickToExit += HandleClickToExit_SelectItemsBioreactorPanel;
+
+
+        houseStoragePanel.OnClickToBioreactor += HandleClickToBioreactor_HouseStoragePanel;
+        houseStoragePanel.OnClickToSelectItems += HandleClickToSelectItems_HouseStoragePanel;
+        houseStoragePanel.OnClickToBuyItems += HandleClickToBuyItems_HouseStoragePanel;
+        houseStorageBuyItemPanel.OnClickToExit += HandleClickToExit_BuyItemsStoragePanel;
+        houseStorageSelectItemPanel.OnClickToExit += HandleClickToExit_SelectItemsStoragePanel;
 
         OpenMainPanel();
     }
@@ -113,10 +134,18 @@ public class UIMiniGameSceneRoot : UIRoot
 
 
         houseBioreactorPanel.OnClickToBedroom -= HandleClickToBedroom_HouseBioreactorPanel;
+        houseBioreactorPanel.OnClickToStorage -= HandleClickToStorage_HouseBioreactorPanel;
         houseBioreactorPanel.OnClickToSelectItems -= HandleClickToSelectItems_HouseBioreactorPanel;
         houseBioreactorPanel.OnClickToBuyItems -= HandleClickToBuyItems_HouseBioreactorPanel;
         houseBioreactorBuyItemPanel.OnClickToExit -= HandleClickToExit_BuyItemsBioreactorPanel;
         houseBioreactorSelectItemPanel.OnClickToExit -= HandleClickToExit_SelectItemsBioreactorPanel;
+
+
+        houseStoragePanel.OnClickToBioreactor -= HandleClickToBioreactor_HouseStoragePanel;
+        houseStoragePanel.OnClickToSelectItems -= HandleClickToSelectItems_HouseStoragePanel;
+        houseStoragePanel.OnClickToBuyItems -= HandleClickToBuyItems_HouseStoragePanel;
+        houseStorageBuyItemPanel.OnClickToExit -= HandleClickToExit_BuyItemsStoragePanel;
+        houseStorageSelectItemPanel.OnClickToExit -= HandleClickToExit_SelectItemsStoragePanel;
 
         CloseHouseChoosePanel();
         CloseFooterPanel();
@@ -284,7 +313,7 @@ public class UIMiniGameSceneRoot : UIRoot
 
     #endregion
 
-    #region BEDROOM
+    #region BIOREACTOR
 
 
     public void OpenHouseBioreactorPanel()
@@ -329,6 +358,57 @@ public class UIMiniGameSceneRoot : UIRoot
         if (!houseBioreactorBuyItemPanel.IsActive) return;
 
         CloseOtherPanel(houseBioreactorBuyItemPanel);
+    }
+
+    #endregion
+
+    #region BIOREACTOR
+
+
+    public void OpenHouseStoragePanel()
+    {
+        if (houseStoragePanel.IsActive) return;
+
+        OpenOtherPanel(houseStoragePanel);
+    }
+
+    public void CloseHouseStoragePanel()
+    {
+        if (!houseStoragePanel.IsActive) return;
+
+        CloseOtherPanel(houseStoragePanel);
+    }
+
+
+
+    public void OpenHouseStorageSelectItemPanel()
+    {
+        if (houseStorageSelectItemPanel.IsActive) return;
+
+        OpenOtherPanel(houseStorageSelectItemPanel);
+    }
+
+    public void CloseHouseStorageSelectItemPanel()
+    {
+        if (!houseStorageSelectItemPanel.IsActive) return;
+
+        CloseOtherPanel(houseStorageSelectItemPanel);
+    }
+
+
+
+    public void OpenHouseStorageBuyItemPanel()
+    {
+        if (houseStorageBuyItemPanel.IsActive) return;
+
+        OpenOtherPanel(houseStorageBuyItemPanel);
+    }
+
+    public void CloseHouseStorageBuyItemPanel()
+    {
+        if (!houseStorageBuyItemPanel.IsActive) return;
+
+        CloseOtherPanel(houseStorageBuyItemPanel);
     }
 
     #endregion
@@ -473,6 +553,15 @@ public class UIMiniGameSceneRoot : UIRoot
         OnClickToBedroom_HouseBioreactorPanel?.Invoke();
     }
 
+    public event Action OnClickToStorage_HouseBioreactorPanel;
+
+    private void HandleClickToStorage_HouseBioreactorPanel()
+    {
+        soundProvider.PlayOneShot("Click");
+
+        OnClickToStorage_HouseBioreactorPanel?.Invoke();
+    }
+
 
     public event Action OnClickToBuyItems_HouseBioreactorPanel;
 
@@ -516,6 +605,64 @@ public class UIMiniGameSceneRoot : UIRoot
         soundProvider.PlayOneShot("Click");
 
         OnClickToExit_BuyItemsBioreactorPanel?.Invoke();
+    }
+
+    #endregion
+
+    #region STORAGE
+
+    public event Action OnClickToBioreactor_HouseStoragePanel;
+
+    private void HandleClickToBioreactor_HouseStoragePanel()
+    {
+        soundProvider.PlayOneShot("Click");
+
+        OnClickToBioreactor_HouseStoragePanel?.Invoke();
+    }
+
+
+    public event Action OnClickToBuyItems_HouseStoragePanel;
+
+    private void HandleClickToBuyItems_HouseStoragePanel()
+    {
+        soundProvider.PlayOneShot("Click");
+
+        OnClickToBuyItems_HouseStoragePanel.Invoke();
+    }
+
+
+    public event Action OnClickToSelectItems_HouseStoragePanel;
+
+    private void HandleClickToSelectItems_HouseStoragePanel()
+    {
+        soundProvider.PlayOneShot("Click");
+
+        OnClickToSelectItems_HouseStoragePanel?.Invoke();
+    }
+
+
+
+
+
+    public event Action OnClickToExit_SelectItemsStoragePanel;
+
+    private void HandleClickToExit_SelectItemsStoragePanel()
+    {
+        soundProvider.PlayOneShot("Click");
+
+        OnClickToExit_SelectItemsStoragePanel?.Invoke();
+    }
+
+
+
+
+    public event Action OnClickToExit_BuyItemsStoragePanel;
+
+    private void HandleClickToExit_BuyItemsStoragePanel()
+    {
+        soundProvider.PlayOneShot("Click");
+
+        OnClickToExit_BuyItemsStoragePanel?.Invoke();
     }
 
     #endregion

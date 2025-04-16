@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb357036449242d48b2bbfe95dbdeb74, type: 3}
+  m_Name: Droids
+  m_EditorClassIdentifier: 
+  id: 0
+  title: Droids
+  price: 170
+  items:
+  - {fileID: 11400000, guid: ab17f39c64831f04dac7391a3eae69c5, type: 2}
+  - {fileID: 11400000, guid: 96bdf5f966f693b4cbd063a520e33db4, type: 2}
+  - {fileID: 11400000, guid: dce700bd0b144c74ab7a4a8b7a89a310, type: 2}

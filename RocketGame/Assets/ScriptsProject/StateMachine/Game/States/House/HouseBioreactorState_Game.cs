@@ -22,6 +22,7 @@ public class HouseBioreactorState_Game : IState
     public void EnterState()
     {
         _sceneRoot.OnClickToBedroom_HouseBioreactorPanel += ChangeStateToBedroom;
+        _sceneRoot.OnClickToStorage_HouseBioreactorPanel += ChangeStateToStorage;
 
         _sceneRoot.OnClickToSelectItems_HouseBioreactorPanel += _sceneRoot.OpenHouseBioreactorSelectItemPanel;
         _sceneRoot.OnClickToBuyItems_HouseBioreactorPanel += _sceneRoot.OpenHouseBioreactorBuyItemPanel;
@@ -30,13 +31,13 @@ public class HouseBioreactorState_Game : IState
 
         _sceneRoot.OpenHouseBioreactorPanel();
 
-        _soundGameStart.Pause();
         _soundGameStart.SetVolume(0);
     }
 
     public void ExitState()
     {
         _sceneRoot.OnClickToBedroom_HouseBioreactorPanel -= ChangeStateToBedroom;
+        _sceneRoot.OnClickToStorage_HouseBioreactorPanel -= ChangeStateToStorage;
 
         _sceneRoot.OnClickToSelectItems_HouseBioreactorPanel -= _sceneRoot.OpenHouseBioreactorSelectItemPanel;
         _sceneRoot.OnClickToBuyItems_HouseBioreactorPanel -= _sceneRoot.OpenHouseBioreactorBuyItemPanel;
@@ -49,5 +50,10 @@ public class HouseBioreactorState_Game : IState
     private void ChangeStateToBedroom()
     {
         _stateMachineProvider.SetState(_stateMachineProvider.GetState<HouseBedroomState_Game>());
+    }
+
+    private void ChangeStateToStorage()
+    {
+        _stateMachineProvider.SetState(_stateMachineProvider.GetState<HouseStorageState_Game>());
     }
 }

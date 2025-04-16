@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HouseBioreactorBuyItemPanel_Game : MovePanel
+public class HouseStorageSelectItemPanel_Game : MovePanel
 {
     [SerializeField] private Button buttonExit;
 

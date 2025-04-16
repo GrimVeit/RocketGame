@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06c21dac64e81ae4bbaf08773daf263d, type: 3}
+  m_Name: Droid_3
+  m_EditorClassIdentifier: 
+  id: 2
+  description: Droid_3
+  spritePreview: {fileID: 21300000, guid: cd8b3826fbcd00e4a9293828e7ac610c, type: 3}
+  spriteItem: {fileID: 21300000, guid: 5796176a99ae9b8499809fc59bf7adaf, type: 3}

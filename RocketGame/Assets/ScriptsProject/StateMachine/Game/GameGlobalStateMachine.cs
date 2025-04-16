@@ -33,6 +33,7 @@ public class GameGlobalStateMachine : IGlobalStateMachineProvider
 
         states[typeof(HouseBedroomState_Game)] = new HouseBedroomState_Game(this, sceneRoot, soundProvider);
         states[typeof(HouseBioreactorState_Game)] = new HouseBioreactorState_Game(this, sceneRoot, soundProvider);
+        states[typeof(HouseStorageState_Game)] = new HouseStorageState_Game(this, sceneRoot, soundProvider);
     }
 
     public void Initialize()

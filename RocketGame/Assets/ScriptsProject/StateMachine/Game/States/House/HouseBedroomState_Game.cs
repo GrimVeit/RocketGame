@@ -32,7 +32,6 @@ public class HouseBedroomState_Game : IState
         _sceneRoot.OpenHouseBedroomPanel();
         _sceneRoot.OpenHouseBalancePanel();
 
-        _soundGameStart.Pause();
         _soundGameStart.SetVolume(1, 0, 0.1f);
     }
 
@@ -48,7 +47,6 @@ public class HouseBedroomState_Game : IState
 
         _sceneRoot.CloseHouseBedroomPanel();
 
-        _soundGameStart.Play();
         _soundGameStart.SetVolume(0, 1, 0.1f);
     }
 
