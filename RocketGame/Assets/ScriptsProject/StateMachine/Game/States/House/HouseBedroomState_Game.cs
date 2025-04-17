@@ -10,6 +10,7 @@ public class HouseBedroomState_Game : IState
 
     private readonly ISoundProvider _soundProvider;
     private readonly ISound _soundGameStart;
+    private readonly ISound _soundHouse;
 
     public HouseBedroomState_Game(IGlobalStateMachineProvider stateMachineProvider, UIMiniGameSceneRoot sceneRoot, ISoundProvider soundProvider)
     {
@@ -17,6 +18,7 @@ public class HouseBedroomState_Game : IState
         _sceneRoot = sceneRoot;
         _soundProvider = soundProvider;
         _soundGameStart = _soundProvider.GetSound("Background_GameStart");
+        _soundHouse = _soundProvider.GetSound("Background_House");
     }
 
     public void EnterState()
@@ -33,6 +35,7 @@ public class HouseBedroomState_Game : IState
         _sceneRoot.OpenHouseBalancePanel();
 
         _soundGameStart.SetVolume(1, 0, 0.1f);
+        _soundHouse.SetVolume(0, 0.6f, 0.1f);
     }
 
     public void ExitState()
@@ -48,6 +51,7 @@ public class HouseBedroomState_Game : IState
         _sceneRoot.CloseHouseBedroomPanel();
 
         _soundGameStart.SetVolume(0, 1, 0.1f);
+        _soundHouse.SetVolume(0.6f, 0, 0.1f);
     }
 
     private void ChangeStateToPrepare()

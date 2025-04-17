@@ -10,6 +10,7 @@ public class HouseBioreactorState_Game : IState
 
     private readonly ISoundProvider _soundProvider;
     private readonly ISound _soundGameStart;
+    private readonly ISound _soundHouse;
 
     public HouseBioreactorState_Game(IGlobalStateMachineProvider stateMachineProvider, UIMiniGameSceneRoot sceneRoot, ISoundProvider soundProvider)
     {
@@ -17,6 +18,7 @@ public class HouseBioreactorState_Game : IState
         _sceneRoot = sceneRoot;
         _soundProvider = soundProvider;
         _soundGameStart = _soundProvider.GetSound("Background_GameStart");
+        _soundHouse = _soundProvider.GetSound("Background_House");
     }
 
     public void EnterState()
@@ -32,6 +34,7 @@ public class HouseBioreactorState_Game : IState
         _sceneRoot.OpenHouseBioreactorPanel();
 
         _soundGameStart.SetVolume(0, 0, 0.1f);
+        _soundHouse.SetVolume(0.6f, 0.6f, 0.1f);
     }
 
     public void ExitState()
