@@ -330,6 +330,61 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
 
 
+
+        itemPreviewPresenter_Bedroom.OnChooseBuyItemGroup -= storeItemPresenter_Bedroom.SelectItemGroupForBuyItemGroup;
+        storeItemPresenter_Bedroom.OnOpenItems -= itemPreviewPresenter_Bedroom.Deactivate;
+        storeItemPresenter_Bedroom.OnCloseItems -= itemPreviewPresenter_Bedroom.Activate;
+
+        itemOpenPresenter_Bedroom.OnChooseSelectItemGroupForSelectItem -= storeItemPresenter_Bedroom.SelectItemGroupForSelectItem;
+        storeItemPresenter_Bedroom.OnOpenItems -= itemOpenPresenter_Bedroom.ActivateOpenItem;
+        storeItemPresenter_Bedroom.OnCloseItems -= itemOpenPresenter_Bedroom.DeactivateOpenItem;
+
+        storeItemPresenter_Bedroom.OnSelectItem -= itemVisualPresenter_Bedroom.SetVisual;
+
+        itemSelectPresenter_Bedroom.OnChooseItemForSelect -= storeItemPresenter_Bedroom.SelectItem;
+        storeItemPresenter_Bedroom.OnSelectItemGroupForSelectItem -= itemSelectPresenter_Bedroom.SetItemGroup;
+        storeItemPresenter_Bedroom.OnSelectItem -= itemSelectPresenter_Bedroom.Select;
+        storeItemPresenter_Bedroom.OnDeselectItem -= itemSelectPresenter_Bedroom.Deselect;
+
+        storeItemPresenter_Bedroom.OnOpenAllItems -= roomTransitionPresenter.UnlockRoomTwo;
+
+
+
+
+        itemPreviewPresenter_Bioreactor.OnChooseBuyItemGroup -= storeItemPresenter_Bioreactor.SelectItemGroupForBuyItemGroup;
+        storeItemPresenter_Bioreactor.OnOpenItems -= itemPreviewPresenter_Bioreactor.Deactivate;
+        storeItemPresenter_Bioreactor.OnCloseItems -= itemPreviewPresenter_Bioreactor.Activate;
+
+        itemOpenPresenter_Bioreactor.OnChooseSelectItemGroupForSelectItem -= storeItemPresenter_Bioreactor.SelectItemGroupForSelectItem;
+        storeItemPresenter_Bioreactor.OnOpenItems -= itemOpenPresenter_Bioreactor.ActivateOpenItem;
+        storeItemPresenter_Bioreactor.OnCloseItems -= itemOpenPresenter_Bioreactor.DeactivateOpenItem;
+
+        storeItemPresenter_Bioreactor.OnSelectItem -= itemVisualPresenter_Bioreactor.SetVisual;
+
+        itemSelectPresenter_Bioreactor.OnChooseItemForSelect -= storeItemPresenter_Bioreactor.SelectItem;
+        storeItemPresenter_Bioreactor.OnSelectItemGroupForSelectItem -= itemSelectPresenter_Bioreactor.SetItemGroup;
+        storeItemPresenter_Bioreactor.OnSelectItem -= itemSelectPresenter_Bioreactor.Select;
+        storeItemPresenter_Bioreactor.OnDeselectItem -= itemSelectPresenter_Bioreactor.Deselect;
+
+        storeItemPresenter_Bioreactor.OnOpenAllItems -= roomTransitionPresenter.UnlockRoomThree;
+
+
+
+
+        itemPreviewPresenter_Storage.OnChooseBuyItemGroup -= storeItemPresenter_Storage.SelectItemGroupForBuyItemGroup;
+        storeItemPresenter_Storage.OnOpenItems -= itemPreviewPresenter_Storage.Deactivate;
+        storeItemPresenter_Storage.OnCloseItems -= itemPreviewPresenter_Storage.Activate;
+
+        itemOpenPresenter_Storage.OnChooseSelectItemGroupForSelectItem -= storeItemPresenter_Storage.SelectItemGroupForSelectItem;
+        storeItemPresenter_Storage.OnOpenItems -= itemOpenPresenter_Storage.ActivateOpenItem;
+        storeItemPresenter_Storage.OnCloseItems -= itemOpenPresenter_Storage.DeactivateOpenItem;
+
+        storeItemPresenter_Storage.OnSelectItem -= itemVisualPresenter_Storage.SetVisual;
+
+        itemSelectPresenter_Storage.OnChooseItemForSelect -= storeItemPresenter_Storage.SelectItem;
+        storeItemPresenter_Storage.OnSelectItemGroupForSelectItem -= itemSelectPresenter_Storage.SetItemGroup;
+        storeItemPresenter_Storage.OnSelectItem -= itemSelectPresenter_Storage.Select;
+        storeItemPresenter_Storage.OnDeselectItem -= itemSelectPresenter_Storage.Deselect;
     }
 
     private void ActivateTransitionsSceneEvents()
