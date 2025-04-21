@@ -404,8 +404,8 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
     private void DeactivateTransitionsSceneEvents()
     {
-        sceneRoot.OnClickToBet_FooterPanel += sceneRoot.OpenBetPanel;
-        sceneRoot.OnClickToExit_BetPanel += sceneRoot.CloseBetPanel;
+        sceneRoot.OnClickToBet_FooterPanel -= sceneRoot.OpenBetPanel;
+        sceneRoot.OnClickToExit_BetPanel -= sceneRoot.CloseBetPanel;
 
         sceneRoot.OnClickToExit_ExitPanel -= HandleGoToMenu;
 
