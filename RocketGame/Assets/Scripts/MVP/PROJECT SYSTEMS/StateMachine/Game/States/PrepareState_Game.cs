@@ -3,14 +3,14 @@ using UnityEngine;
 public class PrepareState_Game : IState
 {
     private readonly IGlobalStateMachineProvider _stateProvider;
-    private readonly UIMiniGameSceneRoot _sceneRoot;
+    private readonly UIGameRoot _sceneRoot;
     private readonly StoreBetPresenter _storeBetPresenter;
     private readonly BetPreparePresenter _betPreparePresenter;
 
     private readonly ISoundProvider _soundProvider;
     private readonly ISound _soundGameStart;
 
-    public PrepareState_Game(IGlobalStateMachineProvider stateProvider, UIMiniGameSceneRoot sceneRoot, StoreBetPresenter storeBetPresenter, BetPreparePresenter betPreparePresenter, ISoundProvider soundProvider)
+    public PrepareState_Game(IGlobalStateMachineProvider stateProvider, UIGameRoot sceneRoot, StoreBetPresenter storeBetPresenter, BetPreparePresenter betPreparePresenter, ISoundProvider soundProvider)
     {
         _stateProvider = stateProvider;
         _sceneRoot = sceneRoot;

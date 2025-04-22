@@ -8,7 +8,7 @@ public class ArrivalState_Game : IState
 
     private readonly RocketMovePresenter _rocketMovePresenter;
     private readonly PlatformPresenter _platformPresenter;
-    private readonly UIMiniGameSceneRoot _sceneRoot;
+    private readonly UIGameRoot _sceneRoot;
     private readonly ObstaclePresenter _obstaclePresenter;
     private readonly AltitudePresenter _altitudePresenter;
     private readonly CourseDisplacementPresenter _courseDisplacementPresenter;
@@ -23,7 +23,7 @@ public class ArrivalState_Game : IState
         IGlobalStateMachineProvider stateProvider, 
         RocketMovePresenter rocketMovePresenter, 
         PlatformPresenter platformPresenter, 
-        UIMiniGameSceneRoot sceneRoot, 
+        UIGameRoot sceneRoot, 
         ObstaclePresenter obstaclePresenter, 
         AltitudePresenter altitudePresenter, 
         CourseDisplacementPresenter courseDisplacementPresenter, 

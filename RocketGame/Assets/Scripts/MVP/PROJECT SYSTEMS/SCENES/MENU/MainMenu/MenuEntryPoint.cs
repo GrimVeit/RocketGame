@@ -5,12 +5,12 @@ using Firebase.Database;
 using Firebase.Extensions;
 using UnityEngine;
 
-public class MainMenuEntryPoint : MonoBehaviour
+public class MenuEntryPoint : MonoBehaviour
 {
     [SerializeField] private Sounds sounds;
-    [SerializeField] private UIMainMenuRoot menuRootPrefab;
+    [SerializeField] private UIMenuRoot uiMenuRootPrefab;
 
-    private UIMainMenuRoot sceneRoot;
+    private UIMenuRoot sceneRoot;
     private ViewContainer viewContainer;
 
     private BankPresenter bankPresenter;
@@ -26,7 +26,7 @@ public class MainMenuEntryPoint : MonoBehaviour
 
     public void Run(UIRootView uIRootView)
     {
-        sceneRoot = menuRootPrefab;
+        sceneRoot = uiMenuRootPrefab;
  
         uIRootView.AttachSceneUI(sceneRoot.gameObject, Camera.main);
 
@@ -39,6 +39,8 @@ public class MainMenuEntryPoint : MonoBehaviour
 
             if (dependencyStatus == DependencyStatus.Available)
             {
+                Debug.Log("1");
+
                 FirebaseDatabase.DefaultInstance.SetPersistenceEnabled(false);
                 FirebaseAuth firebaseAuth = FirebaseAuth.DefaultInstance;
                 DatabaseReference databaseReference = FirebaseDatabase.DefaultInstance.RootReference;

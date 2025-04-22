@@ -6,13 +6,13 @@ public class HouseBedroomState_Game : IState
 {
     private readonly IGlobalStateMachineProvider _stateMachineProvider;
 
-    private readonly UIMiniGameSceneRoot _sceneRoot;
+    private readonly UIGameRoot _sceneRoot;
 
     private readonly ISoundProvider _soundProvider;
     private readonly ISound _soundGameStart;
     private readonly ISound _soundHouse;
 
-    public HouseBedroomState_Game(IGlobalStateMachineProvider stateMachineProvider, UIMiniGameSceneRoot sceneRoot, ISoundProvider soundProvider)
+    public HouseBedroomState_Game(IGlobalStateMachineProvider stateMachineProvider, UIGameRoot sceneRoot, ISoundProvider soundProvider)
     {
         _stateMachineProvider = stateMachineProvider;
         _sceneRoot = sceneRoot;

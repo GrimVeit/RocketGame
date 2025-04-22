@@ -7,13 +7,13 @@ public class LaunchState_Game : IState
     private readonly IGlobalStateMachineProvider _stateProvider;
 
     private readonly RocketMovePresenter _rocketMovePresenter;
-    private readonly UIMiniGameSceneRoot _sceneRoot;
+    private readonly UIGameRoot _sceneRoot;
     private readonly AltitudePresenter _altitudePresenter;
 
     private readonly ISoundProvider _soundProvider;
     private readonly ISound _soundGameLaunch;
 
-    public LaunchState_Game(IGlobalStateMachineProvider stateProvider, RocketMovePresenter rocketMovePresenter, UIMiniGameSceneRoot sceneRoot, AltitudePresenter altitudePresenter, ISoundProvider soundProvider)
+    public LaunchState_Game(IGlobalStateMachineProvider stateProvider, RocketMovePresenter rocketMovePresenter, UIGameRoot sceneRoot, AltitudePresenter altitudePresenter, ISoundProvider soundProvider)
     {
         _stateProvider = stateProvider;
         _rocketMovePresenter = rocketMovePresenter;

@@ -1,12 +1,12 @@
 public class MainState_Menu : IState
 {
-    private readonly UIMainMenuRoot _sceneRoot;
+    private readonly UIMenuRoot _sceneRoot;
 
     private readonly IGlobalStateMachineProvider _stateMachineProvider;
 
     private readonly FirebaseDatabaseRealtimePresenter _firebaseDatabaseRealtimePresenter;
 
-    public MainState_Menu(IGlobalStateMachineProvider stateMachineProvider, UIMainMenuRoot sceneRoot, FirebaseDatabaseRealtimePresenter firebaseDatabaseRealtimePresenter)
+    public MainState_Menu(IGlobalStateMachineProvider stateMachineProvider, UIMenuRoot sceneRoot, FirebaseDatabaseRealtimePresenter firebaseDatabaseRealtimePresenter)
     {
         _stateMachineProvider = stateMachineProvider;
         _sceneRoot = sceneRoot;

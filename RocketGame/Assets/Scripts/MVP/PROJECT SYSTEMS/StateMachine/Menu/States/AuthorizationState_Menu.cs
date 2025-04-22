@@ -5,9 +5,9 @@ public class AuthorizationState_Menu : IState
     private readonly NicknameRandomPresenter _nicknameRandomPresenter;
     private readonly FirebaseAuthenticationPresenter _firebaseAuthenticationPresenter;
     private readonly FirebaseDatabaseRealtimePresenter _firebaseDatabaseRealtimePresenter;
-    private readonly UIMainMenuRoot _sceneRoot;
+    private readonly UIMenuRoot _sceneRoot;
 
-    public AuthorizationState_Menu(IGlobalStateMachineProvider globalStateMachineProvider, NicknameRandomPresenter nicknameRandomPresenter, FirebaseAuthenticationPresenter firebaseAuthenticationPresenter, FirebaseDatabaseRealtimePresenter firebaseDatabaseRealtimePresenter, UIMainMenuRoot sceneRoot)
+    public AuthorizationState_Menu(IGlobalStateMachineProvider globalStateMachineProvider, NicknameRandomPresenter nicknameRandomPresenter, FirebaseAuthenticationPresenter firebaseAuthenticationPresenter, FirebaseDatabaseRealtimePresenter firebaseDatabaseRealtimePresenter, UIMenuRoot sceneRoot)
     {
         _globalStateMachineProvider = globalStateMachineProvider;
         _nicknameRandomPresenter = nicknameRandomPresenter;

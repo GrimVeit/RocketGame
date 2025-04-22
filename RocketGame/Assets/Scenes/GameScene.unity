@@ -10243,7 +10243,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -99.369995, y: -91.5}
+  m_AnchoredPosition: {x: -99.36987, y: -91.5}
   m_SizeDelta: {x: 67, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &619778119
@@ -13920,7 +13920,7 @@ MonoBehaviour:
   itemGroups_Storage: {fileID: 11400000, guid: 7e8f78feddd1ea448be809c6ad2f85e6, type: 2}
   spawnPointsData: {fileID: 11400000, guid: a5052a049201e5e4d8467e4ce3500ee6, type: 2}
   pathData: {fileID: 11400000, guid: 8819bf958a0057a45bb6ca7abd8ae425, type: 2}
-  sceneRootPrefab: {fileID: 4880077067056087525}
+  sceneRootPrefab: {fileID: 5759112182369476050}
 --- !u!1 &824765611
 GameObject:
   m_ObjectHideFlags: 0
@@ -14422,7 +14422,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -99.369995, y: -91.5}
+  m_AnchoredPosition: {x: -99.36987, y: -91.5}
   m_SizeDelta: {x: 67, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &844771814
@@ -15330,7 +15330,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -99.369995, y: -91.5}
+  m_AnchoredPosition: {x: -99.36987, y: -91.5}
   m_SizeDelta: {x: 67, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &945092479
@@ -18229,7 +18229,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -99.369995, y: -91.5}
+  m_AnchoredPosition: {x: -99.36987, y: -91.5}
   m_SizeDelta: {x: 67, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1121381567
@@ -19603,7 +19603,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 113.100006, y: 216.9}
+  m_AnchoredPosition: {x: 113.1001, y: 216.9}
   m_SizeDelta: {x: 220, y: 330}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1210611114
@@ -33106,7 +33106,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -99.369995, y: -91.5}
+  m_AnchoredPosition: {x: -99.36987, y: -91.5}
   m_SizeDelta: {x: 67, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1953810284
@@ -35929,8 +35929,8 @@ GameObject:
   - component: {fileID: 4044249246013160970}
   - component: {fileID: 5759112182369476049}
   - component: {fileID: 427254656165970283}
-  - component: {fileID: 4880077067056087525}
   - component: {fileID: 499732968661432889}
+  - component: {fileID: 5759112182369476050}
   m_Layer: 5
   m_Name: UIMiniGameSceneRoot
   m_TagString: Untagged
@@ -36088,34 +36088,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4880077067056087525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 247346364031265939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c59fdd33b541784c8df8f33c772f3f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainPanel: {fileID: 1372820912}
-  footerPanel: {fileID: 1583400354}
-  betPanel: {fileID: 1499589281}
-  winPanel: {fileID: 1303889058}
-  exitPanel: {fileID: 949407814}
-  houseChoosePanel: {fileID: 45052655}
-  houseBalancePanel: {fileID: 1922118122}
-  houseBedroomPanel: {fileID: 658109503}
-  houseBedroomBuyItemPanel: {fileID: 1313899587}
-  houseBedroomSelectItemPanel: {fileID: 373528768}
-  houseBioreactorPanel: {fileID: 1035889880}
-  houseBioreactorBuyItemPanel: {fileID: 1521887659}
-  houseBioreactorSelectItemPanel: {fileID: 1920964347}
-  houseStoragePanel: {fileID: 755917097}
-  houseStorageBuyItemPanel: {fileID: 1779791573}
-  houseStorageSelectItemPanel: {fileID: 2085439572}
 --- !u!114 &4997780278797794298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36170,6 +36142,34 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
+--- !u!114 &5759112182369476050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247346364031265939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdc7da35f48e04f4faae9976d92bdf26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainPanel: {fileID: 1372820912}
+  footerPanel: {fileID: 1583400354}
+  betPanel: {fileID: 1499589281}
+  winPanel: {fileID: 1303889058}
+  exitPanel: {fileID: 949407814}
+  houseChoosePanel: {fileID: 45052655}
+  houseBalancePanel: {fileID: 1922118122}
+  houseBedroomPanel: {fileID: 658109503}
+  houseBedroomBuyItemPanel: {fileID: 1313899587}
+  houseBedroomSelectItemPanel: {fileID: 373528768}
+  houseBioreactorPanel: {fileID: 1035889880}
+  houseBioreactorBuyItemPanel: {fileID: 1521887659}
+  houseBioreactorSelectItemPanel: {fileID: 1920964347}
+  houseStoragePanel: {fileID: 755917097}
+  houseStorageBuyItemPanel: {fileID: 1779791573}
+  houseStorageSelectItemPanel: {fileID: 2085439572}
 --- !u!224 &6186702370134061893
 RectTransform:
   m_ObjectHideFlags: 0

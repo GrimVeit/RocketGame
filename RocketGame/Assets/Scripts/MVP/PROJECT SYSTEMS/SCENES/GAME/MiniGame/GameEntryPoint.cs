@@ -2,7 +2,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class MiniGameSceneEntryPoint : MonoBehaviour
+public class GameEntryPoint : MonoBehaviour
 {
     [SerializeField] private Sounds sounds;
     [SerializeField] private ItemGroups itemGroups_Bedroom;
@@ -10,9 +10,9 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
     [SerializeField] private ItemGroups itemGroups_Storage;
     [SerializeField] private SpawnPointsData spawnPointsData;
     [SerializeField] private PathData pathData;
-    [SerializeField] private UIMiniGameSceneRoot sceneRootPrefab;
+    [SerializeField] private UIGameRoot sceneRootPrefab; 
 
-    private UIMiniGameSceneRoot sceneRoot;
+    private UIGameRoot sceneRoot;
     private ViewContainer viewContainer;
     private BankPresenter bankPresenter;
     private SoundPresenter soundPresenter;

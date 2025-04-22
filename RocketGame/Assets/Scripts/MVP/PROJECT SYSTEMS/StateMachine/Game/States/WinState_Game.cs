@@ -6,7 +6,7 @@ public class WinState_Game : IState
 {
     private readonly IGlobalStateMachineProvider _stateProvider;
 
-    private readonly UIMiniGameSceneRoot _sceneRoot;
+    private readonly UIGameRoot _sceneRoot;
     private readonly RocketMovePresenter _rocketMovePresenter;
     private readonly ObstaclePresenter _obstaclePresenter;
     private readonly AltitudePresenter _altitudePresenter;
@@ -16,7 +16,7 @@ public class WinState_Game : IState
 
     private IEnumerator coroutineTimer;
 
-    public WinState_Game(IGlobalStateMachineProvider stateProvider, UIMiniGameSceneRoot sceneRoot, RocketMovePresenter rocketMovePresenter, ObstaclePresenter obstaclePresenter, AltitudePresenter altitudePresenter, ScorePresenter scorePresenter, IParticleEffectProvider particleEffectProvider, ISoundProvider soundProvider)
+    public WinState_Game(IGlobalStateMachineProvider stateProvider, UIGameRoot sceneRoot, RocketMovePresenter rocketMovePresenter, ObstaclePresenter obstaclePresenter, AltitudePresenter altitudePresenter, ScorePresenter scorePresenter, IParticleEffectProvider particleEffectProvider, ISoundProvider soundProvider)
     {
         _stateProvider = stateProvider;
         _sceneRoot = sceneRoot;

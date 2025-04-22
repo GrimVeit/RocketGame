@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class UIMainMenuRoot : UIRoot
+public class UIMenuRoot : UIRoot
 {
     [SerializeField] private MainPanel_Menu mainPanel;
     [SerializeField] private LeaderboardPanel_Menu leaderboardPanel;

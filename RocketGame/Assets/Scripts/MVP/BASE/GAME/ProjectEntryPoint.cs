@@ -2,12 +2,12 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameEntryPoint
+public class ProjectEntryPoint
 {
-    private static GameEntryPoint instance;
-    private UIRootView rootView;
-    private Coroutines coroutines;
-    public GameEntryPoint()
+    private readonly Coroutines coroutines;
+    private readonly UIRootView rootView;
+    private static ProjectEntryPoint instance;
+    public ProjectEntryPoint()
     {
         coroutines = new GameObject("[Coroutines]").AddComponent<Coroutines>();
         Object.DontDestroyOnLoad(coroutines.gameObject);
@@ -19,16 +19,17 @@ public class GameEntryPoint
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    public static void Autorun()
+    public static void Auto()
     {
-        GlobalGameSettings();
+        GlobalSettings();
 
-        instance = new GameEntryPoint();
+
+        instance = new ProjectEntryPoint();
         instance.Run();
 
     }
 
-    private static void GlobalGameSettings()
+    private static void GlobalSettings()
     {
         Application.targetFrameRate = 60;
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
@@ -36,27 +37,27 @@ public class GameEntryPoint
 
     private void Run()
     {
-        coroutines.StartCoroutine(LoadAndStartMainMenu());
+        coroutines.StartCoroutine(LoadAndStartMenu());
     }
 
-    private IEnumerator LoadAndStartMainMenu()
+    private IEnumerator LoadAndStartMenu()
     {
         rootView.SetLoadScreen(0);
 
         yield return rootView.ShowLoadingScreen();
 
-        yield return LoadScene(Scenes.BOOT);
-        yield return LoadScene(Scenes.MAIN_MENU);
+        yield return LoadSceneCoroutine(Scenes.BOOT);
+        yield return LoadSceneCoroutine(Scenes.MENU_SCENE);
 
-        var sceneEntryPoint = Object.FindObjectOfType<MainMenuEntryPoint>();
+        var sceneEntryPoint = Object.FindObjectOfType<MenuEntryPoint>();
         sceneEntryPoint.Run(rootView);
 
-        sceneEntryPoint.OnGoToGame += () => coroutines.StartCoroutine(LoadAndStartMiniGameScene());
+        sceneEntryPoint.OnGoToGame += () => coroutines.StartCoroutine(LoadAndStartGame());
 
         yield return rootView.HideLoadingScreen();
     }
 
-    private IEnumerator LoadAndStartMiniGameScene()
+    private IEnumerator LoadAndStartGame()
     {
         rootView.SetLoadScreen(1);
 
@@ -64,23 +65,23 @@ public class GameEntryPoint
 
         yield return new WaitForSeconds(0.3f);
 
-        yield return LoadScene(Scenes.BOOT);
-        yield return LoadScene(Scenes.MINI_GAME);
+        yield return LoadSceneCoroutine(Scenes.BOOT);
+        yield return LoadSceneCoroutine(Scenes.GAME_SCENE);
 
         yield return new WaitForSeconds(0.1f);
 
-        var sceneEntryPoint = Object.FindObjectOfType<MiniGameSceneEntryPoint>();
+        var sceneEntryPoint = Object.FindObjectOfType<GameEntryPoint>();
         sceneEntryPoint.Run(rootView);
 
-        sceneEntryPoint.OnGoToMenu += () => coroutines.StartCoroutine(LoadAndStartMainMenu());
+        sceneEntryPoint.OnGoToMenu += () => coroutines.StartCoroutine(LoadAndStartMenu());
 
 
         yield return rootView.HideLoadingScreen();
     }
 
-    private IEnumerator LoadScene(string scene)
+    private IEnumerator LoadSceneCoroutine(string scene)
     {
-        Debug.Log("Загрузка сцены - " + scene);
+        Debug.Log("Загрузка сцены с названием - " + scene);
         yield return SceneManager.LoadSceneAsync(scene);
     }
 }

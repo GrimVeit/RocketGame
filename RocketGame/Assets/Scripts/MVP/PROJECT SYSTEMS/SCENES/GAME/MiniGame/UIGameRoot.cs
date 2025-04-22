@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class UIMiniGameSceneRoot : UIRoot
+public class UIGameRoot : UIRoot
 {
     [SerializeField] private MainPanel_Game mainPanel;
     [SerializeField] private FooterPanel_Game footerPanel;
@@ -414,8 +414,6 @@ public class UIMiniGameSceneRoot : UIRoot
     #endregion
 
     #endregion
-
-
 
 
     #region Output

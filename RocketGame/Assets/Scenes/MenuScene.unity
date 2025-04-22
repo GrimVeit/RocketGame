@@ -659,7 +659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds: {fileID: 2002616254}
-  menuRootPrefab: {fileID: 8508999539158046858}
+  uiMenuRootPrefab: {fileID: 8508999539158046858}
 --- !u!1 &928780853
 GameObject:
   m_ObjectHideFlags: 0
