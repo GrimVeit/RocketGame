@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class SoundView : View
 {
-    public event Action OnClickSoundButton;
-
     [SerializeField] private Button soundButton;
 
     public void Initialize()
@@ -34,4 +32,10 @@ public class SoundView : View
     {
         OnClickSoundButton?.Invoke();
     }
+
+    #region Output
+
+    public event Action OnClickSoundButton;
+
+    #endregion
 }

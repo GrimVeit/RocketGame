@@ -18,10 +18,9 @@ public class Sound : ISound
     [SerializeField] private bool isLoop;
     [SerializeField] private bool isPlayAwake;
 
-    private float normalVolume;
-    private float durationChangeVolume = 0.2f;
-
     private bool isMainControl;
+    private float normalVolume;
+    private readonly float durationChangeVolume = 0.2f;
 
     private IEnumerator setVolume_Coroutine;
 
@@ -43,21 +42,6 @@ public class Sound : ISound
         }
     }
 
-    public void MainMute()
-    {
-        isMainControl = true;
-
-        SetVolume(normalVolume, 0, () => audioSource.mute = true);
-    }
-
-    public void MainUnmute()
-    {
-        audioSource.mute = false;
-        isMainControl = false;
-
-        SetVolume(0, normalVolume);
-    }
-
     public void Mute()
     {
         if (isMainControl) return;
@@ -72,6 +56,21 @@ public class Sound : ISound
         audioSource.mute = false;
     }
 
+    public void MainControlMute()
+    {
+        isMainControl = true;
+
+        SetVolume(normalVolume, 0, () => audioSource.mute = true);
+    }
+
+    public void MainControlUnmute()
+    {
+        audioSource.mute = false;
+        isMainControl = false;
+
+        SetVolume(0, normalVolume);
+    }
+
     public void SetPitch(float pitch)
     {
         audioSource.pitch = pitch;
@@ -82,17 +81,17 @@ public class Sound : ISound
         audioSource.volume = volume;
     }
 
-    public void Play()
-    {
-        audioSource.Play();
-    }
-
     public void Pause()
     {
         audioSource.Pause();
     }
 
     public void Resume()
+    {
+        audioSource.Play();
+    }
+
+    public void Play()
     {
         audioSource.Play();
     }
@@ -157,10 +156,10 @@ public interface ISound
 {
     public float Volume { get;  }
     public void Play();
-    public void Resume();
-    public void PlayOneShot();
     public void Pause();
     public void Stop();
+    public void Resume();
+    public void PlayOneShot();
     public void SetVolume(float vol);
     public void SetVolume(float startVolume, float endVolume, Action action = null);
     public void SetVolume(float startVolume, float endVolume, float time, Action action = null);

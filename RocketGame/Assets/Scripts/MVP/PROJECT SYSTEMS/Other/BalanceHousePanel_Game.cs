@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BalanceHousePanel_Game : MovePanel
+public class BalanceHousePanel_Game : Panel_Move
 {
 
 }

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class BankModel
+public class MoneyModel
 {
     public float Money { get; private set; }
     public event Action OnAddMoney;

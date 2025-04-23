@@ -31,13 +31,19 @@ public class ProjectEntryPoint
 
     private static void GlobalSettings()
     {
-        Application.targetFrameRate = 60;
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
+        Application.targetFrameRate = 60;
     }
 
     private void Run()
     {
         coroutines.StartCoroutine(LoadAndStartMenu());
+    }
+
+    private IEnumerator LoadSceneCoroutine(string scene)
+    {
+        Debug.Log("Загрузка сцены с названием - " + scene);
+        yield return SceneManager.LoadSceneAsync(scene);
     }
 
     private IEnumerator LoadAndStartMenu()
@@ -77,11 +83,5 @@ public class ProjectEntryPoint
 
 
         yield return rootView.HideLoadingScreen();
-    }
-
-    private IEnumerator LoadSceneCoroutine(string scene)
-    {
-        Debug.Log("Загрузка сцены с названием - " + scene);
-        yield return SceneManager.LoadSceneAsync(scene);
     }
 }

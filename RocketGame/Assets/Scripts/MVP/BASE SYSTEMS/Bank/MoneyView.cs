@@ -4,15 +4,24 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class BankView : View
+public class MoneyView : View
 {
-    [SerializeField] private List<BankDisplayView> bankDisplayViews = new List<BankDisplayView>();
+
+    [SerializeField] private List<MoneyDisplayView> bankDisplayViews = new List<MoneyDisplayView>();
 
     public void Initialize()
     {
         for (int i = 0; i < bankDisplayViews.Count; i++)
         {
             bankDisplayViews[i].Initialize();
+        }
+    }
+
+    public void SendMoney(float money)
+    {
+        for (int i = 0; i < bankDisplayViews.Count; i++)
+        {
+            bankDisplayViews[i].SendMoneyDisplay(money);
         }
     }
 
@@ -29,14 +38,6 @@ public class BankView : View
         for (int i = 0; i < bankDisplayViews.Count; i++)
         {
             bankDisplayViews[i].RemoveMoney();
-        }
-    }
-
-    public void SendMoneyDisplay(float money)
-    {
-        for (int i = 0; i < bankDisplayViews.Count; i++)
-        {
-            bankDisplayViews[i].SendMoneyDisplay(money);
         }
     }
 }

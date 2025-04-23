@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HeaderPanel_Game : MovePanel
+public class HeaderPanel_Game : Panel_Move
 {
     [SerializeField] private Button buttonRestart;
     [SerializeField] private Button buttonRestart2;

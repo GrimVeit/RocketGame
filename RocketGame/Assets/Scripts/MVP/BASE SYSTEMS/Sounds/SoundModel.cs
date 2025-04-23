@@ -59,29 +59,13 @@ public class SoundModel
     {
         if (isMute)
         {
-            MuteAll();
+            MuteAllSounds();
             OnMuteSounds?.Invoke();
         }
         else
         {
-            UnmuteAll();
+            UnmuteAllSounds();
             OnUnmuteSounds?.Invoke();
-        }
-    }
-
-    private void MuteAll()
-    {
-        foreach (var sound in sounds.Values)
-        {
-            sound.MainMute();
-        }
-    }
-
-    private void UnmuteAll()
-    {
-        foreach (var sound in sounds.Values)
-        {
-            sound.MainUnmute();
         }
     }
 
@@ -116,5 +100,21 @@ public class SoundModel
         }
 
         Debug.LogError("Нет звукового файла с идентификатором " + id);
+    }
+
+    private void MuteAllSounds()
+    {
+        foreach (var sound in sounds.Values)
+        {
+            sound.MainControlMute();
+        }
+    }
+
+    private void UnmuteAllSounds()
+    {
+        foreach (var sound in sounds.Values)
+        {
+            sound.MainControlUnmute();
+        }
     }
 }

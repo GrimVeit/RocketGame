@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HouseStorageSelectItemPanel_Game : MovePanel
+public class HouseStorageSelectItemPanel_Game : Panel_Move
 {
     [SerializeField] private Button buttonExit;
 

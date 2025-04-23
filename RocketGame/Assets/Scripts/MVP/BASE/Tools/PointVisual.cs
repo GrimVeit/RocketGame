@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Point : MonoBehaviour
+public class PointVisual : MonoBehaviour
 {
     [SerializeField] private bool isVisible = true;
     [SerializeField] private Transform point;

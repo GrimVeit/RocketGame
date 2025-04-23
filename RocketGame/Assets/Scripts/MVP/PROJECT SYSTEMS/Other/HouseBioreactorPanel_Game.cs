@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HouseBioreactorPanel_Game : MovePanel
+public class HouseBioreactorPanel_Game : Panel_Move
 {
     [SerializeField] private Button buttonBedroom;
     [SerializeField] private Button buttonStorage;

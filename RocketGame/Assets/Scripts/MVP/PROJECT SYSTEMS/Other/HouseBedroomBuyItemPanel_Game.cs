@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class HouseBedroomBuyItemPanel_Game : MovePanel
+public class HouseBedroomBuyItemPanel_Game : Panel_Move
 {
     [SerializeField] private Button buttonExit;
 

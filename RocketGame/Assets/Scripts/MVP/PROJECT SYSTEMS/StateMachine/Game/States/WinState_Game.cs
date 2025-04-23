@@ -11,12 +11,12 @@ public class WinState_Game : IState
     private readonly ObstaclePresenter _obstaclePresenter;
     private readonly AltitudePresenter _altitudePresenter;
     private readonly ScorePresenter _scorePresenter;
-    private readonly IParticleEffectProvider _particleEffectProvider;
+    private readonly IParticleProvider _particleEffectProvider;
     private readonly ISoundProvider _soundProvider;
 
     private IEnumerator coroutineTimer;
 
-    public WinState_Game(IGlobalStateMachineProvider stateProvider, UIGameRoot sceneRoot, RocketMovePresenter rocketMovePresenter, ObstaclePresenter obstaclePresenter, AltitudePresenter altitudePresenter, ScorePresenter scorePresenter, IParticleEffectProvider particleEffectProvider, ISoundProvider soundProvider)
+    public WinState_Game(IGlobalStateMachineProvider stateProvider, UIGameRoot sceneRoot, RocketMovePresenter rocketMovePresenter, ObstaclePresenter obstaclePresenter, AltitudePresenter altitudePresenter, ScorePresenter scorePresenter, IParticleProvider particleEffectProvider, ISoundProvider soundProvider)
     {
         _stateProvider = stateProvider;
         _sceneRoot = sceneRoot;

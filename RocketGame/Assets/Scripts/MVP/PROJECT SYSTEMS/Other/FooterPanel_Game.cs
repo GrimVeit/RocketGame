@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FooterPanel_Game : MovePanel
+public class FooterPanel_Game : Panel_Move
 {
     [SerializeField] private Button buttonBet;
 

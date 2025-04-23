@@ -4,16 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class ParticleEffect : IParticleEffect
+public class ParticleVisual : IParticle
 {
     public string ID;
 
-    //public event Action OnStartParticleEffect;
-    //public event Action OnEndParticleEffect;
-
-    private bool isPlaying;
-
-    public List<Particle> particles = new List<Particle>();
+    public List<Particle> particles = new();
 
     private IEnumerator coroutineParticles;
 
@@ -53,6 +48,7 @@ public class ParticleEffect : IParticleEffect
         }
     }
 
+
     private IEnumerator PlayParticles_Coroutine()
     {
         for (int i = 0; i < particles.Count; i++)
@@ -63,10 +59,8 @@ public class ParticleEffect : IParticleEffect
     }
 }
 
-public interface IParticleEffect 
+public interface IParticle 
 { 
-    //event Action OnStartParticleEffect;
-    //event Action OnEndParticleEffect;
     void Play();
     void Stop();
 }
@@ -77,6 +71,7 @@ public class Particle
 {
     public float TimeToInterval => timeToInterval;
 
+    private ParticleSystem particleSystem;
     [SerializeField] private float timeToInterval;
     [SerializeField] private ParticleSystem particleSystemPrefab;
     [SerializeField] private Transform particleTransform;
@@ -84,9 +79,6 @@ public class Particle
     [SerializeField] private float minSize;
     [SerializeField] private float maxSize;
     [SerializeField] private bool isPlayAwake;
-
-    private ParticleSystem particleSystem;
-
     public void Initialize()
     {
         particleSystem = UnityEngine.Object.Instantiate(particleSystemPrefab, particleTransform);
@@ -106,6 +98,12 @@ public class Particle
         Stop();
     }
 
+    private void Destroy()
+    {
+        if (particleSystem != null)
+            Coroutines.Destroy(particleSystem.gameObject);
+    }
+
     public void Play()
     {
         if(particleSystem != null)
@@ -116,11 +114,5 @@ public class Particle
     {
         if(particleSystem != null)
            particleSystem.Stop();
-    }
-
-    private void Destroy()
-    {
-        if (particleSystem != null)
-            Coroutines.Destroy(particleSystem.gameObject);
     }
 }

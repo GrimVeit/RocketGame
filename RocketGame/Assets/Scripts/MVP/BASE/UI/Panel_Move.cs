@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovePanel : Panel
+public class Panel_Move : Panel
 {
     public bool IsActive => isActive;
 
@@ -60,8 +60,8 @@ public class MovePanel : Panel
 
     #region Input
 
-    public event Action<MovePanel> OnDeactivatePanel;
-    public event Action<MovePanel> OnActivatePanel;
+    public event Action<Panel_Move> OnDeactivatePanel;
+    public event Action<Panel_Move> OnActivatePanel;
 
     #endregion
 }

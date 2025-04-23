@@ -13,8 +13,8 @@ public class MenuEntryPoint : MonoBehaviour
     private UIMenuRoot sceneRoot;
     private ViewContainer viewContainer;
 
-    private BankPresenter bankPresenter;
-    private ParticleEffectPresenter particleEffectPresenter;
+    private MoneyPresenter bankPresenter;
+    private ParticlePresenter particleEffectPresenter;
     private SoundPresenter soundPresenter;
 
     private InternetPresenter internetPresenter;
@@ -46,14 +46,14 @@ public class MenuEntryPoint : MonoBehaviour
                 DatabaseReference databaseReference = FirebaseDatabase.DefaultInstance.RootReference;
 
                 soundPresenter = new SoundPresenter
-                    (new SoundModel(sounds.sounds, PlayerPrefsKeys.IS_MUTE_SOUNDS),
+                    (new SoundModel(sounds.sounds, PrefsKeys.IS_MUTE_SOUNDS),
                     viewContainer.GetView<SoundView>());
 
-                particleEffectPresenter = new ParticleEffectPresenter
-                    (new ParticleEffectModel(),
-                    viewContainer.GetView<ParticleEffectView>());
+                particleEffectPresenter = new ParticlePresenter
+                    (new ParticleModel(),
+                    viewContainer.GetView<ParticleView>());
 
-                bankPresenter = new BankPresenter(new BankModel(), viewContainer.GetView<BankView>());
+                bankPresenter = new MoneyPresenter(new MoneyModel(), viewContainer.GetView<MoneyView>());
 
                 internetPresenter = new InternetPresenter(new InternetModel(), viewContainer.GetView<InternetView>());
 

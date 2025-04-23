@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AuthorizationPanel_Menu : MovePanel
+public class AuthorizationPanel_Menu : Panel_Move
 {
     
 }

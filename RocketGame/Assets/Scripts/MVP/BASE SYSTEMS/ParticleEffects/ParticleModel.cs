@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParticleEffectModel
+public class ParticleModel
 {
     public event Action OnActivateEffect;
     
-    public Dictionary<string, ParticleEffect> particleEffects = new Dictionary<string, ParticleEffect>();
+    public Dictionary<string, ParticleVisual> particleEffects = new Dictionary<string, ParticleVisual>();
 
-    public void Initialize(ParticleEffect[] effects)
+    public void Initialize(ParticleVisual[] effects)
     {
         for (int i = 0; i < effects.Length; i++)
         {
@@ -25,16 +25,7 @@ public class ParticleEffectModel
         }
     }
 
-    public void Play(string ID)
-    {
-        if (particleEffects.ContainsKey(ID))
-        {
-            OnActivateEffect?.Invoke();
-            particleEffects[ID].Play();
-        }
-    }
-
-    public IParticleEffect GetParticleEffect(string id)
+    public IParticle GetParticleEffectById(string id)
     {
         if (particleEffects.ContainsKey(id))
         {
@@ -43,5 +34,14 @@ public class ParticleEffectModel
 
         Debug.Log("Ёффект с идентификатором " + id + "не был найден");
         return null;
+    }
+
+    public void Play(string ID)
+    {
+        if (particleEffects.ContainsKey(ID))
+        {
+            OnActivateEffect?.Invoke();
+            particleEffects[ID].Play();
+        }
     }
 }

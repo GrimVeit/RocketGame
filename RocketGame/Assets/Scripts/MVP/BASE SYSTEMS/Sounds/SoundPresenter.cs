@@ -4,56 +4,56 @@ using UnityEngine;
 
 public class SoundPresenter : ISoundProvider
 {
-    private SoundModel soundModel;
-    private SoundView soundView;
+    private readonly SoundModel _model;
+    private readonly SoundView _view;
 
-    public SoundPresenter(SoundModel soundModel, SoundView soundView)
+    public SoundPresenter(SoundModel model, SoundView view)
     {
-        this.soundModel = soundModel;
-        this.soundView = soundView;
+        _model = model;
+        _view = view;
     }
 
     public void Initialize()
     {
         ActivateEvents();
 
-        soundModel.Initialize();
-        soundView.Initialize();
+        _model.Initialize();
+        _view.Initialize();
     }
 
     public void Dispose()
     {
         DeactivateEvents();
 
-        soundModel.Dispose();
-        soundView.Dispose();
+        _model.Dispose();
+        _view.Dispose();
     }
 
     private void ActivateEvents()
     {
-        soundView.OnClickSoundButton += soundModel.MuteUnmute;
+        _view.OnClickSoundButton += _model.MuteUnmute;
     }
 
     private void DeactivateEvents()
     {
-        soundView.OnClickSoundButton -= soundModel.MuteUnmute;
+        _view.OnClickSoundButton -= _model.MuteUnmute;
     }
 
-    #region Interface
+    #region Input
 
     public void Play(string id)
     {
-        soundModel.Play(id);
+        _model.Play(id);
     }
 
     public void PlayOneShot(string id)
     {
-        soundModel.PlayOneShot(id);
+        _model.PlayOneShot(id);
     }
 
     public ISound GetSound(string id)
     {
-        return soundModel.GetSound(id);
+        return _model.GetSound(id);
     }
 
     #endregion
@@ -63,5 +63,6 @@ public interface ISoundProvider
 {
     void Play(string id);
     void PlayOneShot(string id);
+
     ISound GetSound(string id);
 }

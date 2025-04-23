@@ -5,7 +5,7 @@ public class UIMenuRoot : UIRoot
 {
     [SerializeField] private MainPanel_Menu mainPanel;
     [SerializeField] private LeaderboardPanel_Menu leaderboardPanel;
-    [SerializeField] private MovePanel authorizationPanel;
+    [SerializeField] private Panel_Move authorizationPanel;
 
     private ISoundProvider soundProvider;
 

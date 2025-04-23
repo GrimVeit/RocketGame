@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HouseChoosePanel_Game : MovePanel
+public class HouseChoosePanel_Game : Panel_Move
 {
     [SerializeField] private Button buttonHouse;
 

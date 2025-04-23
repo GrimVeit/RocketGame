@@ -14,9 +14,9 @@ public class GameEntryPoint : MonoBehaviour
 
     private UIGameRoot sceneRoot;
     private ViewContainer viewContainer;
-    private BankPresenter bankPresenter;
+    private MoneyPresenter bankPresenter;
     private SoundPresenter soundPresenter;
-    private ParticleEffectPresenter particleEffectPresenter;
+    private ParticlePresenter particleEffectPresenter;
 
     private ScrollBackgroundPresenter scrollBackgroundPresenter;
     private PlatformPresenter platformPresenter;
@@ -75,9 +75,9 @@ public class GameEntryPoint : MonoBehaviour
         viewContainer = sceneRoot.GetComponent<ViewContainer>();
         viewContainer.Initialize();
 
-        soundPresenter = new SoundPresenter(new SoundModel(sounds.sounds, PlayerPrefsKeys.IS_MUTE_SOUNDS), viewContainer.GetView<SoundView>());
-        bankPresenter = new BankPresenter(new BankModel(), viewContainer.GetView<BankView>());
-        particleEffectPresenter = new ParticleEffectPresenter(new ParticleEffectModel(), viewContainer.GetView<ParticleEffectView>());
+        soundPresenter = new SoundPresenter(new SoundModel(sounds.sounds, PrefsKeys.IS_MUTE_SOUNDS), viewContainer.GetView<SoundView>());
+        bankPresenter = new MoneyPresenter(new MoneyModel(), viewContainer.GetView<MoneyView>());
+        particleEffectPresenter = new ParticlePresenter(new ParticleModel(), viewContainer.GetView<ParticleView>());
 
         scrollBackgroundPresenter = new ScrollBackgroundPresenter(new ScrollBackgroundModel(), viewContainer.GetView<ScrollBackgroundView>());
         platformPresenter = new PlatformPresenter(new  PlatformModel(), viewContainer.GetView<PlatformView>());
@@ -85,7 +85,7 @@ public class GameEntryPoint : MonoBehaviour
         rocketMovePresenter = new RocketMovePresenter(new RocketMoveModel(), viewContainer.GetView<RocketMoveView>());
         rocketControlPresenter = new RocketControlPresenter(new RocketControlModel(), viewContainer.GetView<RocketControlView>());
 
-        storeBetPresenter = new StoreBetPresenter(new StoreBetModel(PlayerPrefsKeys.BET, 2.4f));
+        storeBetPresenter = new StoreBetPresenter(new StoreBetModel(PrefsKeys.BET, 2.4f));
         betSelectPresenter = new BetSelectPresenter(new BetSelectModel(soundPresenter), viewContainer.GetView<BetSelectView>());
         betPreparePresenter = new BetPreparePresenter(new BetPrepareModel(bankPresenter), viewContainer.GetView<BetPrepareView>());
 
@@ -96,7 +96,7 @@ public class GameEntryPoint : MonoBehaviour
         altitudePresenter = new AltitudePresenter(new AltitudeModel(), viewContainer.GetView<AltitudeView>());
         courseDisplacementPresenter = new CourseDisplacementPresenter(new CourseDisplacementModel(), viewContainer.GetView<CourseDisplacementView>());
         scoreMultiplierPresenter = new ScoreMultiplierPresenter(new ScoreMultiplierModel(), viewContainer.GetView<ScoreMultiplierView>());
-        scorePresenter = new ScorePresenter(new ScoreModel(bankPresenter, PlayerPrefsKeys.WIN_RECORD, PlayerPrefsKeys.WIN_LAST), viewContainer.GetView<ScoreView>());
+        scorePresenter = new ScorePresenter(new ScoreModel(bankPresenter, PrefsKeys.WIN_RECORD, PrefsKeys.WIN_LAST), viewContainer.GetView<ScoreView>());
 
         animationFramePresenter = new AnimationFramePresenter(new AnimationFrameModel(), viewContainer.GetView<AnimationFrameView>());
         obstacleEffectPresenter = new ObstacleEffectPresenter(new ObstacleEffectModel(animationFramePresenter));

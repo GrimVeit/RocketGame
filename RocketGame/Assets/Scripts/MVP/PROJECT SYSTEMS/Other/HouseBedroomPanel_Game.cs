@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HouseBedroomPanel_Game : MovePanel
+public class HouseBedroomPanel_Game : Panel_Move
 {
     [SerializeField] private Button buttonGame;
     [SerializeField] private Button buttonBioreactor;

@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainPanel_Menu : MovePanel
+public class MainPanel_Menu : Panel_Move
 {
     [SerializeField] private Button buttonPlay;
     [SerializeField] private Button buttonLeaderboard;

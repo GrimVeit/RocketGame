@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BetPanel_Game : MovePanel
+public class BetPanel_Game : Panel_Move
 {
     [SerializeField] private List<Button> buttonsExit = new List<Button>();
 

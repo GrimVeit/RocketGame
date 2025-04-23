@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WinPanel_Game : MovePanel
+public class WinPanel_Game : Panel_Move
 {
     [SerializeField] private Button buttonClose;
 

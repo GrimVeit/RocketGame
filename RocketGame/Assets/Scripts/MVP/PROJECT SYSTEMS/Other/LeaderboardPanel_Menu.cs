@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LeaderboardPanel_Menu : MovePanel
+public class LeaderboardPanel_Menu : Panel_Move
 {
     [SerializeField] private Button buttonExit;
 

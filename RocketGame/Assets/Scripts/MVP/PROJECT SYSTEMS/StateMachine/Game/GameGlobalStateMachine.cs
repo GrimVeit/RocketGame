@@ -23,7 +23,7 @@ public class GameGlobalStateMachine : IGlobalStateMachineProvider
         ObstacleRocketMovePresenter obstacleRocketMovePresenter,
         ScorePresenter scorePresenter,
         ISoundProvider soundProvider,
-        IParticleEffectProvider particleEffectProvider)
+        IParticleProvider particleEffectProvider)
     {
         states[typeof(ArrivalState_Game)] = new ArrivalState_Game(this, rocketMovePresenter, platformPresenter, sceneRoot, obstaclePresenter, altitudePresenter, courseDisplacementPresenter, scoreMultiplierPresenter, obstacleEffectPresenter, obstacleRocketMovePresenter, soundProvider);
         states[typeof(PrepareState_Game)] = new PrepareState_Game(this, sceneRoot, storeBetPresenter, betPreparePresenter, soundProvider);

@@ -40,9 +40,9 @@ public class FirebaseAuthenticationModel
     public string Nickname;
 
     private ISoundProvider soundProvider;
-    private IParticleEffectProvider particleEffectProvider;
+    private IParticleProvider particleEffectProvider;
 
-    public FirebaseAuthenticationModel(FirebaseAuth auth, ISoundProvider soundProvider, IParticleEffectProvider particleEffectProvider)
+    public FirebaseAuthenticationModel(FirebaseAuth auth, ISoundProvider soundProvider, IParticleProvider particleEffectProvider)
     {
         this.auth = auth;
         this.soundProvider = soundProvider;
