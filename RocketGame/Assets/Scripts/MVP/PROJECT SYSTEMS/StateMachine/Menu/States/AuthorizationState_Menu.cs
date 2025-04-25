@@ -4,20 +4,24 @@ public class AuthorizationState_Menu : IState
 
     private readonly NicknameRandomPresenter _nicknameRandomPresenter;
     private readonly FirebaseAuthenticationPresenter _firebaseAuthenticationPresenter;
-    private readonly FirebaseDatabaseRealtimePresenter _firebaseDatabaseRealtimePresenter;
+    private readonly FirebaseDatabasePresenter _firebaseDatabaseRealtimePresenter;
+    private readonly InternetPresenter _internetPresenter;
     private readonly UIMenuRoot _sceneRoot;
 
-    public AuthorizationState_Menu(IGlobalStateMachineProvider globalStateMachineProvider, NicknameRandomPresenter nicknameRandomPresenter, FirebaseAuthenticationPresenter firebaseAuthenticationPresenter, FirebaseDatabaseRealtimePresenter firebaseDatabaseRealtimePresenter, UIMenuRoot sceneRoot)
+    public AuthorizationState_Menu(IGlobalStateMachineProvider globalStateMachineProvider, NicknameRandomPresenter nicknameRandomPresenter, FirebaseAuthenticationPresenter firebaseAuthenticationPresenter, FirebaseDatabasePresenter firebaseDatabaseRealtimePresenter, UIMenuRoot sceneRoot, InternetPresenter internetPresenter)
     {
         _globalStateMachineProvider = globalStateMachineProvider;
         _nicknameRandomPresenter = nicknameRandomPresenter;
         _firebaseAuthenticationPresenter = firebaseAuthenticationPresenter;
         _firebaseDatabaseRealtimePresenter = firebaseDatabaseRealtimePresenter;
         _sceneRoot = sceneRoot;
+        _internetPresenter = internetPresenter;
     }
 
     public void EnterState()
     {
+        _internetPresenter.OnInternetAvailable += CreateRandomNickname;
+
         _nicknameRandomPresenter.OnFailure += CreateRandomNickname;
         _nicknameRandomPresenter.OnSuccess += _firebaseAuthenticationPresenter.SignUp;
 
@@ -30,11 +34,15 @@ public class AuthorizationState_Menu : IState
 
         _sceneRoot.OpenAuthorizationPanel();
 
-        CreateRandomNickname();
+        _internetPresenter.CheckConnection();
+
+        //CreateRandomNickname();
     }
 
     public void ExitState()
     {
+        _internetPresenter.OnInternetAvailable -= CreateRandomNickname;
+
         _nicknameRandomPresenter.OnFailure -= CreateRandomNickname;
         _nicknameRandomPresenter.OnSuccess -= _firebaseAuthenticationPresenter.SignUp;
 

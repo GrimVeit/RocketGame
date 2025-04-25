@@ -2,8 +2,8 @@ using System;
 
 public class InternetPresenter
 {
-    private InternetModel internetModel;
-    private InternetView internetView;
+    private readonly InternetModel internetModel;
+    private readonly InternetView internetView;
 
     public InternetPresenter(InternetModel internetModel, InternetView internetView)
     {
@@ -23,12 +23,12 @@ public class InternetPresenter
 
     private void ActivateEvents()
     {
-
+        internetModel.OnGetStatusDescription += internetView.OnGetStatusDescription;
     }
 
     private void DeactivateEvents()
     {
-
+        internetModel.OnGetStatusDescription -= internetView.OnGetStatusDescription;
     }
 
     #region Input

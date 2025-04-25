@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirebaseDatabaseRealtimeModel
+public class FirebaseDatabaseModel
 {
     public event Action<UserData> OnGetUserFromPlace;
     public event Action<string> OnGetNickname;
@@ -23,7 +23,7 @@ public class FirebaseDatabaseRealtimeModel
 
     private ISoundProvider soundProvider;
 
-    public FirebaseDatabaseRealtimeModel(FirebaseAuth auth, DatabaseReference database, ISoundProvider soundProvider)
+    public FirebaseDatabaseModel(FirebaseAuth auth, DatabaseReference database, ISoundProvider soundProvider)
     {
         this.auth = auth;
         this.databaseReference = database;
@@ -87,7 +87,7 @@ public class FirebaseDatabaseRealtimeModel
     private IEnumerator GetUsersRecords()
     {
         //var task = databaseReference.Child("Users").OrderByChild("Record").LimitToFirst(15).GetValueAsync();
-        var task = databaseReference.Child("Users").OrderByChild("Record").LimitToLast(15).GetValueAsync();
+        var task = databaseReference.Child("Users").OrderByChild("Record").LimitToLast(10).GetValueAsync();
 
         yield return new WaitUntil(() => task.IsCompleted);
 

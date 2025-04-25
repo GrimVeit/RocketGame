@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CourseDisplacementPresenter
+public class CourseDisplacementRocketPresenter
 {
-    private readonly CourseDisplacementModel _model;
-    private readonly CourseDisplacementView _view;
+    private readonly CourseDisplacementRocketModel _model;
+    private readonly CourseDisplacementRocketView _view;
 
-    public CourseDisplacementPresenter(CourseDisplacementModel model, CourseDisplacementView view)
+    public CourseDisplacementRocketPresenter(CourseDisplacementRocketModel model, CourseDisplacementRocketView view)
     {
         _model = model;
         _view = view;

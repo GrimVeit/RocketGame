@@ -11,12 +11,12 @@ public class MainGameState_Game : IState
     private readonly ScrollBackgroundPresenter _scrollBackgroundPresenter;
     private readonly UIGameRoot _sceneRoot;
     private readonly ObstacleSpawnerPresenter _obstacleSpawnerPresenter;
-    private readonly CourseDisplacementPresenter _courseDisplacementPresenter;
+    private readonly CourseDisplacementRocketPresenter _courseDisplacementPresenter;
 
     private readonly ISoundProvider _soundProvider;
     private readonly ISound _soundGameMain;
 
-    public MainGameState_Game(IGlobalStateMachineProvider stateMachineProvider, PlatformPresenter platformPresenter, RocketMovePresenter rocketMovePresenter, ScrollBackgroundPresenter scrollBackgroundPresenter, UIGameRoot sceneRoot, ObstacleSpawnerPresenter obstacleSpawnerPresenter, CourseDisplacementPresenter courseDisplacementPresenter, ISoundProvider soundProvider)
+    public MainGameState_Game(IGlobalStateMachineProvider stateMachineProvider, PlatformPresenter platformPresenter, RocketMovePresenter rocketMovePresenter, ScrollBackgroundPresenter scrollBackgroundPresenter, UIGameRoot sceneRoot, ObstacleSpawnerPresenter obstacleSpawnerPresenter, CourseDisplacementRocketPresenter courseDisplacementPresenter, ISoundProvider soundProvider)
     {
         _stateMachineProvider = stateMachineProvider;
         _platformPresenter = platformPresenter;

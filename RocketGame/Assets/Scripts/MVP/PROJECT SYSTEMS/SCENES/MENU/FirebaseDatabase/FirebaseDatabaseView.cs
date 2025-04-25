@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FirebaseDatabaseRealtimeView : View
+public class FirebaseDatabaseView : View
 {
     [SerializeField] private Transform contentUsers;
     [SerializeField] private UserGrid userGridPrefab;

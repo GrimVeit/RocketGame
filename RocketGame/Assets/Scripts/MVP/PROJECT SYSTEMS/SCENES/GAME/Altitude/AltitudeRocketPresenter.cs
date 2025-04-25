@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AltitudePresenter
+public class AltitudeRocketPresenter
 {
-    private readonly AltitudeModel _model;
-    private readonly AltitudeView _view;
+    private readonly AltitudeRocketModel _model;
+    private readonly AltitudeRocketView _view;
 
-    public AltitudePresenter(AltitudeModel model, AltitudeView view)
+    public AltitudeRocketPresenter(AltitudeRocketModel model, AltitudeRocketView view)
     {
         _model = model;
         _view = view;

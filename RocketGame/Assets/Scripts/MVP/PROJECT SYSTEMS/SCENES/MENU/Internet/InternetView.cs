@@ -9,6 +9,6 @@ public class InternetView : View
 
     public void OnGetStatusDescription(string description)
     {
-        //textDescription.text = description;
+        textDescription.text = description;
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class CourseDisplacementModel
+public class CourseDisplacementRocketModel
 {
     public event Action<int> OnChangeCourse;
 

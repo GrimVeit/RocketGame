@@ -2,40 +2,12 @@ using Firebase;
 using Firebase.Auth;
 using System;
 using System.Collections;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using UnityEngine;
 
 public class FirebaseAuthenticationModel
 {
-    public event Action OnActivate;
-    public event Action OnDeactivate;
-
-
-    public event Action<string> OnChangeUser;
-
-    public event Action OnSignIn_Action;
-    public event Action<string> OnSignInError_Action;
-
-    public event Action OnSignUp_Action;
-    public event Action OnSignUpError_Action;
-    public event Action<string> OnSignUpMessage_Action;
-
-    public event Action OnSignOut_Action;
-
-    public event Action OnDeleteAccount_Action;
-
-    public event Action OnEnterRegisterLoginSuccess;
-    public event Action<string> OnEnterRegisterLoginError;
-
-    public event Action<string> OnGetRandomNickname;
-
-
     private FirebaseAuth auth;
-
-    private readonly Regex mainRegex = new("^[a-zA-Z0-9._]*$");
-    private readonly Regex invalidRegex = new(@"(\.{2,}|/{2,})");
-    private const string URL = "https://dinoipsum.com/api/?format=text&paragraphs=1&words=1";
 
     public string Nickname;
 
@@ -64,6 +36,8 @@ public class FirebaseAuthenticationModel
     {
         OnDeactivate?.Invoke();
     }
+
+    #region Input
 
     public void SetNickname(string nickname)
     {
@@ -100,6 +74,34 @@ public class FirebaseAuthenticationModel
         OnDeleteAccount_Action?.Invoke();
         Coroutines.Start(DeleteAuth_Coroutine());
     }
+
+    #endregion
+
+    #region Output
+
+    public event Action OnActivate;
+    public event Action OnDeactivate;
+
+
+    public event Action<string> OnChangeUser;
+
+    public event Action OnSignIn_Action;
+    public event Action<string> OnSignInError_Action;
+
+    public event Action OnSignUp_Action;
+    public event Action OnSignUpError_Action;
+    public event Action<string> OnSignUpMessage_Action;
+
+    public event Action OnSignOut_Action;
+
+    public event Action OnDeleteAccount_Action;
+
+    public event Action OnEnterRegisterLoginSuccess;
+    public event Action<string> OnEnterRegisterLoginError;
+
+    public event Action<string> OnGetRandomNickname;
+
+    #endregion
 
     #region Coroutines
 

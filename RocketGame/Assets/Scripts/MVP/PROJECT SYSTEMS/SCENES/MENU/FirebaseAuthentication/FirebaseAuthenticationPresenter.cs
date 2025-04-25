@@ -1,120 +1,116 @@
-//using Firebase.Auth;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class FirebaseAuthenticationPresenter
 {
-    private FirebaseAuthenticationModel firebaseAuthenticationModel;
-    private FirebaseAuthenticationView firebaseAuthenticationView;
+    private readonly FirebaseAuthenticationModel _model;
+    private readonly FirebaseAuthenticationView _view;
 
-    public FirebaseAuthenticationPresenter(FirebaseAuthenticationModel firebaseAuthenticationModel, FirebaseAuthenticationView firebaseAuthenticationView)
+    public FirebaseAuthenticationPresenter(FirebaseAuthenticationModel model, FirebaseAuthenticationView view)
     {
-        this.firebaseAuthenticationModel = firebaseAuthenticationModel;
-        this.firebaseAuthenticationView = firebaseAuthenticationView;
+        _model = model;
+        _view = view;
     }
 
     public void Initialize()
     {
         ActivateEvents();
 
-        firebaseAuthenticationModel.Initialize();
-        firebaseAuthenticationView?.Initialize();
+        _model.Initialize();
+        _view?.Initialize();
     }
 
     public void Dispose()
     {
         DeactivateEvents();
 
-        firebaseAuthenticationView?.Dispose();
+        _view?.Dispose();
     }
 
     private void ActivateEvents()
     {
-        firebaseAuthenticationModel.OnSignUpMessage_Action += firebaseAuthenticationView.SetDescription;
+        _model.OnSignUpMessage_Action += _view.SetDescription;
     }
 
     private void DeactivateEvents()
     {
-        firebaseAuthenticationModel.OnSignUpMessage_Action -= firebaseAuthenticationView.SetDescription;
+        _model.OnSignUpMessage_Action -= _view.SetDescription;
     }
 
     #region Input
 
     public void Activate()
     {
-        firebaseAuthenticationModel.Activate();
+        _model.Activate();
     }
 
     public void Deactivate()
     {
-        firebaseAuthenticationModel.Deactivate();
+        _model.Deactivate();
     }
     public bool IsAuthorization()
     {
-        return firebaseAuthenticationModel.IsAuthorization();
+        return _model.IsAuthorization();
     }
 
     public void DeleteAccount()
     {
-        firebaseAuthenticationModel.DeleteAccount();
-    }
-
-    public void SignUp()
-    {
-        firebaseAuthenticationModel.SignUp();
+        _model.DeleteAccount();
     }
 
     public void SignOut()
     {
-        firebaseAuthenticationModel.SignOut();
+        _model.SignOut();
+    }
+
+    public void SignUp()
+    {
+        _model.SignUp();
     }
 
     public void SetNickname(string nickname)
     {
-        firebaseAuthenticationModel.SetNickname(nickname);
+        _model.SetNickname(nickname);
     }
 
     public event Action<string> OnChangeCurrentUser
     {
-        add { firebaseAuthenticationModel.OnChangeUser += value; }
-        remove { firebaseAuthenticationModel.OnChangeUser -= value; }
+        add { _model.OnChangeUser += value; }
+        remove { _model.OnChangeUser -= value; }
     }
 
 
 
     public event Action OnSignIn
     {
-        add { firebaseAuthenticationModel.OnSignIn_Action += value; }
-        remove { firebaseAuthenticationModel.OnSignIn_Action -= value; }
+        add { _model.OnSignIn_Action += value; }
+        remove { _model.OnSignIn_Action -= value; }
     }
 
 
 
     public event Action OnSignUp
     {
-        add { firebaseAuthenticationModel.OnSignUp_Action += value; }
-        remove { firebaseAuthenticationModel.OnSignUp_Action -= value; }
+        add { _model.OnSignUp_Action += value; }
+        remove { _model.OnSignUp_Action -= value; }
     }
 
     public event Action OnSignUpError
     {
-        add { firebaseAuthenticationModel.OnSignUpError_Action += value; }
-        remove { firebaseAuthenticationModel.OnSignUpError_Action -= value; }
+        add { _model.OnSignUpError_Action += value; }
+        remove { _model.OnSignUpError_Action -= value; }
     }
 
 
     public event Action OnSignOut
     {
-        add { firebaseAuthenticationModel.OnSignOut_Action += value; }
-        remove { firebaseAuthenticationModel.OnSignOut_Action -= value; }
+        add { _model.OnSignOut_Action += value; }
+        remove { _model.OnSignOut_Action -= value; }
     }
 
     public event Action OnDeleteAccount
     {
-        add { firebaseAuthenticationModel.OnDeleteAccount_Action += value; }
-        remove { firebaseAuthenticationModel.OnDeleteAccount_Action -= value; }
+        add { _model.OnDeleteAccount_Action += value; }
+        remove { _model.OnDeleteAccount_Action -= value; }
     }
 
     #endregion

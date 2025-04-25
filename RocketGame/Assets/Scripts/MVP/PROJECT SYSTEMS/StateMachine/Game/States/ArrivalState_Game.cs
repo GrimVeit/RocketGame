@@ -10,8 +10,8 @@ public class ArrivalState_Game : IState
     private readonly PlatformPresenter _platformPresenter;
     private readonly UIGameRoot _sceneRoot;
     private readonly ObstaclePresenter _obstaclePresenter;
-    private readonly AltitudePresenter _altitudePresenter;
-    private readonly CourseDisplacementPresenter _courseDisplacementPresenter;
+    private readonly AltitudeRocketPresenter _altitudePresenter;
+    private readonly CourseDisplacementRocketPresenter _courseDisplacementPresenter;
     private readonly ScoreMultiplierPresenter _scoreMultiplierPresenter;
     private readonly ObstacleEffectPresenter _obstacleEffectPresenter;
     private readonly ObstacleRocketMovePresenter _obstacleRocketMovePresenter;
@@ -25,8 +25,8 @@ public class ArrivalState_Game : IState
         PlatformPresenter platformPresenter, 
         UIGameRoot sceneRoot, 
         ObstaclePresenter obstaclePresenter, 
-        AltitudePresenter altitudePresenter, 
-        CourseDisplacementPresenter courseDisplacementPresenter, 
+        AltitudeRocketPresenter altitudePresenter, 
+        CourseDisplacementRocketPresenter courseDisplacementPresenter, 
         ScoreMultiplierPresenter scoreMultiplierPresenter, 
         ObstacleEffectPresenter obstacleEffectPresenter,
         ObstacleRocketMovePresenter obstacleRocketMovePresenter,

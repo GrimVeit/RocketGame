@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class AltitudeModel
+public class AltitudeRocketModel
 {
     public event Action<int> OnChangeAltitude;
 

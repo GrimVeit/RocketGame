@@ -13368,27 +13368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccea749191bb83941be022f00420c8aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effects:
-  - ID: Win
-    particles:
-    - timeToInterval: 0
-      particleSystemPrefab: {fileID: 3163946680720769229, guid: 9c4c1342f0016d04c8bddaad9f68881e, type: 3}
-      particleTransform: {fileID: 1808741054}
-      minSize: 0.5
-      maxSize: 0.6
-      isPlayAwake: 0
-    - timeToInterval: 0
-      particleSystemPrefab: {fileID: 6006790211137986845, guid: d64ac9209a4c8ad4ba3ed0baff16af59, type: 3}
-      particleTransform: {fileID: 1808741054}
-      minSize: 0.5
-      maxSize: 0.6
-      isPlayAwake: 0
-    - timeToInterval: 0
-      particleSystemPrefab: {fileID: 1864392905350765002, guid: e0de0e7677dc5ac41aad7cc1ab1f87bf, type: 3}
-      particleTransform: {fileID: 1808741054}
-      minSize: 0.5
-      maxSize: 0.6
-      isPlayAwake: 0
+  particleVisuals: []
 --- !u!1 &797726930
 GameObject:
   m_ObjectHideFlags: 0
@@ -13784,7 +13764,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 500.00006, y: 300}
+  m_AnchoredPosition: {x: 500, y: 300}
   m_SizeDelta: {x: 83.30005, y: 135.19995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &810943427
@@ -14084,7 +14064,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -500.00006, y: 300}
+  m_AnchoredPosition: {x: -500, y: 300}
   m_SizeDelta: {x: 83.29999, y: 135.19995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &829312780
@@ -14870,7 +14850,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -500.00006, y: -300}
+  m_AnchoredPosition: {x: -500, y: -300}
   m_SizeDelta: {x: 83.29999, y: 135.19995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &862768367
@@ -30849,7 +30829,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 500.00006, y: -300}
+  m_AnchoredPosition: {x: 500, y: -300}
   m_SizeDelta: {x: 83.30005, y: 135.19995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1826269363
@@ -36066,21 +36046,21 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1124882114599888113}
   - {fileID: 6186702370134061893}
-  - {fileID: 511591620129602502}
+  - {fileID: 1124882114599888113}
   - {fileID: 1368210845}
+  - {fileID: 511591620129602502}
   - {fileID: 774860606}
   - {fileID: 2080476176}
   - {fileID: 1478994220}
   - {fileID: 824765612}
-  - {fileID: 438301577}
-  - {fileID: 1884757560}
   - {fileID: 683114947}
+  - {fileID: 1884757560}
+  - {fileID: 438301577}
   - {fileID: 849753556}
-  - {fileID: 1670842481}
   - {fileID: 1742090742}
   - {fileID: 1700034674}
+  - {fileID: 1670842481}
   m_Father: {fileID: 159346687154089797}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}

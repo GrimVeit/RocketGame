@@ -9,10 +9,10 @@ public class MenuGlobalStateMachine : IGlobalStateMachineProvider
 
     private IState currentState;
 
-    public MenuGlobalStateMachine(InternetPresenter internetPresenter, FirebaseAuthenticationPresenter firebaseAuthenticationPresenter, FirebaseDatabaseRealtimePresenter firebaseDatabaseRealtimePresenter, NicknameRandomPresenter nicknameRandomPresenter, UIMenuRoot sceneRoot)
+    public MenuGlobalStateMachine(InternetPresenter internetPresenter, FirebaseAuthenticationPresenter firebaseAuthenticationPresenter, FirebaseDatabasePresenter firebaseDatabaseRealtimePresenter, NicknameRandomPresenter nicknameRandomPresenter, UIMenuRoot sceneRoot)
     {
         states[typeof(CheckAuthorizationState_Menu)] = new CheckAuthorizationState_Menu(this, firebaseAuthenticationPresenter);
-        states[typeof(AuthorizationState_Menu)] = new AuthorizationState_Menu(this, nicknameRandomPresenter, firebaseAuthenticationPresenter, firebaseDatabaseRealtimePresenter, sceneRoot);
+        states[typeof(AuthorizationState_Menu)] = new AuthorizationState_Menu(this, nicknameRandomPresenter, firebaseAuthenticationPresenter, firebaseDatabaseRealtimePresenter, sceneRoot, internetPresenter);
         states[typeof(MainState_Menu)] = new MainState_Menu(this, sceneRoot, firebaseDatabaseRealtimePresenter);
     }
 

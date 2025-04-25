@@ -1,11 +1,11 @@
 using System;
 
-public class FirebaseDatabaseRealtimePresenter
+public class FirebaseDatabasePresenter
 {
-    private FirebaseDatabaseRealtimeModel firebaseDatabaseRealtimeModel;
-    private FirebaseDatabaseRealtimeView firebaseDatabaseRealtimeView;
+    private FirebaseDatabaseModel firebaseDatabaseRealtimeModel;
+    private FirebaseDatabaseView firebaseDatabaseRealtimeView;
 
-    public FirebaseDatabaseRealtimePresenter(FirebaseDatabaseRealtimeModel firebaseDatabaseRealtimeModel, FirebaseDatabaseRealtimeView firebaseDatabaseRealtimeView)
+    public FirebaseDatabasePresenter(FirebaseDatabaseModel firebaseDatabaseRealtimeModel, FirebaseDatabaseView firebaseDatabaseRealtimeView)
     {
         this.firebaseDatabaseRealtimeModel = firebaseDatabaseRealtimeModel;
         this.firebaseDatabaseRealtimeView = firebaseDatabaseRealtimeView;

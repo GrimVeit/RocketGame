@@ -17,18 +17,20 @@ public class MenuEntryPoint : MonoBehaviour
     private ParticlePresenter particleEffectPresenter;
     private SoundPresenter soundPresenter;
 
+    private MenuGlobalStateMachine stateMachine;
+
     private InternetPresenter internetPresenter;
     private FirebaseAuthenticationPresenter firebaseAuthenticationPresenter;
-    private FirebaseDatabaseRealtimePresenter firebaseDatabaseRealtimePresenter;
+    private FirebaseDatabasePresenter firebaseDatabaseRealtimePresenter;
     private NicknameRandomPresenter nicknameRandomPresenter;
-
-    private MenuGlobalStateMachine stateMachine;
 
     public void Run(UIRootView uIRootView)
     {
         sceneRoot = uiMenuRootPrefab;
  
+
         uIRootView.AttachSceneUI(sceneRoot.gameObject, Camera.main);
+
 
         viewContainer = sceneRoot.GetComponent<ViewContainer>();
         viewContainer.Initialize();
@@ -61,13 +63,15 @@ public class MenuEntryPoint : MonoBehaviour
                     (new FirebaseAuthenticationModel(firebaseAuth, soundPresenter, particleEffectPresenter),
                 viewContainer.GetView<FirebaseAuthenticationView>());
 
-                firebaseDatabaseRealtimePresenter = new FirebaseDatabaseRealtimePresenter
-                (new FirebaseDatabaseRealtimeModel(firebaseAuth, databaseReference, soundPresenter),
-                    viewContainer.GetView<FirebaseDatabaseRealtimeView>());
+                firebaseDatabaseRealtimePresenter = new FirebaseDatabasePresenter
+                (new FirebaseDatabaseModel(firebaseAuth, databaseReference, soundPresenter),
+                    viewContainer.GetView<FirebaseDatabaseView>());
 
                 nicknameRandomPresenter = new NicknameRandomPresenter(new NicknameRandomModel());
 
                 stateMachine = new MenuGlobalStateMachine(internetPresenter, firebaseAuthenticationPresenter, firebaseDatabaseRealtimePresenter, nicknameRandomPresenter, sceneRoot);
+
+                Debug.Log("CHECK");
 
                 sceneRoot.SetSoundProvider(soundPresenter);
                 sceneRoot.Activate();

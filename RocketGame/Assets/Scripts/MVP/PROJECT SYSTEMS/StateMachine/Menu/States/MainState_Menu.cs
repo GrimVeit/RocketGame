@@ -4,9 +4,9 @@ public class MainState_Menu : IState
 
     private readonly IGlobalStateMachineProvider _stateMachineProvider;
 
-    private readonly FirebaseDatabaseRealtimePresenter _firebaseDatabaseRealtimePresenter;
+    private readonly FirebaseDatabasePresenter _firebaseDatabaseRealtimePresenter;
 
-    public MainState_Menu(IGlobalStateMachineProvider stateMachineProvider, UIMenuRoot sceneRoot, FirebaseDatabaseRealtimePresenter firebaseDatabaseRealtimePresenter)
+    public MainState_Menu(IGlobalStateMachineProvider stateMachineProvider, UIMenuRoot sceneRoot, FirebaseDatabasePresenter firebaseDatabaseRealtimePresenter)
     {
         _stateMachineProvider = stateMachineProvider;
         _sceneRoot = sceneRoot;

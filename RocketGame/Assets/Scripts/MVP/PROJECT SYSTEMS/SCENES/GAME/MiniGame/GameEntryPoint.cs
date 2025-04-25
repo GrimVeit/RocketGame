@@ -32,8 +32,8 @@ public class GameEntryPoint : MonoBehaviour
     private ObstaclePresenter obstaclePresenter;
     private ObstacleRocketMovePresenter obstacleRocketMovePresenter;
 
-    private AltitudePresenter altitudePresenter;
-    private CourseDisplacementPresenter courseDisplacementPresenter;
+    private AltitudeRocketPresenter altitudePresenter;
+    private CourseDisplacementRocketPresenter courseDisplacementPresenter;
     private ScoreMultiplierPresenter scoreMultiplierPresenter;
     private ScorePresenter scorePresenter;
 
@@ -93,8 +93,8 @@ public class GameEntryPoint : MonoBehaviour
         obstaclePresenter = new ObstaclePresenter(viewContainer.GetView<ObstacleView>());
         obstacleRocketMovePresenter = new ObstacleRocketMovePresenter(new ObstacleRocketMoveModel(rocketMovePresenter, pathData));
 
-        altitudePresenter = new AltitudePresenter(new AltitudeModel(), viewContainer.GetView<AltitudeView>());
-        courseDisplacementPresenter = new CourseDisplacementPresenter(new CourseDisplacementModel(), viewContainer.GetView<CourseDisplacementView>());
+        altitudePresenter = new AltitudeRocketPresenter(new AltitudeRocketModel(), viewContainer.GetView<AltitudeRocketView>());
+        courseDisplacementPresenter = new CourseDisplacementRocketPresenter(new CourseDisplacementRocketModel(), viewContainer.GetView<CourseDisplacementRocketView>());
         scoreMultiplierPresenter = new ScoreMultiplierPresenter(new ScoreMultiplierModel(), viewContainer.GetView<ScoreMultiplierView>());
         scorePresenter = new ScorePresenter(new ScoreModel(bankPresenter, PrefsKeys.WIN_RECORD, PrefsKeys.WIN_LAST), viewContainer.GetView<ScoreView>());
 

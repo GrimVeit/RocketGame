@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class AltitudeView : View
+public class AltitudeRocketView : View
 {
     [SerializeField] private TextMeshProUGUI textAltitude;
 
